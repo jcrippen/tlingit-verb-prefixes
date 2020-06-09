@@ -70,8 +70,8 @@
 
 %% How the feet should be formatted.
 %%   Args: {<pagestyle>}{<left>}{<centre>}{<right>}
-\makeevenfoot{mine}{}{\thepage}{}
-\makeoddfoot{mine}{}{\thepage}{}
+\makeevenfoot{mine}{{\ttfamily\tiny\gitAuthorIsoDate{} \gitAbbrevHash\gitRels}}{\thepage}{}
+\makeoddfoot{mine}{{\ttfamily\tiny\gitAuthorIsoDate{} \gitAbbrevHash\gitRels}}{\thepage}{}
 
 %% The the rule separating the footer from the body. Use a thickness of 0pt for no rule.
 %%   Args: {<pagestyle>}{<span>}{<thickness>}
