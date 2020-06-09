@@ -1,0 +1,1254 @@
+%!TEX TS-program = xelatex
+%!TEX encoding = UTF-8 Unicode
+% The cruft above tells TeX editors (e.g. TeXShop) what this file contains.
+
+%% Only tested with XeLaTeX.
+%\RequireXeTeX
+
+%% Unicode normalization of input text.
+%%  0: no normalization (default)
+%%  1: normalize to NFC
+%%  2: normalize to NFD
+\XeTeXinputnormalization 1
+
+%% FIle prefix.
+%% This is the unchanging part of all file names for this document.
+\def \FILEPREFIX {verb-prefixes}
+
+%% The Memoir class.
+%% The manual is memman.pdf.
+\documentclass[12pt,letterpaper,landscape,oneside,article]{memoir}
+
+%% LaTeX3 command parsing.
+%% Should be used by all modern, right thinking LaTeX programmers.
+\usepackage{xparse}
+
+%%%
+%%% Memoir configuration.
+%%%
+
+\input{\FILEPREFIX-memconf}
+
+%%%
+%%% Font configuration.
+%%%
+
+\input{\FILEPREFIX-fonts}
+\input{\FILEPREFIX-fonts-symbols}
+
+%%%
+%%% Bibliography configuration.
+%%%
+
+\input{\FILEPREFIX-bib}
+
+%%%
+%%% Example and glossing configuration.
+%%%
+
+\input{\FILEPREFIX-expex}
+
+%%%
+%%% Other packages.
+%%%
+\input{\FILEPREFIX-other}
+
+%%%
+%%% Hyperlinks and crossreferences.
+%%%
+
+\input{\FILEPREFIX-hyper}
+
+%%%
+%%% Miscellaneous macrology.
+%%%
+
+\input{\FILEPREFIX-macrology}
+
+%%%
+%%% Colour macrology.
+%%%
+\RequirePackage{xcolor}
+
+% Colour definitions.
+% qualifiers
+\definecolor{Qcolor}{rgb}{0.00,0.33,0.33}
+% irrealis
+\definecolor{Rcolor}{rgb}{0.45,0.45,0.00}
+% aspect/conjugation
+\definecolor{Acolor}{rgb}{0.66,0.33,0.00}
+% modality
+\definecolor{Mcolor}{rgb}{0.00,0.66,0.66}
+% subject
+\definecolor{Scolor}{rgb}{0.50,0.00,0.66}
+% d- prefix
+\definecolor{Dcolor}{rgb}{0.00,0.00,0.75}
+% d- prefix deletion
+\definecolor{dcolor}{rgb}{0.90,0.90,1.00}
+% s-/l-/sh- prefix
+\definecolor{Fcolor}{rgb}{0.00,0.50,0.00}
+% i- prefix
+\definecolor{Icolor}{rgb}{0.75,0.00,0.00}
+% epenthesis
+\definecolor{Ecolor}{rgb}{0.75,0.75,0.75}
+% coalescence
+\definecolor{Xcolor}{rgb}{0.97,0.97,0.97}
+
+% Uncomment to make everything black.
+%\definecolor{Qcolor}{rgb}{0.00,0.00,0.00}
+%\definecolor{Rcolor}{rgb}{0.00,0.00,0.00}
+%\definecolor{Acolor}{rgb}{0.00,0.00,0.00}
+%\definecolor{Mcolor}{rgb}{0.00,0.00,0.00}
+%\definecolor{Scolor}{rgb}{0.00,0.00,0.00}
+%\definecolor{Dcolor}{rgb}{0.00,0.00,0.00}
+%\definecolor{Fcolor}{rgb}{0.00,0.00,0.00}
+%\definecolor{Icolor}{rgb}{0.00,0.00,0.00}
+%\definecolor{Ecolor}{rgb}{0.00,0.00,0.00}
+
+% Uncomment to make everything light grey.
+%\definecolor{Qcolor}{rgb}{0.90,0.90,0.90}
+%\definecolor{Rcolor}{rgb}{0.90,0.90,0.90}
+%\definecolor{Acolor}{rgb}{0.90,0.90,0.90}
+%\definecolor{Mcolor}{rgb}{0.90,0.90,0.90}
+%\definecolor{Scolor}{rgb}{0.90,0.90,0.90}
+%\definecolor{Dcolor}{rgb}{0.90,0.90,0.90}
+%\definecolor{Fcolor}{rgb}{0.90,0.90,0.90}
+%\definecolor{Icolor}{rgb}{0.90,0.90,0.90}
+%\definecolor{Ecolor}{rgb}{0.90,0.90,0.90}
+
+%% A strut with 90 percent of normal height and width for the colorbox.
+%% See http://tex.stackexchange.com/questions/74459/remove-space-before-colorbox
+\ProvideDocumentCommand \colorboxstrut {} {\vrule width 0pt height 0.9\ht\strutbox depth 0.9\dp\strutbox\relax}
+
+\ProvideDocumentCommand \Qf {m} {\textcolor{Qcolor}{\colorboxstrut{}#1}}
+\ProvideDocumentCommand \Rf {m} {\textcolor{Rcolor}{\colorboxstrut{}#1}}
+\ProvideDocumentCommand \Af {m} {\textcolor{Acolor}{\colorboxstrut{}#1}}
+\ProvideDocumentCommand \Mf {m} {\textcolor{Mcolor}{\colorboxstrut{}#1}}
+\ProvideDocumentCommand \Sf {m} {\textcolor{Scolor}{\colorboxstrut{}#1}}
+\ProvideDocumentCommand \Df {m} {\textcolor{Dcolor}{\colorboxstrut{}#1}}
+\ProvideDocumentCommand \Ff {m} {\textcolor{Fcolor}{\colorboxstrut{}#1}}
+\ProvideDocumentCommand \If {m} {\textcolor{Icolor}{\colorboxstrut{}#1}}
+\ProvideDocumentCommand \Xf {m} {\setlength{\fboxsep}{0pt}\colorbox{Xcolor}{\colorboxstrut{}#1}}
+\ProvideDocumentCommand \df {m} {\setlength{\fboxsep}{0pt}\colorbox{dcolor}{\colorboxstrut{}#1}}
+\ProvideDocumentCommand \Ef {m} {\textcolor{Ecolor}{\colorboxstrut{}#1}}
+
+%%%
+%%% The document.
+%%%
+\begin{document}
+
+\title{Tlingit verb prefix paradigms}
+\author{\textit{Dzéiwsh} James A.\ Crippen}
+\maketitle
+
+\section{Introduction}
+
+\FIXME{Organization – perfective, prospective, unmarked (∅), \fm{n-} prefix, \fm{g̱-} prefix, \fm{g-} prefix.
+For each of \fm{∅}, \fm{n-}, \fm{g̱-}, \fm{g-}, further subsections for irrealis, modal \fm{g̱-}, and irrealis + modal.}
+
+\FIXME{Key — \Qf{object or qualifier/incorporate}, \Rf{irrealis}, \Af{aspect}, \Mf{modality}, \Sf{subject}, \Df{classifier \fm{d-} prefix}, \Ff{classifier \fm{s-}/\fm{l-}/\fm{sh-} prefix}, \If{classifier \fm{i-} prefix}, \Ef{epenthesis}, \Xf{deletion}}
+
+\FIXME{Since all vowels are low tone, for simplicity in the IPA transcriptions tone is not indicated.}
+
+\FIXME{Why we use \fm{ka-}, \fm{tu-}, \fm{ji-}, \fm{x̱ʼe-}. Other prefixes should be similar.}
+
+\FIXME{Prefixes like \fm{waḵ-} will have no effect. Prefixes like \fm{daa-} will behave like \fm{ka-}.}
+
+\FIXME{Why we include \fm{a-} even when it’s not third person – it’s possible as an expletive or ‘dummy’ object.}
+
+\FIXME{Absence of a prefix or output form is given as ‘—’.}
+
+\FIXME{Lines with no prefixes in the first columns are continuations of a preceding line.}
+
+\clearpage
+%%%
+%%% Unmarked aspect.
+%%%
+
+\section{Unmarked aspect (imperfective or \textit{∅}-conjugation)}
+
+Unmarked aspect is any form without an overt aspect prefix, i.e.\ no perfective prefix (\fm{wu-}, \fm{u-}) and no overt conjugation prefix (\fm{n-}, \fm{g̱-}, \fm{g-}).
+The simplest case of unmarked aspect is the imperfective aspect form of most activity and state verbs.
+(There are exceptions such as extensional state imperfectives that select a non-\fm{∅} conjugation prefix.)
+Another case of unmarked aspect is the imperative mood form of verbs that belong to the \fm{∅}-conjugation class, where the form selects a conjugation prefix but this prefix is covert (i.e.\ \fm{∅}).
+
+\clearpage
+%% Zero, 3
+\begin{table}
+\centerfloat
+\begin{tabular}{lccr
+		rrrr
+		rrrr}
+\toprule
+			&		&		&				&\multicolumn{8}{c}{Classifier prefixes}\\
+											\cmidrule(lr){5-12}
+Disjunct\rlap{\quad{}+}	& Asp.\rlap{ +}	& Subj.\rlap{ →}& Prefixes			&\Df{d}-\Ff{s}-\If{i}\rlap{-}			&\Df{d}-\If{i}\rlap{-}			&\Ff{s}-\If{i}\rlap{-}			&\Df{d}-				&\Df{d}-\Ff{s}\rlap{-}			&\Ff{s}-				&\If{i}-				&—\\
+\midrule
+—			& —		& —		& —				&\Df{d}\Ff{z}\If{i}				&\Df{d}\If{i}				&\Ff{s}\If{i}				&\Df{d}\Ef{a}				&\Ef{i}\df{\Ff{s}}			&\Ff{s}\Ef{a}				&\If{y}\Ef{a}				&—\\
+\Qf{a}- arg./expl.	& —		& —		&\Qf{a}-			&\Qf{a}\Df{d}\Ff{z}\If{i}			&\Qf{a}\Df{d}\If{i}			&\Qf{a}\Ff{s}\If{i}			&\Qf{a}\Df{d}\Ef{a}			&\Qf{a}\df{\Ff{s}}			&\Qf{a}\Ff{s}				&\Qf{a}\If{y}\Ef{a}			&\Qf{a}\\
+\Qf{ka}- qualifier	& —		& —		&\Qf{ka}-			&\Qf{ka}\Df{d}\Ff{z}\If{i}			&\Qf{ka}\Df{d}\If{i}			&\Qf{ka}\Ff{s}\If{i}			&\Qf{ka}\Df{d}\Ef{a}			&\Qf{ka}\df{\Ff{s}}			&\Qf{ka}\Ff{s}\Ef{a}			&\Qf{ka}\If{y}\Ef{a}			&\Qf{ka}\\
+			&		&		&				&						&					&					&					&					&					&\Qf{ka}\If{a}				&\\
+\Qf{tu}- ‘inside’	& —		& —		&\Qf{tu}-			&\Qf{tu}\Df{d}\Ff{z}\If{i}			&\Qf{tu}\Df{d}\If{i}			&\Qf{tu}\Ff{s}\If{i}			&\Qf{tu}\Df{d}\Ef{a}			&\Qf{tu}\df{\Ff{s}}			&\Qf{tu}\Ff{s}\Ef{a}			&\Qf{tu}\If{w}\Ef{a}			&\Qf{tu}\\
+\Qf{ji}- ‘hand’		& —		& —		&\Qf{ji}-			&\Qf{ji}\Df{d}\Ff{z}\If{i}			&\Qf{ji}\Df{d}\If{i}			&\Qf{ji}\Ff{s}\If{i}			&\Qf{ji}\Df{d}\Ef{a}			&\Qf{ji}\df{\Ff{s}}			&\Qf{ji}\Ff{s}\Ef{a}			&\Qf{ji}\If{y}\Ef{a}			&\Qf{ji}\\
+\Qf{x̱ʼe}- ‘mouth’	& —		& —		&\Qf{x̱ʼe}-			&\Qf{x̱ʼa}\Df{d}\Ff{z}\If{i}			&\Qf{x̱ʼa}\Df{d}\If{i}			&\Qf{x̱ʼa}\Ff{s}\If{i}			&\Qf{x̱ʼa}\Df{d}\Ef{a}			&\Qf{x̱ʼa}\df{\Ff{s}}			&\Qf{x̱ʼa}\Ff{s}\Ef{a}			&\Qf{x̱ʼa}\If{y}\Ef{a}			&\Qf{x̱ʼa}\\
+			&		&		&				&						&					&					&					&					&					&\Qf{x̱ʼa}\If{a}				&\\
+\bottomrule
+\end{tabular}
+\caption{Unmarked aspect (imperfective or \textit{∅}-conjugation), unmarked subject (third person or no subject)}
+\end{table}
+
+%% Zero, 3, IPA
+\begin{table}
+\centerfloat
+\begin{tabular}{lccr
+		rrrr
+		rrrr}
+\toprule
+(IPA)			&		&		&				&\multicolumn{8}{c}{Classifier prefixes}\\
+											\cmidrule(lr){5-12}
+Disjunct\rlap{\quad{}+}	& Asp.\rlap{ +}	& Subj.\rlap{ →}& Prefixes			&\Df{t}-\Ff{s}-\If{i}\rlap{-}			&\Df{t}-\If{i}\rlap{-}			&\Ff{s}-\If{i}\rlap{-}			&\Df{t}-				&\Df{t}-\Ff{s}\rlap{-}			&\Ff{s}-				&\If{i}-				&—\\
+\midrule
+—			& —		& —		& —				&\Df{t}\Ff{s}\If{i}				&\Df{t}\If{i}				&\Ff{s}\If{i}				&\Df{t}\Ef{a}				&\Ef{ʔi}\df{\Ff{s}}			&\Ff{s}\Ef{a}				&\If{j}\Ef{a}				&—\\
+\Qf{ʔa}- arg./expl.	& —		& —		&\Qf{ʔa}-			&\Qf{ʔa}.\Df{t}\Ff{s}\If{i}			&\Qf{ʔa}.\Df{t}\If{i}			&\Qf{ʔa}.\Ff{s}\If{i}			&\Qf{ʔa}.\Df{t}\Ef{a}			&\Qf{ʔa}\df{\Ff{s}}			&\Qf{ʔa}\Ff{s}				&\Qf{ʔa}.\If{j}\Ef{a}			&\Qf{ʔa}\\
+\Qf{kʰa}- qualifier	& —		& —		&\Qf{kʰa}-			&\Qf{kʰa}.\Df{t}\Ff{s}\If{i}			&\Qf{kʰa}.\Df{t}\If{i}			&\Qf{kʰa}.\Ff{s}\If{i}			&\Qf{kʰa}.\Df{t}\Ef{a}			&\Qf{kʰa}\df{\Ff{s}}			&\Qf{kʰa}.\Ff{s}\Ef{a}			&\Qf{kʰa}.\If{j}\Ef{a}			&\Qf{kʰa}\\
+			&		&		&				&						&					&					&					&					&					&\Qf{kʰa}\If{ː}				&\\
+\Qf{tʰu}- ‘inside’	& —		& —		&\Qf{tʰu}-			&\Qf{tʰu}.\Df{t}\Ff{s}\If{i}			&\Qf{tʰu}.\Df{t}\If{i}			&\Qf{tʰu}.\Ff{s}\If{i}			&\Qf{tʰu}.\Df{t}\Ef{a}			&\Qf{tʰu}\df{\Ff{s}}			&\Qf{tʰu}.\Ff{s}\Ef{a}			&\Qf{tʰu}.\If{w}\Ef{a}			&\Qf{tʰu}\\
+\Qf{tʃi}- ‘hand’	& —		& —		&\Qf{tʃi}-			&\Qf{tʃi}.\Df{t}\Ff{s}\If{i}			&\Qf{tʃi}.\Df{t}\If{i}			&\Qf{tʃi}.\Ff{s}\If{i}			&\Qf{tʃi}.\Df{t}\Ef{a}			&\Qf{tʃi}\df{\Ff{s}}			&\Qf{tʃi}.\Ff{s}\Ef{a}			&\Qf{tʃi}.\If{j}\Ef{a}			&\Qf{tʃi}\\
+\Qf{x̱ʼe}- ‘mouth’	& —		& —		&\Qf{χʼe}-			&\Qf{χʼa}.\Df{t}\Ff{s}\If{i}			&\Qf{χʼa}.\Df{t}\If{i}			&\Qf{χʼa}.\Ff{s}\If{i}			&\Qf{χʼa}.\Df{t}\Ef{a}			&\Qf{χʼa}\df{\Ff{s}}			&\Qf{χʼa}.\Ff{s}\Ef{a}			&\Qf{χʼa}.\If{j}\Ef{a}			&\Qf{χʼa}\\
+			&		&		&				&						&					&					&					&					&					&\Qf{χʼa}\If{ː}				&\\
+\bottomrule
+\end{tabular}
+\caption{Unmarked aspect (imperfective or \textit{∅}-conjugation), unmarked subject (third person or no subject), IPA}
+\end{table}
+
+%% Zero, 1SG
+\begin{table}
+\centerfloat
+\begin{tabular}{lccr
+		rrrr
+		rrrr}
+\toprule
+			&		&		&				&\multicolumn{8}{c}{Classifier prefixes}\\
+											\cmidrule(lr){5-12}
+Disjunct\rlap{\quad{}+}	& Asp.\rlap{ +}	& Subj.\rlap{ →}& Prefixes			&\Df{d}-\Ff{s}-\If{i}\rlap{-}			&\Df{d}-\If{i}\rlap{-}			&\Ff{s}-\If{i}\rlap{-}			&\Df{d}-				&\Df{d}-\Ff{s}\rlap{-}			&\Ff{s}-				&\If{i}-				&—\\
+\midrule
+—			&—		&\Sf{x̱}-	&\Sf{x̱}-			&\Sf{x̱}\Ef{a}\Df{d}\Ff{z}\If{i}			&\Sf{x̱}\Ef{a}\Df{d}\If{i}		&\Sf{x̱}\Ef{a}\Ff{s}\If{i}		&\Sf{x̱}\Ef{a}\Df{d}\Ef{a}		&\Sf{x̱}\Ef{a}\df{\Ff{s}}		&\Sf{x̱}\Ef{a}\Ff{s}\Ef{a}		&\Sf{x̱}\Ef{a}\If{y}\Ef{a}		&\Sf{x̱}\Ef{a}\\
+			&		&		&				&						&					&					&					&					&					&\Sf{x̱}\Ef{a}\If{a}			&\\
+\Qf{a}- expletive	&—		&\Sf{x̱}-	&\Qf{a}-\Sf{x̱}-			&\Qf{a}\Sf{x̱}\Df{d}\Ff{z}\If{i}\rlap{?}		&\Qf{a}\Sf{x̱}\Df{d}\If{i}		&\Qf{a}\Sf{x̱}\Ff{s}\If{i}		&\Qf{a}\Sf{x̱}\Df{d}\Ef{a}\rlap{?}	&\Qf{a}\Sf{x̱}\Ef{a}\df{\Ff{s}}		&\Qf{a}\Sf{x̱}\Ff{s}\Ef{a}		&\Qf{a}\Sf{x̱}\Ef{a}\If{a}		&\Qf{a}\Sf{x̱}\Ef{a}\\
+\Qf{ka}- qualifier	&—		&\Sf{x̱}-	&\Qf{ka}-\Sf{x̱}-		&\Qf{ka}\Sf{x̱}\Df{d}\Ff{z}\If{i}		&\Qf{ka}\Sf{x̱}\Df{d}\If{i}		&\Qf{ka}\Sf{x̱}\Ff{s}\If{i}		&\Qf{ka}\Sf{x̱}\Df{d}\Ef{a}		&\Qf{ka}\Sf{x̱}\Ef{a}\df{\Ff{s}}		&\Qf{ka}\Sf{x̱}\Ff{s}\Ef{a}		&\Qf{ka}\Sf{x̱}\Ef{a}\If{a}		&\Qf{ka}\Sf{x̱}\Ef{a}\\
+\Qf{tu}- ‘inside’	&—		&\Sf{x̱}-	&\Qf{tu}-\Sf{x̱}-		&\Qf{tu}\Sf{x̱}\Df{d}\Ff{z}\If{i}		&\Qf{tu}\Sf{x̱}\Df{d}\If{i}		&\Qf{tu}\Sf{x̱}\Ff{s}\If{i}		&\Qf{tu}\Sf{x̱}\Df{d}\Ef{a}		&\Qf{tu}\Sf{x̱}\Ef{a}\df{\Ff{s}}		&\Qf{tu}\Sf{x̱}\Ff{s}\Ef{a}		&\Qf{tu}\Sf{x̱}\Ef{a}\If{a}		&\Qf{tu}\Sf{x̱}\Ef{a}\\
+\Qf{ji}- ‘hand’		&—		&\Sf{x̱}-	&\Qf{ji}-\Sf{x̱}-		&\Qf{ji}\Sf{x̱}\Df{d}\Ff{z}\If{i}		&\Qf{ji}\Sf{x̱}\Df{d}\If{i}		&\Qf{ji}\Sf{x̱}\Ff{s}\If{i}		&\Qf{ji}\Sf{x̱}\Df{d}\Ef{a}		&\Qf{ji}\Sf{x̱}\Ef{a}\df{\Ff{s}}		&\Qf{ji}\Sf{x̱}\Ff{s}\Ef{a}		&\Qf{ji}\Sf{x̱}\Ef{a}\If{a}		&\Qf{ji}\Sf{x̱}\Ef{a}\\
+\Qf{x̱ʼe}- ‘mouth’	&—		&\Sf{x̱}-	&\Qf{x̱ʼe}-\Sf{x̱}-		&\Qf{x̱ʼa}\Sf{x̱}\Df{d}\Ff{z}\If{i}		&\Qf{x̱ʼa}\Sf{x̱}\Df{d}\If{i}		&\Qf{x̱ʼa}\Sf{x̱}\Ff{s}\If{i}		&\Qf{x̱ʼa}\Sf{x̱}\Df{d}\Ef{a}		&\Qf{x̱ʼa}\Sf{x̱}\Ef{a}\df{\Ff{s}}	&\Qf{x̱ʼa}\Sf{x̱}\Ff{s}\Ef{a}		&\Qf{x̱ʼa}\Sf{x̱}\Ef{a}\If{a}		&\Qf{x̱ʼa}\Sf{x̱}\Ef{a}\\
+\bottomrule
+\end{tabular}
+\caption{Unmarked aspect (imperfective or \textit{∅}-conjugation), first person singular subject \textit{x̱-}}
+\end{table}
+
+%% Zero, 1SG, IPA
+\begin{table}
+\centerfloat
+\begin{tabular}{lccr
+		rrrr
+		rrrr}
+\toprule
+(IPA)			&		&		&				&\multicolumn{8}{c}{Classifier prefixes}\\
+											\cmidrule(lr){5-12}
+Disjunct\rlap{\quad{}+}	& Asp.\rlap{ +}	& Subj.\rlap{ →}& Prefixes			&\Df{t}-\Ff{s}-\If{i}\rlap{-}			&\Df{t}-\If{i}\rlap{-}			&\Ff{s}-\If{i}\rlap{-}			&\Df{t}-				&\Df{t}-\Ff{s}\rlap{-}			&\Ff{s}-				&\If{i}-				&—\\
+\midrule
+—			&—		&\Sf{χ}-	&\Sf{χ}-			&\Sf{χ}\Ef{a}.\Df{t}\Ff{s}\If{i}		&\Sf{χ}\Ef{a}.\Df{t}\If{i}		&\Sf{χ}\Ef{a}.\Ff{s}\If{i}		&\Sf{χ}\Ef{a}.\Df{t}\Ef{a}		&\Sf{χ}\Ef{a}.\df{\Ff{s}}		&\Sf{χ}\Ef{a}.\Ff{s}\Ef{a}		&\Sf{χ}\Ef{a}.\If{j}\Ef{a}		&\Sf{χ}\Ef{a}\\
+			&		&		&				&						&					&					&					&					&					&\Sf{χ}\Ef{a}\If{ː}			&\\
+\Qf{ʔa}- arg./expl.	&—		&\Sf{χ}-	&\Qf{ʔa}-\Sf{χ}-		&\Qf{ʔa}\Sf{χ}.\Df{t}\Ff{s}\If{i}\rlap{?}	&\Qf{ʔa}\Sf{χ}.\Df{t}\If{i}		&\Qf{ʔa}\Sf{χ}.\Ff{s}\If{i}		&\Qf{ʔa}\Sf{χ}.\Df{t}\Ef{a}\rlap{?}	&\Qf{ʔa}.\Sf{χ}\Ef{a}\df{\Ff{s}}	&\Qf{ʔa}\Sf{χ}.\Ff{s}\Ef{a}		&\Qf{ʔa}.\Sf{χ}\Ef{a}\If{ː}		&\Qf{ʔa}.\Sf{χ}\Ef{a}\\
+\Qf{kʰa}- qualifier	&—		&\Sf{χ}-	&\Qf{kʰa}-\Sf{χ}-		&\Qf{kʰa}\Sf{χ}.\Df{t}\Ff{s}\If{i}		&\Qf{kʰa}\Sf{χ}.\Df{t}\If{i}		&\Qf{kʰa}\Sf{χ}.\Ff{s}\If{i}		&\Qf{kʰa}\Sf{χ}.\Df{t}\Ef{a}		&\Qf{kʰa}.\Sf{χ}\Ef{a}\df{\Ff{s}}	&\Qf{kʰa}\Sf{χ}.\Ff{s}\Ef{a}		&\Qf{kʰa}.\Sf{χ}\Ef{a}\If{ː}		&\Qf{kʰa}.\Sf{χ}\Ef{a}\\
+\Qf{tʰu}- ‘inside’	&—		&\Sf{χ}-	&\Qf{tʰu}-\Sf{χ}-		&\Qf{tʰu}\Sf{χ}\Qf{ʷ}.\Df{t}\Ff{s}\If{i}	&\Qf{tʰu}\Sf{χ}\Qf{ʷ}.\Df{t}\If{i}	&\Qf{tʰu}\Sf{χ}\Qf{ʷ}.\Ff{s}\If{i}	&\Qf{tʰu}\Sf{χ}\Qf{ʷ}.\Df{t}\Ef{a}	&\Qf{tʰu}.\Sf{χ}\Ef{a}\df{\Ff{s}}	&\Qf{tʰu}\Sf{χ}\Qf{ʷ}.\Ff{s}\Ef{a}	&\Qf{tʰu}.\Sf{χ}\Ef{a}\If{ː}		&\Qf{tʰu}.\Sf{χ}\Ef{a}\\
+\Qf{tʃi}- ‘hand’	&—		&\Sf{χ}-	&\Qf{tʃi}-\Sf{χ}-		&\Qf{tʃi}\Sf{χ}.\Df{t}\Ff{s}\If{i}		&\Qf{tʃi}\Sf{χ}.\Df{t}\If{i}		&\Qf{tʃi}\Sf{χ}.\Ff{s}\If{i}		&\Qf{tʃi}\Sf{χ}.\Df{t}\Ef{a}		&\Qf{tʃi}.\Sf{χ}\Ef{a}\df{\Ff{s}}	&\Qf{tʃi}\Sf{χ}.\Ff{s}\Ef{a}		&\Qf{tʃi}.\Sf{χ}\Ef{a}\If{ː}		&\Qf{tʃi}.\Sf{χ}\Ef{a}\\
+\Qf{χʼe}- ‘mouth’	&—		&\Sf{χ}-	&\Qf{χʼe}-\Sf{χ}-		&\Qf{χʼa}\Sf{χ}.\Df{t}\Ff{s}\If{i}		&\Qf{χʼa}\Sf{χ}.\Df{t}\If{i}		&\Qf{χʼa}\Sf{χ}.\Ff{s}\If{i}		&\Qf{χʼa}\Sf{χ}.\Df{t}\Ef{a}		&\Qf{χʼa}.\Sf{χ}\Ef{a}\df{\Ff{s}}	&\Qf{χʼa}\Sf{χ}.\Ff{s}\Ef{a}		&\Qf{χʼa}.\Sf{χ}\Ef{a}\If{ː}		&\Qf{χʼa}.\Sf{χ}\Ef{a}\\
+\bottomrule
+\end{tabular}
+\caption{Unmarked aspect (imperfective or \textit{∅}-conjugation), first person singular subject /{χ-}/, IPA}
+\end{table}
+
+\clearpage
+%% Zero, 1PL
+\begin{table}
+\centerfloat
+\begin{tabular}{lccr
+		rrrr
+		rrrr}
+\toprule
+			&		&		&				&\multicolumn{8}{c}{Classifier prefixes}\\
+											\cmidrule(lr){5-12}
+Disjunct\rlap{\quad{}+}	& Asp.\rlap{ +}	& Subj.\rlap{ →}& Prefixes			&\Df{d}-\Ff{s}-\If{i}\rlap{-}			&\Df{d}-\If{i}\rlap{-}			&\Ff{s}-\If{i}\rlap{-}			&\Df{d}-				&\Df{d}-\Ff{s}\rlap{-}			&\Ff{s}-				&\If{i}-				&—\\
+\midrule
+—			&—		&\Sf{tu}-	&\Sf{tu}-			&\Sf{tu}\Df{d}\Ff{z}\If{i}			&\Sf{tu}\Df{d}\If{i}			&\Sf{tu}\Ff{s}\If{i}			&\Sf{tu}\Df{d}\Ef{a}			&\Sf{too}\df{\Ff{s}}			&\Sf{tu}\Ff{s}\Ef{a}			&\Sf{tu}\If{w}\Ef{a}			&\Sf{too}\\
+\Qf{a}- expletive	&—		&\Sf{tu}-	&\Qf{a}-\Sf{tu}-		&\Qf{a}\Sf{tu}\Df{d}\Ff{z}\If{i}\rlap{?}	&\Qf{a}\Sf{tu}\Df{d}\If{i}		&\Qf{a}\Sf{tu}\Ff{s}\If{i}		&\Qf{a}\Sf{tu}\Df{d}\Ef{a}		&\Qf{a}\Sf{too}\df{\Ff{s}}		&\Qf{a}\Sf{tu}\Ff{s}\Ef{a}		&\Qf{a}\Sf{tu}\If{w}\Ef{a}		&\Qf{a}\Sf{too}\\
+\Qf{ka}- qualifier	&—		&\Sf{tu}-	&\Qf{ka}-\Sf{tu}-		&\Qf{ka}\Sf{tu}\Df{d}\Ff{z}\If{i}		&\Qf{ka}\Sf{tu}\Df{d}\If{i}		&\Qf{ka}\Sf{tu}\Ff{s}\If{i}		&\Qf{ka}\Sf{tu}\Df{d}\Ef{a}		&\Qf{ka}\Sf{too}\df{\Ff{s}}		&\Qf{ka}\Sf{tu}\Ff{s}\Ef{a}		&\Qf{ka}\Sf{tu}\If{w}\Ef{a}		&\Qf{ka}\Sf{too}\\
+\Qf{tu}- ‘inside’	&—		&\Sf{tu}-	&\Qf{tu}-\Sf{tu}-		&\Qf{tu}\Sf{tu}\Df{d}\Ff{z}\If{i}		&\Qf{tu}\Sf{tu}\Df{d}\If{i}		&\Qf{tu}\Sf{tu}\Ff{s}\If{i}		&\Qf{tu}\Sf{tu}\Df{d}\Ef{a}		&\Qf{tu}\Sf{too}\df{\Ff{s}}		&\Qf{tu}\Sf{tu}\Ff{s}\Ef{a}		&\Qf{tu}\Sf{tu}\If{w}\Ef{a}		&\Qf{tu}\Sf{too}\\
+\Qf{ji}- ‘hand’		&—		&\Sf{tu}-	&\Qf{ji}-\Sf{tu}-		&\Qf{ji}\Sf{tu}\Df{d}\Ff{z}\If{i}		&\Qf{ji}\Sf{tu}\Df{d}\If{i}		&\Qf{ji}\Sf{tu}\Ff{s}\If{i}		&\Qf{ji}\Sf{tu}\Df{d}\Ef{a}		&\Qf{ji}\Sf{too}\df{\Ff{s}}		&\Qf{ji}\Sf{tu}\Ff{s}\Ef{a}		&\Qf{ji}\Sf{tu}\If{w}\Ef{a}		&\Qf{ji}\Sf{too}\\
+\Qf{x̱ʼe}- ‘mouth’	&—		&\Sf{tu}-	&\Qf{x̱ʼe}-\Sf{tu}-		&\Qf{x̱ʼa}\Sf{tu}\Df{d}\Ff{z}\If{i}		&\Qf{x̱ʼa}\Sf{tu}\Df{d}\If{i}		&\Qf{x̱ʼa}\Sf{tu}\Ff{s}\If{i}		&\Qf{x̱ʼa}\Sf{tu}\Df{d}\Ef{a}		&\Qf{x̱ʼa}\Sf{too}\df{\Ff{s}}		&\Qf{x̱ʼa}\Sf{tu}\Ff{s}\Ef{a}		&\Qf{x̱ʼa}\Sf{tu}\If{w}\Ef{a}		&\Qf{x̱ʼa}\Sf{too}\\
+\bottomrule
+\end{tabular}
+\caption{Unmarked aspect (imperfective or \textit{∅}-conjugation), first person plural subject \textit{tu-}}
+\end{table}
+
+%% Zero, 1PL, IPA
+\begin{table}
+\centerfloat
+\begin{tabular}{lccr
+		rrrr
+		rrrr}
+\toprule
+(IPA)			&		&		&				&\multicolumn{8}{c}{Classifier prefixes}\\
+											\cmidrule(lr){5-12}
+Disjunct\rlap{\quad{}+}	& Asp.\rlap{ +}	& Subj.\rlap{ →}& Prefixes			&\Df{t}-\Ff{s}-\If{i}\rlap{-}			&\Df{t}-\If{i}\rlap{-}			&\Ff{s}-\If{i}\rlap{-}			&\Df{t}-				&\Df{t}-\Ff{s}\rlap{-}			&\Ff{s}-				&\If{i}-				&—\\
+\midrule
+—			&—		&\Sf{tʰu}-	&\Sf{tʰu}-			&\Sf{tʰu}.\Df{t}\Ff{s}\If{i}			&\Sf{tʰu}.\Df{t}\If{i}			&\Sf{tʰu}.\Ff{s}\If{i}			&\Sf{tʰu}.\Df{t}\Ef{a}			&\Sf{tʰuː}\df{\Ff{s}}			&\Sf{tʰu}.\Ff{s}\Ef{a}			&\Sf{tʰu}.\If{w}\Ef{a}			&\Sf{tʰuː}\\
+\Qf{ʔa}- expletive	&—		&\Sf{tʰu}-	&\Qf{ʔa}-\Sf{tʰu}-		&\Qf{ʔa}.\Sf{tʰu}.\Df{t}\Ff{s}\If{i}\rlap{?}	&\Qf{ʔa}.\Sf{tʰu}.\Df{t}\If{i}		&\Qf{ʔa}.\Sf{tʰu}.\Ff{s}\If{i}		&\Qf{ʔa}.\Sf{tʰu}.\Df{t}\Ef{a}		&\Qf{ʔa}.\Sf{tʰuː}\df{\Ff{s}}		&\Qf{ʔa}.\Sf{tʰu}.\Ff{s}\Ef{a}		&\Qf{ʔa}.\Sf{tʰu}.\If{w}\Ef{a}		&\Qf{ʔa}.\Sf{tʰuː}\\
+\Qf{kʰa}- qualifier	&—		&\Sf{tʰu}-	&\Qf{kʰa}-\Sf{tʰu}-		&\Qf{kʰa}.\Sf{tʰu}.\Df{t}\Ff{s}\If{i}		&\Qf{kʰa}.\Sf{tʰu}.\Df{t}\If{i}		&\Qf{kʰa}.\Sf{tʰu}.\Ff{s}\If{i}		&\Qf{kʰa}.\Sf{tʰu}.\Df{t}\Ef{a}		&\Qf{kʰa}.\Sf{tʰuː}\df{\Ff{s}}		&\Qf{kʰa}.\Sf{tʰu}.\Ff{s}\Ef{a}		&\Qf{kʰa}.\Sf{tʰu}.\If{w}\Ef{a}		&\Qf{kʰa}.\Sf{tʰuː}\\
+\Qf{tʰu}- ‘inside’	&—		&\Sf{tʰu}-	&\Qf{tʰu}-\Sf{tʰu}-		&\Qf{tʰu}.\Sf{tʰu}.\Df{t}\Ff{s}\If{i}		&\Qf{tʰu}.\Sf{tʰu}.\Df{t}\If{i}		&\Qf{tʰu}.\Sf{tʰu}.\Ff{s}\If{i}		&\Qf{tʰu}.\Sf{tʰu}.\Df{t}\Ef{a}		&\Qf{tʰu}.\Sf{tʰuː}\df{\Ff{s}}		&\Qf{tʰu}.\Sf{tʰu}.\Ff{s}\Ef{a}		&\Qf{tʰu}.\Sf{tʰu}.\If{w}\Ef{a}		&\Qf{tʰu}.\Sf{tʰuː}\\
+\Qf{tʃi}- ‘hand’	&—		&\Sf{tʰu}-	&\Qf{tʃi}-\Sf{tʰu}-		&\Qf{tʃi}.\Sf{tʰu}.\Df{t}\Ff{s}\If{i}		&\Qf{tʃi}.\Sf{tʰu}.\Df{t}\If{i}		&\Qf{tʃi}.\Sf{tʰu}.\Ff{s}\If{i}		&\Qf{tʃi}.\Sf{tʰu}.\Df{t}\Ef{a}		&\Qf{tʃi}.\Sf{tʰuː}\df{\Ff{s}}		&\Qf{tʃi}.\Sf{tʰu}.\Ff{s}\Ef{a}		&\Qf{tʃi}.\Sf{tʰu}.\If{w}\Ef{a}		&\Qf{tʃi}.\Sf{tʰuː}\\
+\Qf{χʼe}- ‘mouth’	&—		&\Sf{tʰu}-	&\Qf{χʼe}-\Sf{tʰu}-		&\Qf{χʼa}.\Sf{tʰu}.\Df{t}\Ff{s}\If{i}		&\Qf{χʼa}.\Sf{tʰu}.\Df{t}\If{i}		&\Qf{χʼa}.\Sf{tʰu}.\Ff{s}\If{i}		&\Qf{χʼa}.\Sf{tʰu}.\Df{t}\Ef{a}		&\Qf{χʼa}.\Sf{tʰuː}\df{\Ff{s}}		&\Qf{χʼa}.\Sf{tʰu}.\Ff{s}\Ef{a}		&\Qf{χʼa}.\Sf{tʰu}.\If{w}\Ef{a}		&\Qf{χʼa}.\Sf{tʰuː}\\
+\bottomrule
+\end{tabular}
+\caption{Unmarked aspect (imperfective or \textit{∅}-conjugation), first person plural subject /{tʰu-}/, IPA}
+\end{table}
+
+\clearpage
+%% Zero, 2SG
+\begin{table}
+\centerfloat
+\begin{tabular}{lccr
+		rrrr
+		rrrr}
+\toprule
+			&		&		&				&\multicolumn{8}{c}{Classifier prefixes}\\
+											\cmidrule(lr){5-12}
+Disjunct\rlap{\quad{}+}	& Asp.\rlap{ +}	& Subj.\rlap{ →}& Prefixes			&\Df{d}-\Ff{s}-\If{i}\rlap{-}			&\Df{d}-\If{i}\rlap{-}			&\Ff{s}-\If{i}\rlap{-}			&\Df{d}-				&\Df{d}-\Ff{s}\rlap{-}			&\Ff{s}-				&\If{i}-				&—\\
+\midrule
+—			&—		&\Sf{i}-	&\Sf{i}-			&\Sf{i}\Df{d}\Ff{z}\If{i}			&\Sf{i}\Df{d}\If{i}			&\Sf{i}\Ff{s}\If{i}			&\Sf{i}\Df{d}\Ef{a}			&\Sf{ee}\df{\Ff{s}}			&\Sf{i}\Ff{s}\Ef{a}			&\Sf{i}\If{y}\Ef{a}			&\Sf{ee}\\
+\Qf{a}- expletive	&—		&\Sf{i}-	&\Qf{a}-\Sf{i}-			&\Qf{e}\Sf{e}\Df{d}\Ff{z}\If{i}			&\Qf{e}\Sf{e}\Df{d}\If{i}		&\Qf{e}\Sf{e}\Ff{s}\If{i}		&\Qf{e}\Sf{e}\Df{d}\Ef{a}		&\Qf{e}\Sf{e}\df{\Ff{s}}		&\Qf{e}\Sf{e}\Ff{s}\Ef{a}		&\Qf{e}\Sf{e}\If{y}\Ef{a}		&\Qf{e}\Sf{e}\\
+\Qf{ka}- qualifier	&—		&\Sf{i}-	&\Qf{ka}-\Sf{i}-		&\Qf{k}\Sf{ee}\Df{d}\Ff{z}\If{i}		&\Qf{k}\Sf{ee}\Df{d}\If{i}		&\Qf{k}\Sf{ee}\Ff{s}\If{i}		&\Qf{k}\Sf{ee}\Df{d}\Ef{a}		&\Qf{k}\Sf{ee}\df{\Ff{s}}		&\Qf{k}\Sf{ee}\Ff{s}\Ef{a}		&\Qf{k}\Sf{ee}\If{y}\Ef{a}		&\Qf{k}\Sf{ee}\\
+\Qf{tu}- ‘inside’	&—		&\Sf{i}-	&\Qf{tu}-\Sf{i}-		&\Qf{t}\Sf{ee}\Df{d}\Ff{z}\If{i}		&\Qf{t}\Sf{ee}\Df{d}\If{i}		&\Qf{t}\Sf{ee}\Ff{s}\If{i}		&\Qf{t}\Sf{ee}\Df{d}\Ef{a}		&\Qf{t}\Sf{ee}\df{\Ff{s}}		&\Qf{t}\Sf{ee}\Ff{s}\Ef{a}		&\Qf{t}\Sf{ee}\If{y}\Ef{a}		&\Qf{t}\Sf{ee}\\
+\Qf{ji}- ‘hand’		&—		&\Sf{i}-	&\Qf{ji}-\Sf{i}-		&\Qf{j}\Sf{ee}\Df{d}\Ff{z}\If{i}		&\Qf{j}\Sf{ee}\Df{d}\If{i}		&\Qf{j}\Sf{ee}\Ff{s}\If{i}		&\Qf{j}\Sf{ee}\Df{d}\Ef{a}		&\Qf{j}\Sf{ee}\df{\Ff{s}}		&\Qf{j}\Sf{ee}\Ff{s}\Ef{a}		&\Qf{j}\Sf{ee}\If{y}\Ef{a}		&\Qf{j}\Sf{ee}\\
+\Qf{x̱ʼe}- ‘mouth’	&—		&\Sf{i}-	&\Qf{x̱ʼe}-\Sf{i}-		&\Qf{x̱ʼ}\Sf{ee}\Df{d}\Ff{z}\If{i}		&\Qf{x̱ʼ}\Sf{ee}\Df{d}\If{i}		&\Qf{x̱ʼ}\Sf{ee}\Ff{s}\If{i}		&\Qf{x̱ʼ}\Sf{ee}\Df{d}\Ef{a}		&\Qf{x̱ʼ}\Sf{ee}\df{\Ff{s}}		&\Qf{x̱ʼ}\Sf{ee}\Ff{s}\Ef{a}		&\Qf{x̱ʼ}\Sf{ee}\If{y}\Ef{a}		&\Qf{x̱ʼ}\Sf{ee}\\
+\bottomrule
+\end{tabular}
+\caption{Unmarked aspect (imperfective or \textit{∅}-conjugation), second person singular subject \textit{i-}}
+\end{table}
+
+%% Zero, 2SG, IPA
+\begin{table}
+\centerfloat
+\begin{tabular}{lccr
+		rrrr
+		rrrr}
+\toprule
+(IPA)			&		&		&				&\multicolumn{8}{c}{Classifier prefixes}\\
+											\cmidrule(lr){5-12}
+Disjunct\rlap{\quad{}+}	& Asp.\rlap{ +}	& Subj.\rlap{ →}& Prefixes			&\Df{t}-\Ff{s}-\If{i}\rlap{-}			&\Df{t}-\If{i}\rlap{-}			&\Ff{s}-\If{i}\rlap{-}			&\Df{t}-				&\Df{t}-\Ff{s}\rlap{-}			&\Ff{s}-				&\If{i}-				&—\\
+\midrule
+—			&—		&\Sf{i}-	&\Sf{i}-			&\Sf{ʔi}.\Df{t}\Ff{s}\If{i}			&\Sf{ʔi}.\Df{t}\If{i}			&\Sf{ʔi}.\Ff{s}\If{i}			&\Sf{ʔi}.\Df{t}\Ef{a}			&\Sf{ʔiː}\df{\Ff{s}}			&\Sf{ʔi}.\Ff{s}\Ef{a}			&\Sf{ʔi}.\If{j}\Ef{a}			&\Sf{ʔiː}\\
+\Qf{ʔa}- expletive	&—		&\Sf{i}-	&\Qf{ʔa}-\Sf{i}-		&\Qf{ʔ}\Sf{i}\Qf{ː}.\Df{t}\Ff{s}\If{i}		&\Qf{ʔ}\Sf{i}\Qf{ː}.\Df{t}\If{i}	&\Qf{ʔ}\Sf{i}\Qf{ː}.\Ff{s}\If{i}	&\Qf{ʔ}\Sf{i}\Qf{ː}.\Df{t}\Ef{a}	&\Qf{ʔ}\Sf{i}\Qf{ː}\df{\Ff{s}}		&\Qf{ʔ}\Sf{i}\Qf{ː}.\Ff{s}\Ef{a}	&\Qf{ʔ}\Sf{i}\Qf{ː}.\If{j}\Ef{a}	&\Qf{ʔ}\Sf{i}\Qf{ː}\\
+\Qf{kʰa}- qualifier	&—		&\Sf{i}-	&\Qf{kʰa}-\Sf{i}-		&\Qf{kʰ}\Sf{i}\Qf{ː}.\Df{t}\Ff{s}\If{i}		&\Qf{kʰ}\Sf{i}\Qf{ː}.\Df{t}\If{i}	&\Qf{kʰ}\Sf{i}\Qf{ː}.\Ff{s}\If{i}	&\Qf{kʰ}\Sf{i}\Qf{ː}.\Df{t}\Ef{a}	&\Qf{kʰ}\Sf{i}\Qf{ː}\df{\Ff{s}}		&\Qf{kʰ}\Sf{i}\Qf{ː}.\Ff{s}\Ef{a}	&\Qf{kʰ}\Sf{i}\Qf{ː}.\If{j}\Ef{a}	&\Qf{kʰ}\Sf{i}\Qf{ː}\\
+\Qf{tʰu}- ‘inside’	&—		&\Sf{i}-	&\Qf{tʰu}-\Sf{i}-		&\Qf{tʰ}\Sf{i}\Qf{ː}.\Df{t}\Ff{s}\If{i}		&\Qf{tʰ}\Sf{i}\Qf{ː}.\Df{t}\If{i}	&\Qf{tʰ}\Sf{i}\Qf{ː}.\Ff{s}\If{i}	&\Qf{tʰ}\Sf{i}\Qf{ː}.\Df{t}\Ef{a}	&\Qf{tʰ}\Sf{i}\Qf{ː}\df{\Ff{s}}		&\Qf{tʰ}\Sf{i}\Qf{ː}.\Ff{s}\Ef{a}	&\Qf{tʰ}\Sf{i}\Qf{ː}.\If{j}\Ef{a}	&\Qf{tʰ}\Sf{i}\Qf{ː}\\
+\Qf{tʃi}- ‘hand’	&—		&\Sf{i}-	&\Qf{tʃi}-\Sf{i}-		&\Qf{tʃ}\Sf{i}\Qf{ː}.\Df{t}\Ff{s}\If{i}		&\Qf{tʃ}\Sf{i}\Qf{ː}.\Df{t}\If{i}	&\Qf{tʃ}\Sf{i}\Qf{ː}.\Ff{s}\If{i}	&\Qf{tʃ}\Sf{i}\Qf{ː}.\Df{t}\Ef{a}	&\Qf{tʃ}\Sf{i}\Qf{ː}\df{\Ff{s}}		&\Qf{tʃ}\Sf{i}\Qf{ː}.\Ff{s}\Ef{a}	&\Qf{tʃ}\Sf{i}\Qf{ː}.\If{j}\Ef{a}	&\Qf{tʃ}\Sf{i}\Qf{ː}\\
+\Qf{χʼe}- ‘mouth’	&—		&\Sf{i}-	&\Qf{χʼe}-\Sf{i}-		&\Qf{χʼ}\Sf{i}\Qf{ː}.\Df{t}\Ff{s}\If{i}		&\Qf{χʼ}\Sf{i}\Qf{ː}.\Df{t}\If{i}	&\Qf{χʼ}\Sf{i}\Qf{ː}.\Ff{s}\If{i}	&\Qf{χʼ}\Sf{i}\Qf{ː}.\Df{t}\Ef{a}	&\Qf{χʼ}\Sf{i}\Qf{ː}\df{\Ff{s}}		&\Qf{χʼ}\Sf{i}\Qf{ː}.\Ff{s}\Ef{a}	&\Qf{χʼ}\Sf{i}\Qf{ː}.\If{j}\Ef{a}	&\Qf{χʼ}\Sf{i}\Qf{ː}\\
+\bottomrule
+\end{tabular}
+\caption{Unmarked aspect (imperfective or \textit{∅}-conjugation), second person singular subject /{i-}/, IPA}
+\end{table}
+
+\clearpage
+%% Zero, 2PL
+\begin{table}
+\centerfloat
+\begin{tabular}{lccr
+		rrrr
+		rrrr}
+\toprule
+			&		&		&				&\multicolumn{8}{c}{Classifier prefixes}\\
+											\cmidrule(lr){5-12}
+Disjunct\rlap{\quad{}+}	& Asp.\rlap{ +}	& Subj.\rlap{ →}& Prefixes			&\Df{d}-\Ff{s}-\If{i}\rlap{-}			&\Df{d}-\If{i}\rlap{-}			&\Ff{s}-\If{i}\rlap{-}			&\Df{d}-				&\Df{d}-\Ff{s}\rlap{-}			&\Ff{s}-				&\If{i}-				&—\\
+\midrule
+—			&—		&\Sf{yi}-	&\Sf{yi}-			&\Sf{yeey}\Df{d}\Ff{z}\If{i}			&\Sf{yeey}\Df{d}\If{i}			&\Sf{yeey}\Ff{s}\If{i}			&\Sf{yi}\Df{d}\Ef{a}			&\Sf{yi}\df{\Ff{s}}			&\Sf{yi}\Ff{s}\Ef{a}			&\Sf{yee}\If{y}				&\Sf{yi}\\
+\Qf{a}- expletive	&—		&\Sf{yi}-	&\Qf{a}-\Sf{yi}-		&\Qf{a}\Sf{y}\Df{d}\Ff{z}\If{i}			&\Qf{a}\Sf{y}\Df{d}\If{i}		&\Qf{a}\Sf{y}\Ff{s}\If{i}		&\Qf{a}\Sf{y}\Df{d}\Ef{a}		&\Qf{a}\Sf{yi}\df{\Ff{s}}		&\Qf{a}\Sf{y}\Ff{s}\Ef{a}		&\Qf{a}\Sf{yee}\If{y}			&\Qf{a}\Sf{y}\\
+\Qf{ka}- qualifier	&—		&\Sf{yi}-	&\Qf{ka}-\Sf{yi}-		&\Qf{ka}\Sf{y}\Df{d}\Ff{z}\If{i}		&\Qf{ka}\Sf{y}\Df{d}\If{i}		&\Qf{ka}\Sf{y}\Ff{s}\If{i}		&\Qf{ka}\Sf{y}\Df{d}\Ef{a}		&\Qf{ka}\Sf{yi}\df{\Ff{s}}		&\Qf{ka}\Sf{y}\Ff{s}\Ef{a}		&\Qf{ka}\Sf{yee}\If{y}			&\Qf{ka}\Sf{y}\\
+\Qf{tu}- ‘inside’	&—		&\Sf{yi}-	&\Qf{tu}-\Sf{yi}-		&\Qf{tu}\Sf{y}\Df{d}\Ff{z}\If{i}		&\Qf{tu}\Sf{y}\Df{d}\If{i}		&\Qf{tu}\Sf{y}\Ff{s}\If{i}		&\Qf{tu}\Sf{y}\Df{d}\Ef{a}		&\Qf{tu}\Sf{yi}\df{\Ff{s}}		&\Qf{tu}\Sf{y}\Ff{s}\Ef{a}		&\Qf{tu}\Sf{yee}\If{y}			&\Qf{tu}\Sf{y}\\
+\Qf{ji}- ‘hand’		&—		&\Sf{yi}-	&\Qf{ji}-\Sf{yi}-		&\Qf{ji}\Sf{y}\Df{d}\Ff{z}\If{i}		&\Qf{ji}\Sf{y}\Df{d}\If{i}		&\Qf{ji}\Sf{y}\Ff{s}\If{i}		&\Qf{ji}\Sf{y}\Df{d}\Ef{a}		&\Qf{ji}\Sf{yi}\df{\Ff{s}}		&\Qf{ji}\Sf{y}\Ff{s}\Ef{a}		&\Qf{ji}\Sf{yee}\If{y}			&\Qf{ji}\Sf{y}\\
+\Qf{x̱ʼe}- ‘mouth’	&—		&\Sf{yi}-	&\Qf{x̱ʼe}-\Sf{yi}-		&\Qf{x̱ʼa}\Sf{y}\Df{d}\Ff{z}\If{i}		&\Qf{x̱ʼa}\Sf{y}\Df{d}\If{i}		&\Qf{x̱ʼa}\Sf{y}\Ff{s}\If{i}		&\Qf{x̱ʼa}\Sf{y}\Df{d}\Ef{a}		&\Qf{x̱ʼa}\Sf{yi}\df{\Ff{s}}		&\Qf{x̱ʼa}\Sf{y}\Ff{s}\Ef{a}		&\Qf{x̱ʼa}\Sf{yee}\If{y}			&\Qf{x̱ʼa}\Sf{y}\\
+\bottomrule
+\end{tabular}
+\caption{Unmarked aspect (imperfective or \textit{∅}-conjugation), second person plural subject \textit{yi-}}
+\end{table}
+
+%% Zero, 2PL, IPA
+\begin{table}
+\centerfloat
+\begin{tabular}{lccr
+		rrrr
+		rrrr}
+\toprule
+(IPA)			&		&		&				&\multicolumn{8}{c}{Classifier prefixes}\\
+											\cmidrule(lr){5-12}
+Disjunct\rlap{\quad{}+}	& Asp.\rlap{ +}	& Subj.\rlap{ →}& Prefixes			&\Df{t}-\Ff{s}-\If{i}\rlap{-}			&\Df{t}-\If{i}\rlap{-}			&\Ff{s}-\If{i}\rlap{-}			&\Df{t}-				&\Df{t}-\Ff{s}\rlap{-}			&\Ff{s}-				&\If{i}-				&—\\
+\midrule
+—			&—		&\Sf{ji}-	&\Sf{ji}-			&\Sf{jiːj}.\Df{t}\Ff{s}\If{i}			&\Sf{jiːj}.\Df{t}\If{i}			&\Sf{jiːj}.\Ff{s}\If{i}			&\Sf{ji}.\Df{t}\Ef{a}			&\Sf{ji}\df{\Ff{s}}			&\Sf{ji}.\Ff{s}\Ef{a}			&\Sf{jiː}\If{j}				&\Sf{ji}\\
+\Qf{ʔa}- expletive	&—		&\Sf{ji}-	&\Qf{ʔa}-\Sf{ji}-		&\Qf{ʔa}\Sf{j}.\Df{t}\Ff{s}\If{i}		&\Qf{ʔa}\Sf{j}.\Df{t}\If{i}		&\Qf{ʔa}\Sf{j}.\Ff{s}\If{i}		&\Qf{ʔa}\Sf{j}.\Df{t}\Ef{a}		&\Qf{ʔa}.\Sf{ji}\df{\Ff{s}}		&\Qf{ʔa}\Sf{j}.\Ff{s}\Ef{a}		&\Qf{ʔa}.\Sf{jiː}\If{j}			&\Qf{ʔa}\Sf{j}\\
+\Qf{kʰa}- qualifier	&—		&\Sf{ji}-	&\Qf{kʰa}-\Sf{ji}-		&\Qf{kʰa}\Sf{j}.\Df{t}\Ff{s}\If{i}		&\Qf{kʰa}\Sf{j}.\Df{t}\If{i}		&\Qf{kʰa}\Sf{j}.\Ff{s}\If{i}		&\Qf{kʰa}\Sf{j}.\Df{t}\Ef{a}		&\Qf{kʰa}.\Sf{ji}\df{\Ff{s}}		&\Qf{kʰa}\Sf{j}.\Ff{s}\Ef{a}		&\Qf{kʰa}.\Sf{jiː}\If{j}		&\Qf{kʰa}\Sf{j}\\
+\Qf{tʰu}- ‘inside’	&—		&\Sf{ji}-	&\Qf{tʰu}-\Sf{ji}-		&\Qf{tʰu}\Sf{j}.\Df{t}\Ff{s}\If{i}		&\Qf{tʰu}\Sf{j}.\Df{t}\If{i}		&\Qf{tʰu}\Sf{j}.\Ff{s}\If{i}		&\Qf{tʰu}\Sf{j}.\Df{t}\Ef{a}		&\Qf{tʰu}.\Sf{ji}\df{\Ff{s}}		&\Qf{tʰu}\Sf{j}.\Ff{s}\Ef{a}		&\Qf{tʰu}.\Sf{jiː}\If{j}		&\Qf{tʰu}\Sf{j}\\
+\Qf{tʃi}- ‘hand’	&—		&\Sf{ji}-	&\Qf{tʃi}-\Sf{ji}-		&\Qf{tʃi}\Sf{j}.\Df{t}\Ff{s}\If{i}		&\Qf{tʃi}\Sf{j}.\Df{t}\If{i}		&\Qf{tʃi}\Sf{j}.\Ff{s}\If{i}		&\Qf{tʃi}\Sf{j}.\Df{t}\Ef{a}		&\Qf{tʃi}.\Sf{ji}\df{\Ff{s}}		&\Qf{tʃi}\Sf{j}.\Ff{s}\Ef{a}		&\Qf{tʃi}.\Sf{jiː}\If{j}		&\Qf{tʃi}\Sf{j}\\
+\Qf{χʼe}- ‘mouth’	&—		&\Sf{ji}-	&\Qf{χʼe}-\Sf{ji}-		&\Qf{χʼa}\Sf{j}.\Df{t}\Ff{s}\If{i}		&\Qf{χʼa}\Sf{j}.\Df{t}\If{i}		&\Qf{χʼa}\Sf{j}.\Ff{s}\If{i}		&\Qf{χʼa}\Sf{j}.\Df{t}\Ef{a}		&\Qf{χʼa}.\Sf{ji}\df{\Ff{s}}		&\Qf{χʼa}\Sf{j}.\Ff{s}\Ef{a}		&\Qf{χʼa}.\Sf{jiː}\If{j}		&\Qf{χʼa}\Sf{j}\\
+\bottomrule
+\end{tabular}
+\caption{Unmarked aspect (imperfective or \textit{∅}-conjugation), second person plural subject /{ji-}/, IPA}
+\end{table}
+
+\clearpage
+%% Zero, 4H
+\begin{table}
+\centerfloat
+\begin{tabular}{lccr
+		rccc
+		rcrr}
+\toprule
+			&		&		&				&\multicolumn{8}{c}{Classifier prefixes}\\
+											\cmidrule(lr){5-12}
+Disjunct\rlap{\quad{}+}	& Asp.\rlap{ +}	& Subj.\rlap{ →}& Prefixes			&\Df{d}-\Ff{s}-\If{i}\rlap{-}			&\Df{d}-\If{i}\rlap{-}			&\Ff{s}-\If{i}\rlap{-}			&\Df{d}\rlap{-}				&\Df{d}-\Ff{s}\rlap{-}			&\Ff{s}\rlap{-}				&\If{i}-				&—\\
+\midrule
+—			&—		&\Sf{du}-	&\Sf{du}-			&\Sf{du}\Df{d}\Ff{z}\If{i}			&⁎					&⁎					&⁎					&\Sf{du}\df{\Ff{s}}			&⁎					&\Sf{du}\If{w}\Ef{a}			&\Sf{du}\\
+\Qf{a}- expletive	&—		&\Sf{du}-	&\Qf{a}-\Sf{du}-		&\Qf{a}\Sf{du}\Df{d}\Ff{z}\If{i}		&⁎					&⁎					&⁎					&\Qf{a}\Sf{du}\df{\Ff{s}}		&⁎					&\Qf{a}\Sf{du}\If{w}\Ef{a}		&\Qf{a}\Sf{du}\\
+\Qf{ka}- qualifier	&—		&\Sf{du}-	&\Qf{ka}-\Sf{du}-		&\Qf{ka}\Sf{du}\Df{d}\Ff{z}\If{i}		&⁎					&⁎					&⁎					&\Qf{ka}\Sf{du}\df{\Ff{s}}		&⁎					&\Qf{ka}\Sf{du}\If{w}\Ef{a}		&\Qf{ka}\Sf{du}\\
+\Qf{tu}- ‘inside’	&—		&\Sf{du}-	&\Qf{tu}-\Sf{du}-		&\Qf{tu}\Sf{du}\Df{d}\Ff{z}\If{i}		&⁎					&⁎					&⁎					&\Qf{tu}\Sf{du}\df{\Ff{s}}		&⁎					&\Qf{tu}\Sf{du}\If{w}\Ef{a}		&\Qf{tu}\Sf{du}\\
+\Qf{ji}- ‘hand’		&—		&\Sf{du}-	&\Qf{ji}-\Sf{du}-		&\Qf{ji}\Sf{du}\Df{d}\Ff{z}\If{i}		&⁎					&⁎					&⁎					&\Qf{ji}\Sf{du}\df{\Ff{s}}		&⁎					&\Qf{ji}\Sf{du}\If{w}\Ef{a}		&\Qf{ji}\Sf{du}\\
+\Qf{x̱ʼe}- ‘mouth’	&—		&\Sf{du}-	&\Qf{x̱ʼe}-\Sf{du}-		&\Qf{x̱ʼa}\Sf{du}\Df{d}\Ff{z}\If{i}		&⁎					&⁎					&⁎					&\Qf{x̱ʼa}\Sf{du}\df{\Ff{s}}		&⁎					&\Qf{x̱ʼa}\Sf{du}\If{w}\Ef{a}		&\Qf{x̱ʼa}\Sf{du}\\
+\bottomrule
+\end{tabular}
+\caption{Unmarked aspect (imperfective or \textit{∅}-conjugation), fourth person (indefinite) human subject \textit{du-}}
+\end{table}
+
+%% Zero, 4H, IPA
+\begin{table}
+\centerfloat
+\begin{tabular}{lccr
+		rrrr
+		rrrr}
+\toprule
+(IPA)			&		&		&				&\multicolumn{8}{c}{Classifier prefixes}\\
+											\cmidrule(lr){5-12}
+Disjunct\rlap{\quad{}+}	& Asp.\rlap{ +}	& Subj.\rlap{ →}& Prefixes			&\Df{t}-\Ff{s}-\If{i}\rlap{-}			&\Df{t}-\If{i}\rlap{-}			&\Ff{s}-\If{i}\rlap{-}			&\Df{t}\rlap{-}				&\Df{t}-\Ff{s}\rlap{-}			&\Ff{s}\rlap{-}				&\If{i}-				&—\\
+\midrule
+—			&—		&\Sf{tu}-	&\Sf{tu}-			&\Sf{tu}.\Df{t}\Ff{s}\If{i}			&⁎					&⁎					&⁎					&\Sf{tu}\df{\Ff{s}}			&⁎					&\Sf{tu}.\If{w}\Ef{a}			&\Sf{tu}\\
+\Qf{ʔa}- expletive	&—		&\Sf{tu}-	&\Qf{ʔa}-\Sf{tu}-		&\Qf{ʔa}.\Sf{tu}.\Df{t}\Ff{s}\If{i}		&⁎					&⁎					&⁎					&\Qf{ʔa}.\Sf{tu}\df{\Ff{s}}		&⁎					&\Qf{ʔa}.\Sf{tu}.\If{w}\Ef{a}		&\Qf{ʔa}\Sf{tu}\\
+\Qf{kʰa}- qualifier	&—		&\Sf{tu}-	&\Qf{kʰa}-\Sf{tu}-		&\Qf{kʰa}.\Sf{tu}.\Df{t}\Ff{s}\If{i}		&⁎					&⁎					&⁎					&\Qf{kʰa}.\Sf{tu}\df{\Ff{s}}		&⁎					&\Qf{kʰa}.\Sf{tu}.\If{w}\Ef{a}		&\Qf{kʰa}\Sf{tu}\\
+\Qf{tʰu}- ‘inside’	&—		&\Sf{tu}-	&\Qf{tʰu}-\Sf{tu}-		&\Qf{tʰu}.\Sf{tu}.\Df{t}\Ff{s}\If{i}		&⁎					&⁎					&⁎					&\Qf{tʰu}.\Sf{tu}\df{\Ff{s}}		&⁎					&\Qf{tʰu}.\Sf{tu}.\If{w}\Ef{a}		&\Qf{tʰu}\Sf{tu}\\
+\Qf{tʃi}- ‘hand’	&—		&\Sf{tu}-	&\Qf{tʃi}-\Sf{tu}-		&\Qf{tʃi}.\Sf{tu}.\Df{t}\Ff{s}\If{i}		&⁎					&⁎					&⁎					&\Qf{tʃi}.\Sf{tu}\df{\Ff{s}}		&⁎					&\Qf{tʃi}.\Sf{tu}.\If{w}\Ef{a}		&\Qf{tʃi}\Sf{tu}\\
+\Qf{χʼe}- ‘mouth’	&—		&\Sf{tu}-	&\Qf{χʼe}-\Sf{tu}-		&\Qf{x̱ʼa}.\Sf{tu}.\Df{t}\Ff{s}\If{i}		&⁎					&⁎					&⁎					&\Qf{χʼa}.\Sf{tu}\df{\Ff{s}}		&⁎					&\Qf{χʼa}.\Sf{tu}.\If{w}\Ef{a}		&\Qf{χʼa}\Sf{tu}\\
+\bottomrule
+\end{tabular}
+\caption{Unmarked aspect (imperfective or \textit{∅}-conjugation), fourth person (indefinite) human subject /{tu-}/, IPA}
+\end{table}
+
+%%%
+%%% Unmarked aspect with irrealis
+%%%
+\clearpage
+\subsection{Unmarked aspect with irrealis \textit{u-}}
+
+%%%
+%%% Unmarked aspect with modal
+%%%
+\subsection{Unmarked aspect with modal \textit{g̱-}}
+
+%%%
+%%% Unmarked aspect with irrealis and modal
+%%%
+\subsection{Unmarked aspect with irrealis and modal}
+
+%%%
+%%% N-conjugation
+%%%
+\clearpage
+\section{\textit{N}-conjugation}
+
+The \fm{n-} conjugation prefix is the marker of membership in the \fm{n}-conjugation class.
+As such, forms with \fm{n-} occur for any \fm{n}-conjugation verb when a conjugation prefix is selected.
+The \fm{n-} conjugation prefix also has a dedicated use in progressive aspect forms, similar to how the \fm{g-} conjugation prefix is used for prospective aspect.
+
+\clearpage
+%% N-conjugation, 3
+\begin{table}
+\centerfloat
+\begin{tabular}{lccr
+		rrrr
+		rrrr}
+\toprule
+			&		&		&			&\multicolumn{8}{c}{Classifier prefixes}\\
+										\cmidrule(lr){5-12}
+Disjunct\rlap{\quad{}+}	& Asp.\rlap{ +}	& Subj.\rlap{ →}& Prefixes		&\Df{d}-\Ff{s}-\If{i}\rlap{-}			&\Df{d}-\If{i}\rlap{-}			&\Ff{s}-\If{i}\rlap{-}				&\Df{d}-			&\Df{d}-\Ff{s}\rlap{-}			&\Ff{s}-			&\If{i}-			&—\\
+\midrule
+—			&\Af{n}-	&—		&\Af{n}-		&\Af{n}\Ef{a}\Df{d}\Ff{z}\If{i}\rlap{?}		&\Af{n}\Ef{a}\Df{d}\If{i}		&\Af{n}\Ef{a}\Ff{s}\If{i}			&\Af{n}\Ef{a}\Df{d}\Ef{a}	&\Af{n}\Ef{a}\df{\Ff{s}}		&\Af{n}\Ef{a}\Ff{s}		&\Af{n}\Ef{a}\If{a}		&\Af{n}\Ef{a}\\
+\Qf{a}- arg./expl.	&\Af{n}-	&—		&\Qf{a}-\Af{n}-		&\Qf{a}\Af{n}\Df{d}\Ff{z}\If{i}\rlap{?}		&\Qf{a}\Af{n}\Df{d}\If{i}\rlap{?}	&\Qf{a}\Af{n}\Ef{a}\Ff{s}\If{i}\rlap{?}		&\Qf{a}\Af{n}\Df{d}\Ef{a}	&\Qf{a}\Af{n}\Ef{a}\df{\Ff{s}}		&\Qf{a}\Af{n}\Ef{a}\Ff{s}	&\Qf{a}\Af{n}\Ef{a}\If{a}	&\Qf{a}\Af{n}\Ef{a}\\
+\Qf{ka}- qualifier	&\Af{n}-	&—		&\Qf{ka}-\Af{n}-	&\Qf{ka}\Af{n}\Df{d}\Ff{z}\If{i}\rlap{?}	&\Qf{ka}\Af{n}\Df{d}\If{i}		&\Qf{ka}\Af{n}\Ef{a}\Ff{s}\If{i}\rlap{?}	&\Qf{ka}\Af{n}\Df{d}\Ef{a}	&\Qf{ka}\Af{n}\Ef{a}\df{\Ff{s}}		&\Qf{ka}\Af{n}\Ef{a}\Ff{s}	&\Qf{ka}\Af{n}\Ef{a}\If{a}	&\Qf{ka}\Af{n}\Ef{a}\\
+\Qf{tu}- ‘inside’	&\Af{n}-	&—		&\Qf{tu}-\Af{n}-	&\Qf{tu}\Af{n}\Df{d}\Ff{z}\If{i}\rlap{?}	&\Qf{tu}\Af{n}\Df{d}\If{i}\rlap{?}	&\Qf{tu}\Af{n}\Ef{a}\Ff{s}\If{i}		&\Qf{tu}\Af{n}\Df{d}\Ef{a}	&\Qf{tu}\Af{n}\Ef{a}\df{\Ff{s}}		&\Qf{tu}\Af{n}\Ef{a}\Ff{s}	&\Qf{tu}\Af{n}\Ef{a}\If{a}	&\Qf{tu}\Af{n}\Ef{a}\\
+\Qf{ji}- ‘hand’		&\Af{n}-	&—		&\Qf{ji}-\Af{n}-	&\Qf{ji}\Af{n}\Df{d}\Ff{z}\If{i}\rlap{?}	&\Qf{ji}\Af{n}\Df{d}\If{i}\rlap{?}	&\Qf{ji}\Af{n}\Ef{a}\Ff{s}\If{i}\rlap{?}	&\Qf{ji}\Af{n}\Df{d}\Ef{a}	&\Qf{ji}\Af{n}\Ef{a}\df{\Ff{s}}		&\Qf{ji}\Af{n}\Ef{a}\Ff{s}	&\Qf{ji}\Af{n}\Ef{a}\If{a}	&\Qf{ji}\Af{n}\Ef{a}\\
+\Qf{x̱ʼe}- ‘mouth’	&\Af{n}-	&—		&\Qf{x̱ʼe}-\Af{n}-	&\Qf{x̱'a}\Af{n}\Df{d}\Ff{z}\If{i}\rlap{?}	&\Qf{x̱ʼa}\Af{n}\Df{d}\If{i}\rlap{?}	&\Qf{x̱ʼa}\Af{n}\Ef{a}\Ff{s}\If{i}\rlap{?}	&\Qf{x̱ʼa}\Af{n}\Df{d}\Ef{a}	&\Qf{x̱ʼa}\Af{n}\Ef{a}\df{\Ff{s}}	&\Qf{x̱ʼa}\Af{n}\Ef{a}\Ff{s}	&\Qf{x̱ʼa}\Af{n}\Ef{a}\If{a}	&\Qf{x̱ʼa}\Af{n}\Ef{a}\\
+\bottomrule
+\end{tabular}
+\caption{\textit{N}-conjugation \fm{n-}, unmarked subject (third person or no subject)}
+\end{table}
+
+%% N-conjugation, 3, IPA
+\begin{table}
+\centerfloat
+\begin{tabular}{lccr
+		rrrr
+		rrrr}
+\toprule
+(IPA)			&		&		&			&\multicolumn{8}{c}{Classifier prefixes}\\
+										\cmidrule(lr){5-12}
+Disjunct\rlap{\quad{}+}	& Asp.\rlap{ +}	& Subj.\rlap{ →}& Prefixes		&\Df{t}-\Ff{s}-\If{i}\rlap{-}			&\Df{t}-\If{i}\rlap{-}			&\Ff{s}-\If{i}\rlap{-}				&\Df{t}-			&\Df{t}-\Ff{s}\rlap{-}			&\Ff{s}-			&\If{i}-			&—\\
+\midrule
+—			&\Af{n}-	&—		&\Af{n}-		&\Af{n}\Ef{a}.\Df{t}\Ff{s}\If{i}\rlap{?}	&\Af{n}\Ef{a}.\Df{t}\If{i}		&\Af{n}\Ef{a}.\Ff{s}\If{i}			&\Af{n}\Ef{a}.\Df{t}\Ef{a}	&\Af{n}\Ef{a}\df{\Ff{s}}		&\Af{n}\Ef{a}\Ff{s}		&\Af{n}\Ef{a}\If{ː}		&\Af{n}\Ef{a}\\
+\Qf{ʔa}- arg./expl.	&\Af{n}-	&—		&\Qf{ʔa}-\Af{n}-	&\Qf{ʔa}\Af{n}.\Df{t}\Ff{s}\If{i}\rlap{?}	&\Qf{ʔa}\Af{n}.\Df{t}\If{i}\rlap{?}	&\Qf{ʔa}.\Af{n}\Ef{a}.\Ff{s}\If{i}\rlap{?}	&\Qf{ʔa}\Af{n}.\Df{t}\Ef{a}	&\Qf{ʔa}.\Af{n}\Ef{a}\df{\Ff{s}}	&\Qf{ʔa}.\Af{n}\Ef{a}\Ff{s}	&\Qf{ʔa}.\Af{n}\Ef{a}\If{ː}	&\Qf{ʔa}.\Af{n}\Ef{a}\\
+\Qf{kʰa}- qualifier	&\Af{n}-	&—		&\Qf{kʰa}-\Af{n}-	&\Qf{kʰa}\Af{n}.\Df{t}\Ff{s}\If{i}\rlap{?}	&\Qf{kʰa}\Af{n}.\Df{t}\If{i}		&\Qf{kʰa}.\Af{n}\Ef{a}.\Ff{s}\If{i}\rlap{?}	&\Qf{kʰa}\Af{n}.\Df{t}\Ef{a}	&\Qf{kʰa}.\Af{n}\Ef{a}\df{\Ff{s}}	&\Qf{kʰa}.\Af{n}\Ef{a}\Ff{s}	&\Qf{kʰa}.\Af{n}\Ef{a}\If{ː}	&\Qf{kʰa}.\Af{n}\Ef{a}\\
+\Qf{tʰu}- ‘inside’	&\Af{n}-	&—		&\Qf{tʰu}-\Af{n}-	&\Qf{tʰu}\Af{n}.\Df{t}\Ff{s}\If{i}\rlap{?}	&\Qf{tʰu}\Af{n}.\Df{t}\If{i}\rlap{?}	&\Qf{tʰu}.\Af{n}\Ef{a}.\Ff{s}\If{i}		&\Qf{tʰu}\Af{n}.\Df{t}\Ef{a}	&\Qf{tʰu}.\Af{n}\Ef{a}\df{\Ff{s}}	&\Qf{tʰu}.\Af{n}\Ef{a}\Ff{s}	&\Qf{tʰu}.\Af{n}\Ef{a}\If{ː}	&\Qf{tʰu}.\Af{n}\Ef{a}\\
+\Qf{tʃi}- ‘hand’	&\Af{n}-	&—		&\Qf{tʃi}-\Af{n}-	&\Qf{tʃi}\Af{n}.\Df{t}\Ff{s}\If{i}\rlap{?}	&\Qf{tʃi}\Af{n}.\Df{t}\If{i}\rlap{?}	&\Qf{tʃi}.\Af{n}\Ef{a}.\Ff{s}\If{i}\rlap{?}	&\Qf{tʃi}\Af{n}.\Df{t}\Ef{a}	&\Qf{tʃi}.\Af{n}\Ef{a}\df{\Ff{s}}	&\Qf{tʃi}.\Af{n}\Ef{a}\Ff{s}	&\Qf{tʃi}.\Af{n}\Ef{a}\If{ː}	&\Qf{tʃi}.\Af{n}\Ef{a}\\
+\Qf{χʼe}- ‘mouth’	&\Af{n}-	&—		&\Qf{χʼe}-\Af{n}-	&\Qf{χ'a}\Af{n}.\Df{t}\Ff{s}\If{i}\rlap{?}	&\Qf{χʼa}\Af{n}.\Df{t}\If{i}\rlap{?}	&\Qf{χʼa}.\Af{n}\Ef{a}.\Ff{s}\If{i}\rlap{?}	&\Qf{χʼa}\Af{n}.\Df{t}\Ef{a}	&\Qf{χʼa}.\Af{n}\Ef{a}\df{\Ff{s}}	&\Qf{χʼa}.\Af{n}\Ef{a}\Ff{s}	&\Qf{χʼa}.\Af{n}\Ef{a}\If{ː}	&\Qf{χʼa}.\Af{n}\Ef{a}\\
+\bottomrule
+\end{tabular}
+\caption{\textit{N}-conjugation /{n-}/, unmarked subject (third person or no subject), IPA}
+\end{table}
+
+\clearpage
+%% N-conjugation, 1SG
+\begin{table}
+\centerfloat
+\begin{tabular}{lccr
+		rrrr
+		rrrr}
+\toprule
+			&		&		&				&\multicolumn{8}{c}{Classifier prefixes}\\
+											\cmidrule(lr){5-12}
+Disjunct\rlap{\quad{}+}	& Asp.\rlap{ +}	& Subj.\rlap{ →}& Prefixes			&\Df{d}-\Ff{s}-\If{i}\rlap{-}				&\Df{d}-\If{i}\rlap{-}				&\Ff{s}-\If{i}\rlap{-}				&\Df{d}-				&\Df{d}-\Ff{s}\rlap{-}				&\Ff{s}-				&\If{i}-				&—\\
+\midrule
+—			&\Af{n}-	&\Sf{x̱}-	&\Af{n}-\Sf{x̱}-			&\Af{n}\Ef{a}\Sf{x̱}\Df{d}\Ff{z}\If{i}\rlap{?}		&\Af{n}\Ef{a}\Sf{x̱}\Df{d}\If{i}			&\Af{n}\Ef{a}\Sf{x̱}\Ff{s}\If{i}			&\Af{n}\Ef{a}\Sf{x̱}\Df{d}\Ef{a}		&\Af{n}\Ef{a}\Sf{x̱}\Ef{a}\df{\Ff{s}}		&\Af{n}\Ef{a}\Sf{x̱}\Ff{s}\Ef{a}		&\Af{n}\Ef{a}\Sf{x̱}\Ef{a}\If{a}		&\Af{n}\Ef{a}\Sf{x̱}\Ef{a}\\
+\Qf{a}- expletive	&\Af{n}-	&\Sf{x̱}-	&\Qf{a}-\Af{n}-\Sf{x̱}-		&\Qf{a}\Af{n}\Ef{a}\Sf{x̱}\Df{d}\Ff{z}\If{i}\rlap{?}	&\Qf{a}\Af{n}\Ef{a}\Sf{x̱}\Df{d}\If{i}\rlap{?}	&\Qf{a}\Af{n}\Ef{a}\Sf{x̱}\Ff{s}\If{i}\rlap{?}	&\Qf{a}\Af{n}\Ef{a}\Sf{x̱}\Df{d}\Ef{a}	&\Qf{a}\Af{n}\Ef{a}\Sf{x̱}\Ef{a}\df{\Ff{s}}	&\Qf{a}\Af{n}\Ef{a}\Sf{x̱}\Ff{s}\Ef{a}	&\Qf{a}\Af{n}\Sf{x̱}\Ef{a}\If{a}		&\Qf{a}\Af{n}\Sf{x̱}\Ef{a}\\
+\Qf{ka}- qualifier	&\Af{n}-	&\Sf{x̱}-	&\Qf{ka}-\Af{n}-\Sf{x̱}-		&\Qf{ka}\Af{n\Ef{a}\Sf{x̱}}\Df{d}\Ff{z}\If{i}\rlap{?}	&\Qf{ka}\Af{n}\Ef{a}\Sf{x̱}\Df{d}\If{i}		&\Qf{ka}\Af{n}\Ef{a}\Sf{x̱}\Ff{s}\If{i}\rlap{?}	&\Qf{ka}\Af{n}\Ef{a}\Sf{x̱}\Df{d}\Ef{a}	&\Qf{ka}\Af{n}\Ef{a}\Sf{x̱}\Ef{a}\df{\Ff{s}}	&\Qf{ka}\Af{n}\Ef{a}\Sf{x̱}\Ff{s}\Ef{a}	&\Qf{ka}\Af{n}\Sf{x̱}\Ef{a}\If{a}	&\Qf{ka}\Af{n}\Sf{x̱}\Ef{a}\\
+\Qf{tu}- ‘inside’	&\Af{n}-	&\Sf{x̱}-	&\Qf{tu}-\Af{n}-\Sf{x̱}-		&\Qf{tu}\Af{n}\Ef{a}\Sf{x̱}\Df{d}\Ff{z}\If{i}\rlap{?}	&\Qf{tu}\Af{n}\Ef{a}\Sf{x̱}\Df{d}\If{i}\rlap{?}	&\Qf{tu}\Af{n}\Ef{a}\Sf{x̱}\Ff{s}\If{i}		&\Qf{tu}\Af{n}\Ef{a}\Sf{x̱}\Df{d}\Ef{a}	&\Qf{tu}\Af{n}\Ef{a}\Sf{x̱}\Ef{a}\df{\Ff{s}}	&\Qf{tu}\Af{n}\Ef{a}\Sf{x̱}\Ff{s}\Ef{a}	&\Qf{tu}\Af{n}\Sf{x̱}\Ef{a}\If{a}	&\Qf{tu}\Af{n}\Sf{x̱}\Ef{a}\\
+\Qf{ji}- ‘hand’		&\Af{n}-	&\Sf{x̱}-	&\Qf{ji}-\Af{n}-\Sf{x̱}-		&\Qf{ji}\Af{n}\Ef{a}\Sf{x̱}\Df{d}\Ff{z}\If{i}\rlap{?}	&\Qf{ji}\Af{n}\Ef{a}\Sf{x̱}\Df{d}\If{i}\rlap{?}	&\Qf{ji}\Af{n}\Ef{a}\Sf{x̱}\Ff{s}\If{i}\rlap{?}	&\Qf{ji}\Af{n}\Ef{a}\Sf{x̱}\Df{d}\Ef{a}	&\Qf{ji}\Af{n}\Ef{a}\Sf{x̱}\Ef{a}\df{\Ff{s}}	&\Qf{ji}\Af{n}\Ef{a}\Sf{x̱}\Ff{s}\Ef{a}	&\Qf{ji}\Af{n}\Sf{x̱}\Ef{a}\If{a}	&\Qf{ji}\Af{n}\Sf{x̱}\Ef{a}\\
+\Qf{x̱ʼe}- ‘mouth’	&\Af{n}-	&\Sf{x̱}-	&\Qf{x̱ʼe}-\Af{n}-\Sf{x̱}-	&\Qf{x̱'a}\Af{n}\Ef{a}\Sf{x̱}\Df{d}\Ff{z}\If{i}\rlap{?}	&\Qf{x̱ʼa}\Af{n}\Ef{a}\Sf{x̱}\Df{d}\If{i}\rlap{?}	&\Qf{x̱ʼa}\Af{n}\Ef{a}\Sf{x̱}\Ff{s}\If{i}\rlap{?}	&\Qf{x̱ʼa}\Af{n}\Ef{a}\Sf{x̱}\Df{d}\Ef{a}	&\Qf{x̱ʼa}\Af{n}\Ef{a}\Sf{x̱}\Ef{a}\df{\Ff{s}}	&\Qf{x̱ʼa}\Af{n}\Ef{a}\Sf{x̱}\Ff{s}\Ef{a}	&\Qf{x̱ʼa}\Af{n}\Sf{x̱}\Ef{a}\If{a}	&\Qf{x̱ʼa}\Af{n}\Sf{x̱}\Ef{a}\\
+\bottomrule
+\end{tabular}
+\caption{\textit{N}-conjugation \fm{n-}, first person singular subject \fm{x̱-}}
+\end{table}
+
+%% N-conjugation, 1SG, IPA
+\begin{table}
+\centerfloat
+\begin{tabular}{lccr
+		rrrr
+		rrrr}
+\toprule
+(IPA)			&		&		&				&\multicolumn{8}{c}{Classifier prefixes}\\
+											\cmidrule(lr){5-12}
+Disjunct\rlap{\quad{}+}	& Asp.\rlap{ +}	& Subj.\rlap{ →}& Prefixes			&\Df{t}-\Ff{s}-\If{i}\rlap{-}				&\Df{t}-\If{i}\rlap{-}					&\Ff{s}-\If{i}\rlap{-}					&\Df{t}-					&\Df{t}-\Ff{s}\rlap{-}				&\Ff{s}-					&\If{i}-				&—\\
+\midrule
+—			&\Af{n}-	&\Sf{χ}-	&\Af{n}-\Sf{χ}-			&\Af{n}\Ef{a}\Sf{χ}.\Df{t}\Ff{z}\If{i}\rlap{?}		&\Af{n}\Ef{a}\Sf{χ}.\Df{t}\If{i}			&\Af{n}\Ef{a}\Sf{χ}.\Ff{s}\If{i}			&\Af{n}\Ef{a}\Sf{χ}.\Df{t}\Ef{a}		&\Af{n}\Ef{a}.\Sf{χ}\Ef{a}\df{\Ff{s}}		&\Af{n}\Ef{a}\Sf{χ}.\Ff{s}\Ef{a}		&\Af{n}\Ef{a}.\Sf{χ}\Ef{a}\If{ː}	&\Af{n}\Ef{a}.\Sf{χ}\Ef{a}\\
+\Qf{ʔa}- expletive	&\Af{n}-	&\Sf{χ}-	&\Qf{ʔa}-\Af{n}-\Sf{χ}-		&\Qf{ʔa}.\Af{n}\Ef{a}\Sf{χ}.\Df{t}\Ff{z}\If{i}\rlap{?}	&\Qf{ʔa}.\Af{n}\Ef{a}\Sf{χ}.\Df{t}\If{i}\rlap{?}	&\Qf{ʔa}.\Af{n}\Ef{a}\Sf{χ}.\Ff{s}\If{i}\rlap{?}	&\Qf{ʔa}.\Af{n}\Ef{a}\Sf{χ}.\Df{t}\Ef{a}	&\Qf{ʔa}.\Af{n}\Ef{a}.\Sf{χ}\Ef{a}\df{\Ff{s}}	&\Qf{ʔa}.\Af{n}\Ef{a}\Sf{χ}.\Ff{s}\Ef{a}	&\Qf{ʔa}\Af{n}.\Sf{χ}\Ef{a}\If{ː}	&\Qf{ʔa}\Af{n}.\Sf{χ}\Ef{a}\\
+\Qf{kʰa}- qualifier	&\Af{n}-	&\Sf{χ}-	&\Qf{kʰa}-\Af{n}-\Sf{χ}-	&\Qf{kʰa}.\Af{n\Ef{a}\Sf{χ}}.\Df{t}\Ff{z}\If{i}\rlap{?}	&\Qf{kʰa}.\Af{n}\Ef{a}\Sf{χ}.\Df{t}\If{i}		&\Qf{kʰa}.\Af{n}\Ef{a}\Sf{χ}.\Ff{s}\If{i}\rlap{?}	&\Qf{kʰa}.\Af{n}\Ef{a}\Sf{χ}.\Df{t}\Ef{a}	&\Qf{kʰa}.\Af{n}\Ef{a}.\Sf{χ}\Ef{a}\df{\Ff{s}}	&\Qf{kʰa}.\Af{n}\Ef{a}\Sf{χ}.\Ff{s}\Ef{a}	&\Qf{kʰa}\Af{n}.\Sf{χ}\Ef{a}\If{ː}	&\Qf{kʰa}\Af{n}.\Sf{χ}\Ef{a}\\
+\Qf{tʰu}- ‘inside’	&\Af{n}-	&\Sf{χ}-	&\Qf{tʰu}-\Af{n}-\Sf{χ}-	&\Qf{tʰu}.\Af{n}\Ef{a}\Sf{χ}.\Df{t}\Ff{z}\If{i}\rlap{?}	&\Qf{tʰu}.\Af{n}\Ef{a}\Sf{χ}.\Df{t}\If{i}\rlap{?}	&\Qf{tʰu}.\Af{n}\Ef{a}\Sf{χ}.\Ff{s}\If{i}		&\Qf{tʰu}.\Af{n}\Ef{a}\Sf{χ}.\Df{t}\Ef{a}	&\Qf{tʰu}.\Af{n}\Ef{a}.\Sf{χ}\Ef{a}\df{\Ff{s}}	&\Qf{tʰu}.\Af{n}\Ef{a}\Sf{χ}.\Ff{s}\Ef{a}	&\Qf{tʰu}\Af{n}.\Sf{χ}\Ef{a}\If{ː}	&\Qf{tʰu}\Af{n}.\Sf{χ}\Ef{a}\\
+\Qf{tʃi}- ‘hand’	&\Af{n}-	&\Sf{χ}-	&\Qf{tʃi}-\Af{n}-\Sf{χ}-	&\Qf{tʃi}.\Af{n}\Ef{a}\Sf{χ}.\Df{t}\Ff{z}\If{i}\rlap{?}	&\Qf{tʃi}.\Af{n}\Ef{a}\Sf{χ}.\Df{t}\If{i}\rlap{?}	&\Qf{tʃi}.\Af{n}\Ef{a}\Sf{χ}.\Ff{s}\If{i}\rlap{?}	&\Qf{tʃi}.\Af{n}\Ef{a}\Sf{χ}.\Df{t}\Ef{a}	&\Qf{tʃi}.\Af{n}\Ef{a}.\Sf{χ}\Ef{a}\df{\Ff{s}}	&\Qf{tʃi}.\Af{n}\Ef{a}\Sf{χ}.\Ff{s}\Ef{a}	&\Qf{tʃi}\Af{n}.\Sf{χ}\Ef{a}\If{ː}	&\Qf{tʃi}\Af{n}.\Sf{χ}\Ef{a}\\
+\Qf{χʼe}- ‘mouth’	&\Af{n}-	&\Sf{χ}-	&\Qf{χʼe}-\Af{n}-\Sf{χ}-	&\Qf{χ'a}.\Af{n}\Ef{a}\Sf{χ}.\Df{t}\Ff{z}\If{i}\rlap{?}	&\Qf{χʼa}.\Af{n}\Ef{a}\Sf{χ}.\Df{t}\If{i}\rlap{?}	&\Qf{χʼa}.\Af{n}\Ef{a}\Sf{χ}.\Ff{s}\If{i}\rlap{?}	&\Qf{χʼa}.\Af{n}\Ef{a}\Sf{χ}.\Df{t}\Ef{a}	&\Qf{χʼa}.\Af{n}\Ef{a}.\Sf{χ}\Ef{a}\df{\Ff{s}}	&\Qf{χʼa}.\Af{n}\Ef{a}\Sf{χ}.\Ff{s}\Ef{a}	&\Qf{χʼa}\Af{n}.\Sf{χ}\Ef{a}\If{ː}	&\Qf{χʼa}\Af{n}.\Sf{χ}\Ef{a}\\
+\bottomrule
+\end{tabular}
+\caption{\textit{N}-conjugation /{n-}/, first person singular subject /{χ-}/, IPA}
+\end{table}
+
+\clearpage
+%% N-conjugation, 1PL
+\begin{table}
+\centerfloat
+\begin{tabular}{lccr
+		rrrr
+		rrrr}
+\toprule
+			&		&		&				&\multicolumn{8}{c}{Classifier prefixes}\\
+											\cmidrule(lr){5-12}
+Disjunct\rlap{\quad{}+}	& Asp.\rlap{ +}	& Subj.\rlap{ →}& Prefixes			&\Df{d}-\Ff{s}-\If{i}\rlap{-}				&\Df{d}-\If{i}\rlap{-}				&\Ff{s}-\If{i}\rlap{-}				&\Df{d}-				&\Df{d}-\Ff{s}\rlap{-}			&\Ff{s}-				&\If{i}-				&—\\
+\midrule
+—			&\Af{n}-	&\Sf{tu}-	&\Af{n}-\Sf{tu}-		&\Af{n}\Ef{a}\Sf{tu}\Df{d}\Ff{z}\If{i}\rlap{?}		&\Af{n}\Ef{a}\Sf{tu}\Df{d}\If{i}		&\Af{n}\Ef{a}\Sf{tu}\Ff{s}\If{i}		&\Af{n}\Ef{a}\Sf{tu}\Df{d}\Ef{a}	&\Af{n}\Ef{a}\Sf{too}\df{\Ff{s}}	&\Af{n}\Ef{a}\Sf{tu}\Ff{s}\Ef{a}	&\Af{n}\Ef{a}\Sf{tu}\If{w}\Ef{a}	&\Af{n}\Ef{a}\Sf{too}\\
+\Qf{a}- expletive	&\Af{n}-	&\Sf{tu}-	&\Qf{a}-\Af{n}-\Sf{tu}-		&\Qf{a}\Af{n}\Sf{tu}\Df{d}\Ff{z}\If{i}\rlap{?}		&\Qf{a}\Af{n}\Sf{tu}\Df{d}\If{i}\rlap{?}	&\Qf{a}\Af{n}\Sf{tu}\Ff{s}\If{i}\rlap{?}	&\Qf{a}\Af{n}\Sf{tu}\Df{d}\Ef{a}	&\Qf{a}\Af{n}\Sf{too}\df{\Ff{s}}	&\Qf{a}\Af{n}\Sf{tu}\Ff{s}\Ef{a}	&\Qf{a}\Af{n}\Sf{tu}\If{w}\Ef{a}	&\Qf{a}\Af{n}\Sf{too}\\
+\Qf{ka}- qualifier	&\Af{n}-	&\Sf{tu}-	&\Qf{ka}-\Af{n}-\Sf{tu}-	&\Qf{ka}\Af{n\Sf{tu}}\Df{d}\Ff{z}\If{i}\rlap{?}		&\Qf{ka}\Af{n}\Sf{tu}\Df{d}\If{i}		&\Qf{ka}\Af{n}\Sf{tu}\Ff{s}\If{i}\rlap{?}	&\Qf{ka}\Af{n}\Sf{tu}\Df{d}\Ef{a}	&\Qf{ka}\Af{n}\Sf{too}\df{\Ff{s}}	&\Qf{ka}\Af{n}\Sf{tu}\Ff{s}\Ef{a}	&\Qf{ka}\Af{n}\Sf{tu}\If{w}\Ef{a}	&\Qf{ka}\Af{n}\Sf{too}\\
+\Qf{tu}- ‘inside’	&\Af{n}-	&\Sf{tu}-	&\Qf{tu}-\Af{n}-\Sf{tu}-	&\Qf{tu}\Af{n}\Sf{tu}\Df{d}\Ff{z}\If{i}\rlap{?}		&\Qf{tu}\Af{n}\Sf{tu}\Df{d}\If{i}\rlap{?}	&\Qf{tu}\Af{n}\Sf{tu}\Ff{s}\If{i}		&\Qf{tu}\Af{n}\Sf{tu}\Df{d}\Ef{a}	&\Qf{tu}\Af{n}\Sf{too}\df{\Ff{s}}	&\Qf{tu}\Af{n}\Sf{tu}\Ff{s}\Ef{a}	&\Qf{tu}\Af{n}\Sf{tu}\If{w}\Ef{a}	&\Qf{tu}\Af{n}\Sf{too}\\
+\Qf{ji}- ‘hand’		&\Af{n}-	&\Sf{tu}-	&\Qf{ji}-\Af{n}-\Sf{tu}-	&\Qf{ji}\Af{n}\Sf{tu}\Df{d}\Ff{z}\If{i}\rlap{?}		&\Qf{ji}\Af{n}\Sf{tu}\Df{d}\If{i}\rlap{?}	&\Qf{ji}\Af{n}\Sf{tu}\Ff{s}\If{i}\rlap{?}	&\Qf{ji}\Af{n}\Sf{tu}\Df{d}\Ef{a}	&\Qf{ji}\Af{n}\Sf{too}\df{\Ff{s}}	&\Qf{ji}\Af{n}\Sf{tu}\Ff{s}\Ef{a}	&\Qf{ji}\Af{n}\Sf{tu}\If{w}\Ef{a}	&\Qf{ji}\Af{n}\Sf{too}\\
+\Qf{x̱ʼe}- ‘mouth’	&\Af{n}-	&\Sf{tu}-	&\Qf{x̱ʼe}-\Af{n}-\Sf{tu}-	&\Qf{x̱'a}\Af{n}\Sf{tu}\Df{d}\Ff{z}\If{i}\rlap{?}	&\Qf{x̱ʼa}\Af{n}\Sf{tu}\Df{d}\If{i}\rlap{?}	&\Qf{x̱ʼa}\Af{n}\Sf{tu}\Ff{s}\If{i}\rlap{?}	&\Qf{x̱ʼa}\Af{n}\Sf{tu}\Df{d}\Ef{a}	&\Qf{x̱ʼa}\Af{n}\Sf{too}\df{\Ff{s}}	&\Qf{x̱ʼa}\Af{n}\Sf{tu}\Ff{s}\Ef{a}	&\Qf{x̱ʼa}\Af{n}\Sf{tu}\If{w}\Ef{a}	&\Qf{x̱ʼa}\Af{n}\Sf{too}\\
+\bottomrule
+\end{tabular}
+\caption{\textit{N}-conjugation \fm{n-}, first person plural subject \fm{tu-}}
+\end{table}
+
+%% N-conjugation, 1PL, IPA
+\begin{table}
+\centerfloat
+\begin{tabular}{lccr
+		rrrr
+		rrrr}
+\toprule
+(IPA)			&		&		&				&\multicolumn{8}{c}{Classifier prefixes}\\
+											\cmidrule(lr){5-12}
+Disjunct\rlap{\quad{}+}	& Asp.\rlap{ +}	& Subj.\rlap{ →}& Prefixes			&\Df{t}-\Ff{s}-\If{i}\rlap{-}				&\Df{t}-\If{i}\rlap{-}				&\Ff{s}-\If{i}\rlap{-}				&\Df{t}-				&\Df{t}-\Ff{s}\rlap{-}			&\Ff{s}-				&\If{i}-				&—\\
+\midrule
+—			&\Af{n}-	&\Sf{tʰu}-	&\Af{n}-\Sf{tʰu}-		&\Af{n}\Ef{a}.\Sf{tʰu}.\Df{t}\Ff{s}\If{i}\rlap{?}	&\Af{n}\Ef{a}.\Sf{tʰu}\Df{t}\If{i}		&\Af{n}\Ef{a}.\Sf{tʰu}.\Ff{s}\If{i}		&\Af{n}\Ef{a}.\Sf{tʰu}.\Df{t}\Ef{a}	&\Af{n}\Ef{a}.\Sf{tʰuː}\df{\Ff{s}}	&\Af{n}\Ef{a}.\Sf{tʰu}\Ff{s}\Ef{a}	&\Af{n}\Ef{a}.\Sf{tʰu}.\If{w}\Ef{a}	&\Af{n}\Ef{a}.\Sf{tʰuː}\\
+\Qf{ʔa}- expletive	&\Af{n}-	&\Sf{tʰu}-	&\Qf{ʔa}-\Af{n}-\Sf{tʰu}-	&\Qf{ʔa}\Af{n}\Sf{tʰu}.\Df{t}\Ff{s}\If{i}\rlap{?}	&\Qf{ʔa}\Af{n}.\Sf{tʰu}\Df{t}\If{i}\rlap{?}	&\Qf{ʔa}\Af{n}.\Sf{tʰu}.\Ff{s}\If{i}\rlap{?}	&\Qf{ʔa}\Af{n}.\Sf{tʰu}.\Df{t}\Ef{a}	&\Qf{ʔa}\Af{n}.\Sf{tʰuː}\df{\Ff{s}}	&\Qf{ʔa}\Af{n}.\Sf{tʰu}\Ff{s}\Ef{a}	&\Qf{ʔa}\Af{n}.\Sf{tʰu}.\If{w}\Ef{a}	&\Qf{ʔa}\Af{n}.\Sf{tʰuː}\\
+\Qf{kʰa}- qualifier	&\Af{n}-	&\Sf{tʰu}-	&\Qf{kʰa}-\Af{n}-\Sf{tʰu}-	&\Qf{kʰa}\Af{n}.\Sf{tʰu}.\Df{t}\Ff{s}\If{i}\rlap{?}	&\Qf{kʰa}\Af{n}.\Sf{tʰu}\Df{t}\If{i}		&\Qf{kʰa}\Af{n}.\Sf{tʰu}.\Ff{s}\If{i}\rlap{?}	&\Qf{kʰa}\Af{n}.\Sf{tʰu}.\Df{t}\Ef{a}	&\Qf{kʰa}\Af{n}.\Sf{tʰuː}\df{\Ff{s}}	&\Qf{kʰa}\Af{n}.\Sf{tʰu}\Ff{s}\Ef{a}	&\Qf{kʰa}\Af{n}.\Sf{tʰu}.\If{w}\Ef{a}	&\Qf{kʰa}\Af{n}.\Sf{tʰuː}\\
+\Qf{tʰu}- ‘inside’	&\Af{n}-	&\Sf{tʰu}-	&\Qf{tʰu}-\Af{n}-\Sf{tʰu}-	&\Qf{tʰu}\Af{n}.\Sf{tʰu}.\Df{t}\Ff{s}\If{i}\rlap{?}	&\Qf{tʰu}\Af{n}.\Sf{tʰu}\Df{t}\If{i}\rlap{?}	&\Qf{tʰu}\Af{n}.\Sf{tʰu}.\Ff{s}\If{i}		&\Qf{tʰu}\Af{n}.\Sf{tʰu}.\Df{t}\Ef{a}	&\Qf{tʰu}\Af{n}.\Sf{tʰuː}\df{\Ff{s}}	&\Qf{tʰu}\Af{n}.\Sf{tʰu}\Ff{s}\Ef{a}	&\Qf{tʰu}\Af{n}.\Sf{tʰu}.\If{w}\Ef{a}	&\Qf{tʰu}\Af{n}.\Sf{tʰuː}\\
+\Qf{tʃi}- ‘hand’	&\Af{n}-	&\Sf{tʰu}-	&\Qf{tʃi}-\Af{n}-\Sf{tʰu}-	&\Qf{tʃi}\Af{n}.\Sf{tʰu}.\Df{t}\Ff{s}\If{i}\rlap{?}	&\Qf{tʃi}\Af{n}.\Sf{tʰu}\Df{t}\If{i}\rlap{?}	&\Qf{tʃi}\Af{n}.\Sf{tʰu}.\Ff{s}\If{i}\rlap{?}	&\Qf{tʃi}\Af{n}.\Sf{tʰu}.\Df{t}\Ef{a}	&\Qf{tʃi}\Af{n}.\Sf{tʰuː}\df{\Ff{s}}	&\Qf{tʃi}\Af{n}.\Sf{tʰu}\Ff{s}\Ef{a}	&\Qf{tʃi}\Af{n}.\Sf{tʰu}.\If{w}\Ef{a}	&\Qf{tʃi}\Af{n}.\Sf{tʰuː}\\
+\Qf{χʼe}- ‘mouth’	&\Af{n}-	&\Sf{tʰu}-	&\Qf{χʼe}-\Af{n}-\Sf{tʰu}-	&\Qf{χ'a}\Af{n}.\Sf{tʰu}.\Df{t}\Ff{s}\If{i}\rlap{?}	&\Qf{χʼa}\Af{n}.\Sf{tʰu}\Df{t}\If{i}\rlap{?}	&\Qf{χʼa}\Af{n}.\Sf{tʰu}.\Ff{s}\If{i}\rlap{?}	&\Qf{χʼa}\Af{n}.\Sf{tʰu}.\Df{t}\Ef{a}	&\Qf{χʼa}\Af{n}.\Sf{tʰuː}\df{\Ff{s}}	&\Qf{χʼa}\Af{n}.\Sf{tʰu}\Ff{s}\Ef{a}	&\Qf{χʼa}\Af{n}.\Sf{tʰu}.\If{w}\Ef{a}	&\Qf{χʼa}\Af{n}.\Sf{tʰuː}\\
+\bottomrule
+\end{tabular}
+\caption{\textit{N}-conjugation /{n-}/, first person plural subject /{tʰu-}/, IPA}
+\end{table}
+%%%
+%%% N-conjugation with irrealis 
+%%%
+\clearpage
+\subsection{\textit{N}-conjugation with irrealis \textit{u-}}
+
+%%%
+%%% N-conjugation with modal
+%%%
+\subsection{\textit{N}-conjugation with modal \textit{g̱-}}
+
+%%%
+%%% N-conjugation with irrealis and modal
+%%%
+\subsection{\textit{N}-conjugation with irrealis and modal}
+
+\clearpage
+%%%
+%%% G̱-conjugation
+%%%
+\section{\textit{G̱}-conjugation}
+
+%%%
+%%% G̱-conjugation with irrealis 
+%%%
+\subsection{\textit{G̱}-conjugation with irrealis \textit{u-}}
+
+%%%
+%%% G̱-conjugation with modal
+%%%
+\subsection{\textit{G̱}-conjugation with modal \textit{g̱-}}
+
+%%%
+%%% G̱-conjugation with irrealis and modal
+%%%
+\subsection{\textit{G̱}-conjugation with irrealis and modal}
+
+\clearpage
+%%%
+%%% G-conjugation
+%%%
+\section{\textit{G}-conjugation}
+
+%%%
+%%% G-conjugation with irrealis 
+%%%
+\subsection{\textit{G}-conjugation with irrealis \textit{u-}}
+
+%%%
+%%% G-conjugation with modal
+%%%
+\subsection{\textit{G}-conjugation with modal \textit{g̱-}}
+
+%%%
+%%% G-conjugation with irrealis and modal
+%%%
+\subsection{\textit{G}-conjugation with irrealis and modal}
+
+\clearpage
+%%%
+%%% Perfective aspect.
+%%%
+
+\section{Perfective aspect (including \textit{∅}-conjugation habitual)}
+
+\clearpage
+%% Perfective, 3
+\begin{table}
+\centerfloat
+\begin{tabular}{lccr
+		rrrr
+		rrrr}
+\toprule
+			&		&		&				&\multicolumn{8}{c}{Classifier prefixes}\\
+											\cmidrule(lr){5-12}
+Disjunct\rlap{\quad{}+}	& Asp.\rlap{ +}	& Subj.\rlap{ →}& Prefixes			&\Df{d}-\Ff{s}-\If{i}\rlap{-}			&\Df{d}-\If{i}\rlap{-}			&\Ff{s}-\If{i}\rlap{-}			&\Df{d}-				&\Df{d}-\Ff{s}\rlap{-}			&\Ff{s}-				&\If{i}-				&—\\
+\midrule
+—			&\Af{wu}-	&—		&\Af{wu}-			&\Af{wu}\Df{d}\Ff{z}\If{i}			&\Af{wu}\Df{d}\If{i}			&\Af{wu}\Ff{s}\If{i}			&\Af{wu}\Df{d}\Ef{a}			&\Af{wu}\df{\Ff{s}}			&\Af{wu}\Ff{s}				&\Af{wo}\If{o}				&\Af{wu}\\
+—			&\Af{u}-	&—		&\Af{u}-			&						&					&					&\Af{u}\Df{d}\Ef{a}			&\Af{u}\df{\Ff{s}}			&\Af{u}\Ff{s}				&\Af{u}\If{w}\Ef{a}			&\Af{u}\\
+\Qf{a}- arg./expl.	&\Af{wu}-	&—		&\Qf{a}-\Af{wu}-		&\Qf{a}\Af{w}\Df{d}\Ff{z}\If{i}			&\Qf{a}\Af{w}\Df{d}\If{i}		&\Qf{a}\Af{w}\Ff{s}\If{i}		&\Qf{a}\Af{w}\Df{d}\Ef{a}		&\Qf{a}\Af{wu}\df{\Ff{s}}		&\Qf{a}\Af{wu}\Ff{s}			&\Qf{a}\Af{a}\If{w}\Ef{a}		&\Qf{a}\Af{wu}\\
+\Qf{a}- arg./expl.	&\Af{u}-	&—		&\Qf{a}-\Af{u}-			&						&					&					&\Qf{o}\Af{o}\Df{d}\Ef{a}\rlap{?}	&\Qf{o}\Af{o}\df{\Ff{s}}\rlap{?}	&\Qf{o}\Af{o}\Ff{s}			&\Qf{o}\Af{o}\If{w}\Ef{a}\rlap{?}	&\Qf{o}\Af{o}\\
+\Qf{ka}- qualifier	&\Af{wu}-	&—		&\Qf{ka}-\Af{wu}-		&\Qf{ka}\Af{w}\Df{d}\Ff{z}\If{i}		&\Qf{ka}\Af{w}\Df{d}\If{i}		&\Qf{ka}\Af{w}\Ff{s}\If{i}		&\Qf{ka}\Af{w}\Df{d}\Ef{a}		&\Qf{ka}\Af{wu}\df{\Ff{s}}		&\Qf{ka}\Af{wu}\Ff{s}			&\Qf{ka}\Af{a}\If{w}\Ef{a}		&\Qf{ka}\Af{wu}\\
+\Qf{tu}- ‘inside’	&\Af{wu}-	&—		&\Qf{tu}-\Af{wu}-		&\Qf{tu}\Af{w}\Df{d}\Ff{z}\If{i}		&\Qf{tu}\Af{w}\Df{d}\If{i}		&\Qf{tu}\Af{w}\Ff{s}\If{i}		&\Qf{tu}\Af{w}\Df{d}\Ef{a}		&\Qf{tu}\Af{wu}\df{\Ff{s}}		&\Qf{tu}\Af{wu}\Ff{s}			&\Qf{to}\Af{o}\If{w}\Ef{a}		&\Qf{tu}\Af{wu}\\
+\Qf{ji}- ‘hand’		&\Af{wu}-	&—		&\Qf{ji}-\Af{wu}-		&\Qf{ji}\Af{w}\Df{d}\Ff{z}\If{i}		&\Qf{ji}\Af{w}\Df{d}\If{i}		&\Qf{ji}\Af{w}\Ff{s}\If{i}		&\Qf{ji}\Af{w}\Df{d}\Ef{a}		&\Qf{ji}\Af{wu}\df{\Ff{s}}		&\Qf{ji}\Af{wu}\Ff{s}			&\Qf{je}\Af{e}\If{w}\Ef{a}		&\Qf{ji}\Af{wu}\\
+\Qf{x̱ʼe}- ‘mouth’	&\Af{wu}-	&—		&\Qf{x̱ʼe}-\Af{wu}-		&\Qf{x̱ʼa}\Af{w}\Df{d}\Ff{z}\If{i}		&\Qf{x̱ʼa}\Af{w}\Df{d}\If{i}		&\Qf{x̱ʼa}\Af{w}\Ff{s}\If{i}		&\Qf{x̱ʼa}\Af{w}\Df{d}\Ef{a}		&\Qf{x̱ʼa}\Af{wu}\df{\Ff{s}}		&\Qf{x̱ʼa}\Af{wu}\Ff{s}			&\Qf{x̱ʼe}\Af{i}\If{w}\Ef{a}		&\Qf{x̱ʼa}\Af{wu}\\
+\bottomrule
+\end{tabular}
+\caption{Perfective aspect \textit{wu-} or \textit{u-} (incl.\ \textit{∅}-conj.\ habitual), unmarked subject (third person or no subject)}
+\end{table}
+
+%% Perfective, 3, IPA
+\begin{table}
+\centerfloat
+\begin{tabular}{lccr
+		rrrr
+		rrrr}
+\toprule
+(IPA)			&		&		&				&\multicolumn{8}{c}{Classifier prefixes}\\
+											\cmidrule(lr){5-12}
+Disjunct\rlap{\quad{}+}	& Asp.\rlap{ +}	& Subj.\rlap{ →}& Prefixes			&\Df{t}-\Ff{s}-\If{i}\rlap{-}			&\Df{t}-\If{i}\rlap{-}			&\Ff{s}-\If{i}\rlap{-}			&\Df{t}-				&\Df{t}-\Ff{s}\rlap{-}			&\Ff{s}-				&\If{i}-				&—\\
+\midrule
+—			&\Af{wu}-	&—		&\Af{wu}-			&\Af{wu}.\Df{t}\Ff{s}\If{i}			&\Af{wu}.\Df{t}\If{i}			&\Af{wu}.\Ff{s}\If{i}			&\Af{wu}.\Df{t}\Ef{a}			&\Af{wu}\df{\Ff{s}}			&\Af{wu}\Ff{s}				&\Af{wu}\If{ː}				&\Af{wu}\\
+—			&\Af{u}-	&—		&\Af{u}-			&						&					&					&\Af{ʔu}.\Df{t}\Ef{a}			&\Af{ʔu}\df{\Ff{s}}			&\Af{ʔu}\Ff{s}				&\Af{ʔu}.\If{w}\Ef{a}			&\Af{ʔu}\\
+\Qf{ʔa}- arg./expl.	&\Af{wu}-	&—		&\Qf{ʔa}-\Af{wu}-		&\Qf{ʔa}\Af{w}.\Df{t}\Ff{s}\If{i}		&\Qf{ʔa}\Af{w}.\Df{t}\If{i}		&\Qf{ʔa}\Af{w}.\Ff{s}\If{i}		&\Qf{ʔa}\Af{w}.\Df{t}\Ef{a}		&\Qf{ʔa}.\Af{wu}\df{\Ff{s}}		&\Qf{ʔa}.\Af{wu}\Ff{s}			&\Qf{ʔa}\Af{ː}.\If{w}\Ef{a}		&\Qf{ʔa}.\Af{wu}\\
+\Qf{ʔa}- arg./expl.	&\Af{u}-	&—		&\Qf{ʔa}-\Af{u}-		&						&					&					&\Qf{ʔu}\Af{ː}.\Df{t}\Ef{a}\rlap{?}	&\Qf{ʔu}\Af{ː}\df{\Ff{s}}\rlap{?}	&\Qf{ʔu}\Af{ː}\Ff{s}			&\Qf{ʔu}\Af{ː}.\If{w}\Ef{a}\rlap{?}	&\Qf{ʔu}\Af{ː}\\
+\Qf{kʰa}- qualifier	&\Af{wu}-	&—		&\Qf{kʰa}-\Af{wu}-		&\Qf{kʰa}\Af{w}.\Df{t}\Ff{s}\If{i}		&\Qf{kʰa}\Af{w}.\Df{t}\If{i}		&\Qf{kʰa}\Af{w}.\Ff{s}\If{i}		&\Qf{kʰa}\Af{w}.\Df{t}\Ef{a}		&\Qf{kʰa}.\Af{wu}\df{\Ff{s}}		&\Qf{kʰa}.\Af{wu}\Ff{s}			&\Qf{kʰa}\Af{ː}.\If{w}\Ef{a}		&\Qf{kʰa}.\Af{wu}\\
+\Qf{tʰu}- ‘inside’	&\Af{wu}-	&—		&\Qf{tʰu}-\Af{wu}-		&\Qf{tʰu}\Af{w}.\Df{t}\Ff{s}\If{i}		&\Qf{tʰu}\Af{w}.\Df{t}\If{i}		&\Qf{tʰu}\Af{w}.\Ff{s}\If{i}		&\Qf{tʰu}\Af{w}.\Df{t}\Ef{a}		&\Qf{tʰu}.\Af{wu}\df{\Ff{s}}		&\Qf{tʰu}.\Af{wu}\Ff{s}			&\Qf{tʰu}\Af{ː}.\If{w}\Ef{a}		&\Qf{tʰu}.\Af{wu}\\
+\Qf{tʃi}- ‘hand’	&\Af{wu}-	&—		&\Qf{tʃi}-\Af{wu}-		&\Qf{tʃi}\Af{w}.\Df{t}\Ff{s}\If{i}		&\Qf{tʃi}\Af{w}.\Df{t}\If{i}		&\Qf{tʃi}\Af{w}.\Ff{s}\If{i}		&\Qf{tʃi}\Af{w}.\Df{t}\Ef{a}		&\Qf{tʃi}.\Af{wu}\df{\Ff{s}}		&\Qf{tʃi}.\Af{wu}\Ff{s}			&\Qf{tʃi}\Af{ː}.\If{w}\Ef{a}		&\Qf{tʃi}.\Af{wu}\\
+\Qf{χʼe}- ‘mouth’	&\Af{wu}-	&—		&\Qf{χʼe}-\Af{wu}-		&\Qf{χʼa}\Af{w}.\Df{t}\Ff{s}\If{i}		&\Qf{χʼa}\Af{w}.\Df{t}\If{i}		&\Qf{χʼa}\Af{w}.\Ff{s}\If{i}		&\Qf{χʼa}\Af{w}.\Df{t}\Ef{a}		&\Qf{χʼa}.\Af{wu}\df{\Ff{s}}		&\Qf{χʼa}.\Af{wu}\Ff{s}			&\Qf{χʼe}\Af{ː}.\If{w}\Ef{a}		&\Qf{χʼa}.\Af{wu}\\
+\bottomrule
+\end{tabular}
+\caption{Perfective aspect /{wu-}/ or /{u-}/ (incl.\ \textit{∅}-conj.\ habitual), unmarked subject (third person or no subject), IPA}
+\end{table}
+
+\clearpage
+%% Perfective, 1SG
+\begin{table}
+\centerfloat
+\begin{tabular}{lccr
+		rrrr
+		rrrr}
+\toprule
+			&		&		&				&\multicolumn{8}{c}{Classifier prefixes}\\
+											\cmidrule(lr){5-12}
+Disjunct\rlap{\quad{}+}	& Asp.\rlap{ +}	& Subj.\rlap{ →}& Prefixes			&\Df{d}-\Ff{s}-\If{i}\rlap{-}			&\Df{d}-\If{i}\rlap{-}			&\Ff{s}-\If{i}\rlap{-}			&\Df{d}-				&\Df{d}-\Ff{s}\rlap{-}			&\Ff{s}-				&\If{i}-				&—\\
+\midrule
+—			&\Af{wu}-	&\Sf{x̱}-	&\Af{wu}-\Sf{x̱}-		&\Sf{x̱}\Af{w}\Ef{a}\Df{d}\Ff{z}\If{i}		&\Sf{x̱}\Af{w}\Ef{a}\Df{d}\If{i}		&\Sf{x̱}\Af{w}\Ef{a}\Ff{s}\If{i}		&\Sf{x̱}\Af{w}\Ef{a}\Df{d}\Ef{a}		&\Sf{x̱}\Af{w}\Ef{a}\df{\Ff{s}}		&\Sf{x̱}\Af{w}\Ef{a}\Ff{s}\Ef{a}		&\Sf{x̱}\Af{w}\Ef{a}\If{a}		&\Sf{x̱}\Af{w}\Ef{a}\\
+\Qf{a}- arg/expl.	&\Af{wu}-	&\Sf{x̱}-	&\Qf{a}-\Af{wu}-\Sf{x̱}-		&\Qf{a}\Sf{x̱}\Af{w}\Df{d}\Ff{z}\If{i}		&\Qf{a}\Sf{x̱}\Af{w}\Df{d}\If{i}		&\Qf{a}\Sf{x̱}\Af{w}\Ff{s}\If{i}		&\Qf{a}\Sf{x̱}\Af{w}\Df{d}\Ef{a}		&\Qf{a}\Sf{x̱}\Af{w}\Ef{a}\df{\Ff{s}}	&\Qf{a}\Sf{x̱}\Af{w}\Ff{s}\Ef{a}		&\Qf{a}\Sf{x̱}\Af{w}\Ef{a}\If{a}		&\Qf{a}\Sf{x̱}\Af{w}\Ef{a}\\
+\Qf{ka}- qualifier	&\Af{wu}-	&\Sf{x̱}-	&\Qf{ka}-\Af{wu}-\Sf{x̱}-	&\Qf{ka}\Sf{x̱}\Af{w}\Df{d}\Ff{z}\If{i}		&\Qf{ka}\Sf{x̱}\Af{w}\Df{d}\If{i}	&\Qf{ka}\Sf{x̱}\Af{w}\Ff{s}\If{i}	&\Qf{ka}\Sf{x̱}\Af{w}\Df{d}\Ef{a}	&\Qf{ka}\Sf{x̱}\Af{w}\Ef{a}\df{\Ff{s}}	&\Qf{ka}\Sf{x̱}\Af{w}\Ff{s}\Ef{a}	&\Qf{ka}\Sf{x̱}\Af{w}\Ef{a}\If{a}	&\Qf{ka}\Sf{x̱}\Af{w}\Ef{a}\\
+\Qf{tu}- ‘inside’	&\Af{wu}-	&\Sf{x̱}-	&\Qf{tu}-\Af{wu}-\Sf{x̱}-	&\Qf{tu}\Sf{x̱}\Af{w}\Df{d}\Ff{z}\If{i}		&\Qf{tu}\Sf{x̱}\Af{w}\Df{d}\If{i}	&\Qf{tu}\Sf{x̱}\Af{w}\Ff{s}\If{i}	&\Qf{tu}\Sf{x̱}\Af{w}\Df{d}\Ef{a}	&\Qf{tu}\Sf{x̱}\Af{w}\Ef{a}\df{\Ff{s}}	&\Qf{tu}\Sf{x̱}\Af{w}\Ff{s}\Ef{a}	&\Qf{tu}\Sf{x̱}\Af{w}\Ef{a}\If{a}	&\Qf{tu}\Sf{x̱}\Af{w}\Ef{a}\\
+\Qf{ji}- ‘hand’		&\Af{wu}-	&\Sf{x̱}-	&\Qf{ji}-\Af{wu}-\Sf{x̱}-	&\Qf{ji}\Sf{x̱}\Af{w}\Df{d}\Ff{z}\If{i}		&\Qf{ji}\Sf{x̱}\Af{w}\Df{d}\If{i}	&\Qf{ji}\Sf{x̱}\Af{w}\Ff{s}\If{i}	&\Qf{ji}\Sf{x̱}\Af{w}\Df{d}\Ef{a}	&\Qf{ji}\Sf{x̱}\Af{w}\Ef{a}\df{\Ff{s}}	&\Qf{ji}\Sf{x̱}\Af{w}\Ff{s}\Ef{a}	&\Qf{ji}\Sf{x̱}\Af{w}\Ef{a}\If{a}	&\Qf{ji}\Sf{x̱}\Af{w}\Ef{a}\\
+\Qf{x̱ʼe}- ‘mouth’	&\Af{wu}-	&\Sf{x̱}-	&\Qf{x̱ʼe}-\Af{wu}-\Sf{x̱}-	&\Qf{x̱ʼa}\Sf{x̱}\Af{w}\Df{d}\Ff{z}\If{i}		&\Qf{x̱ʼa}\Sf{x̱}\Af{w}\Df{d}\If{i}	&\Qf{x̱ʼa}\Sf{x̱}\Af{w}\Ff{s}\If{i}	&\Qf{x̱ʼa}\Sf{x̱}\Af{w}\Df{d}\Ef{a}	&\Qf{x̱ʼa}\Sf{x̱}\Af{w}\Ef{a}\df{\Ff{s}}	&\Qf{x̱ʼa}\Sf{x̱}\Af{w}\Ff{s}\Ef{a}	&\Qf{x̱ʼa}\Sf{x̱}\Af{w}\Ef{a}\If{a}	&\Qf{x̱ʼa}\Sf{x̱}\Af{w}\Ef{a}\\
+\bottomrule
+\end{tabular}
+\caption{Perfective aspect \textit{wu-} (incl.\ \textit{∅}-conj.\ habitual), first person singular subject \textit{x̱-}}
+\end{table}
+
+%% Perfective, 1SG, IPA
+\begin{table}
+\centerfloat
+\begin{tabular}{lccr
+		rrrr
+		rrrr}
+\toprule
+(IPA)			&		&		&				&\multicolumn{8}{c}{Classifier prefixes}\\
+											\cmidrule(lr){5-12}
+Disjunct\rlap{\quad{}+}	& Asp.\rlap{ +}	& Subj.\rlap{ →}& Prefixes			&\Df{t}-\Ff{s}-\If{i}\rlap{-}			&\Df{t}-\If{i}\rlap{-}			&\Ff{s}-\If{i}\rlap{-}			&\Df{t}-				&\Df{t}-\Ff{s}\rlap{-}			&\Ff{s}-				&\If{i}-				&—\\
+\midrule
+—			&\Af{wu}-	&\Sf{χ}-	&\Af{wu}-\Sf{χ}-		&\Sf{χ}\Af{ʷ}\Ef{a}.\Df{t}\Ff{s}\If{i}		&\Sf{χ}\Af{ʷ}\Ef{a}.\Df{t}\If{i}	&\Sf{χ}\Af{ʷ}\Ef{a}.\Ff{s}\If{i}	&\Sf{χ}\Af{ʷ}\Ef{a}.\Df{t}\Ef{a}	&\Sf{χ}\Af{ʷ}\Ef{a}\df{\Ff{s}}		&\Sf{χ}\Af{ʷ}\Ef{a}.\Ff{s}\Ef{a}	&\Sf{χ}\Af{ʷ}\Ef{a}\If{ː}		&\Sf{χ}\Af{ʷ}\Ef{a}\\
+\Qf{ʔa}- arg/expl.	&\Af{wu}-	&\Sf{χ}-	&\Qf{ʔa}-\Af{wu}-\Sf{χ}-	&\Qf{ʔa}\Sf{χ}\Af{ʷ}.\Df{t}\Ff{s}\If{i}		&\Qf{ʔa}\Sf{χ}\Af{ʷ}.\Df{t}\If{i}	&\Qf{ʔa}\Sf{χ}\Af{ʷ}.\Ff{s}\If{i}	&\Qf{ʔa}\Sf{χ}\Af{ʷ}.\Df{t}\Ef{a}	&\Qf{ʔa}.\Sf{χ}\Af{ʷ}\Ef{a}\df{\Ff{s}}	&\Qf{ʔa}\Sf{χ}\Af{ʷ}.\Ff{s}\Ef{a}	&\Qf{ʔa}.\Sf{χ}\Af{ʷ}\Ef{a}\If{ː}	&\Qf{ʔa}.\Sf{χ}\Af{ʷ}\Ef{a}\\
+\Qf{kʰa}- qualifier	&\Af{wu}-	&\Sf{χ}-	&\Qf{kʰa}-\Af{wu}-\Sf{χ}-	&\Qf{kʰa}\Sf{χ}\Af{ʷ}.\Df{t}\Ff{s}\If{i}	&\Qf{kʰa}\Sf{χ}\Af{ʷ}.\Df{t}\If{i}	&\Qf{kʰa}\Sf{χ}\Af{ʷ}.\Ff{s}\If{i}	&\Qf{kʰa}\Sf{χ}\Af{ʷ}.\Df{t}\Ef{a}	&\Qf{kʰa}.\Sf{χ}\Af{ʷ}\Ef{a}\df{\Ff{s}}	&\Qf{kʰa}\Sf{χ}\Af{ʷ}.\Ff{s}\Ef{a}	&\Qf{kʰa}.\Sf{χ}\Af{ʷ}\Ef{a}\If{ː}	&\Qf{kʰa}.\Sf{χ}\Af{ʷ}\Ef{a}\\
+\Qf{tʰu}- ‘inside’	&\Af{wu}-	&\Sf{χ}-	&\Qf{tʰu}-\Af{wu}-\Sf{χ}-	&\Qf{tʰu}\Sf{χ}\Af{ʷ}.\Df{t}\Ff{s}\If{i}	&\Qf{tʰu}\Sf{χ}\Af{ʷ}.\Df{t}\If{i}	&\Qf{tʰu}\Sf{χ}\Af{ʷ}.\Ff{s}\If{i}	&\Qf{tʰu}\Sf{χ}\Af{ʷ}.\Df{t}\Ef{a}	&\Qf{tʰu}.\Sf{χ}\Af{ʷ}\Ef{a}\df{\Ff{s}}	&\Qf{tʰu}\Sf{χ}\Af{ʷ}.\Ff{s}\Ef{a}	&\Qf{tʰu}.\Sf{χ}\Af{ʷ}\Ef{a}\If{ː}	&\Qf{tʰu}.\Sf{χ}\Af{ʷ}\Ef{a}\\
+\Qf{tʃi}- ‘hand’	&\Af{wu}-	&\Sf{χ}-	&\Qf{tʃi}-\Af{wu}-\Sf{χ}-	&\Qf{tʃi}\Sf{χ}\Af{ʷ}.\Df{t}\Ff{s}\If{i}	&\Qf{tʃi}\Sf{χ}\Af{ʷ}.\Df{t}\If{i}	&\Qf{tʃi}\Sf{χ}\Af{ʷ}.\Ff{s}\If{i}	&\Qf{tʃi}\Sf{χ}\Af{ʷ}.\Df{t}\Ef{a}	&\Qf{tʃi}.\Sf{χ}\Af{ʷ}\Ef{a}\df{\Ff{s}}	&\Qf{tʃi}\Sf{χ}\Af{ʷ}.\Ff{s}\Ef{a}	&\Qf{tʃi}.\Sf{χ}\Af{ʷ}\Ef{a}\If{ː}	&\Qf{tʃi}.\Sf{χ}\Af{ʷ}\Ef{a}\\
+\Qf{χʼe}- ‘mouth’	&\Af{wu}-	&\Sf{χ}-	&\Qf{χʼe}-\Af{wu}-\Sf{χ}-	&\Qf{χʼa}\Sf{χ}\Af{ʷ}.\Df{t}\Ff{s}\If{i}	&\Qf{χʼa}\Sf{χ}\Af{ʷ}.\Df{t}\If{i}	&\Qf{χʼa}\Sf{χ}\Af{ʷ}.\Ff{s}\If{i}	&\Qf{χʼa}\Sf{χ}\Af{ʷ}.\Df{t}\Ef{a}	&\Qf{χʼa}.\Sf{χ}\Af{ʷ}\Ef{a}\df{\Ff{s}}	&\Qf{χʼa}\Sf{χ}\Af{ʷ}.\Ff{s}\Ef{a}	&\Qf{χʼa}.\Sf{χ}\Af{ʷ}\Ef{a}\If{ː}	&\Qf{χʼa}.\Sf{χ}\Af{ʷ}\Ef{a}\\
+\bottomrule
+\end{tabular}
+\caption{Perfective aspect /{wu-}/ (incl.\ \textit{∅}-conj.\ habitual), first person singular subject /{χ-}/}
+\end{table}
+
+\clearpage
+%% Perfective, 1PL
+\begin{table}
+\centerfloat
+\begin{tabular}{lccr
+		rrrr
+		rrrr}
+\toprule
+			&		&		&				&\multicolumn{8}{c}{Classifier prefixes}\\
+											\cmidrule(lr){5-12}
+Disjunct\rlap{\quad{}+}	& Asp.\rlap{ +}	& Subj.\rlap{ →}& Prefixes			&\Df{d}-\Ff{s}-\If{i}\rlap{-}			&\Df{d}-\If{i}\rlap{-}			&\Ff{s}-\If{i}\rlap{-}			&\Df{d}-				&\Df{d}-\Ff{s}\rlap{-}			&\Ff{s}-				&\If{i}-				&—\\
+\midrule																															                                        
+—			&\Af{wu}-	&\Sf{tu}-	&\Af{wu}-\Sf{tu}-		&\Af{wu}\Sf{tu}\Df{d}\Ff{z}\If{i}		&\Af{wu}\Sf{tu}\Df{d}\If{i}		&\Af{wu}\Sf{tu}\Ff{s}\If{i}		&\Af{wu}\Sf{tu}\Df{d}\Ef{a}		&\Af{wu}\Sf{too}\df{\Ff{s}}		&\Af{wu}\Sf{tu}\Ff{s}\Ef{a}		&\Af{wu}\Sf{tu}\If{w}\Ef{a}		&\Af{wu}\Sf{too}\\
+\Qf{a}- expletive	&\Af{wu}-	&\Sf{tu}-	&\Qf{a}-\Af{wu}-\Sf{tu}-	&\Qf{a}\Af{w}\Sf{tu}\Df{d}\Ff{z}\If{i}		&\Qf{a}\Af{w}\Sf{tu}\Df{d}\If{i}	&\Qf{a}\Af{w}\Sf{tu}\Ff{s}\If{i}	&\Qf{a}\Af{w}\Sf{tu}\Df{d}\Ef{a}	&\Qf{a}\Af{w}\Sf{too}\df{\Ff{s}}	&\Qf{a}\Af{w}\Sf{tu}\Ff{s}\Ef{a}	&\Qf{a}\Af{w}\Sf{tu}\If{w}\Ef{a}	&\Qf{a}\Af{w}\Sf{too}\\
+\Qf{ka}- qualifier	&\Af{wu}-	&\Sf{tu}-	&\Qf{ka}-\Af{wu}-\Sf{tu}-	&\Qf{ka}\Af{w}\Sf{tu}\Df{d}\Ff{z}\If{i}		&\Qf{ka}\Af{w}\Sf{tu}\Df{d}\If{i}	&\Qf{ka}\Af{w}\Sf{tu}\Ff{s}\If{i}	&\Qf{ka}\Af{w}\Sf{tu}\Df{d}\Ef{a}	&\Qf{ka}\Af{w}\Sf{too}\df{\Ff{s}}	&\Qf{ka}\Af{w}\Sf{tu}\Ff{s}\Ef{a}	&\Qf{ka}\Af{w}\Sf{tu}\If{w}\Ef{a}	&\Qf{ka}\Af{w}\Sf{too}\\
+\Qf{tu}- ‘inside’	&\Af{wu}-	&\Sf{tu}-	&\Qf{tu}-\Af{wu}-\Sf{tu}-	&\Qf{tu}\Af{w}\Sf{tu}\Df{d}\Ff{z}\If{i}		&\Qf{tu}\Af{w}\Sf{tu}\Df{d}\If{i}	&\Qf{tu}\Af{w}\Sf{tu}\Ff{s}\If{i}	&\Qf{tu}\Af{w}\Sf{tu}\Df{d}\Ef{a}	&\Qf{tu}\Af{w}\Sf{too}\df{\Ff{s}}	&\Qf{tu}\Af{w}\Sf{tu}\Ff{s}\Ef{a}	&\Qf{tu}\Af{w}\Sf{tu}\If{w}\Ef{a}	&\Qf{tu}\Af{w}\Sf{too}\\
+\Qf{ji}- ‘hand’		&\Af{wu}-	&\Sf{tu}-	&\Qf{ji}-\Af{wu}-\Sf{tu}-	&\Qf{ji}\Af{w}\Sf{tu}\Df{d}\Ff{z}\If{i}		&\Qf{ji}\Af{w}\Sf{tu}\Df{d}\If{i}	&\Qf{ji}\Af{w}\Sf{tu}\Ff{s}\If{i}	&\Qf{ji}\Af{w}\Sf{tu}\Df{d}\Ef{a}	&\Qf{ji}\Af{w}\Sf{too}\df{\Ff{s}}	&\Qf{ji}\Af{w}\Sf{tu}\Ff{s}\Ef{a}	&\Qf{ji}\Af{w}\Sf{tu}\If{w}\Ef{a}	&\Qf{ji}\Af{w}\Sf{too}\\
+\Qf{x̱ʼe}- ‘mouth’	&\Af{wu}-	&\Sf{tu}-	&\Qf{x̱ʼe}-\Af{wu}-\Sf{tu}-	&\Qf{x̱ʼa}\Af{w}\Sf{tu}\Df{d}\Ff{z}\If{i}	&\Qf{x̱ʼa}\Af{w}\Sf{tu}\Df{d}\If{i}	&\Qf{x̱ʼa}\Af{w}\Sf{tu}\Ff{s}\If{i}	&\Qf{x̱ʼa}\Af{w}\Sf{tu}\Df{d}\Ef{a}	&\Qf{x̱ʼa}\Af{w}\Sf{too}\df{\Ff{s}}	&\Qf{x̱ʼa}\Af{w}\Sf{tu}\Ff{s}\Ef{a}	&\Qf{x̱ʼa}\Af{w}\Sf{tu}\If{w}\Ef{a}	&\Qf{x̱ʼa}\Af{w}\Sf{too}\\
+\bottomrule
+\end{tabular}
+\caption{Perfective aspect \textit{wu-} (incl.\ \textit{∅}-conj.\ habitual), first person plural subject \textit{tu-}}
+\end{table}
+
+%% Perfective, 1PL, IPA
+\begin{table}
+\centerfloat
+\setlength{\tabcolsep}{0.75ex}
+\begin{tabular}{lccr
+		rrrr
+		rrrr}
+\toprule
+(IPA)			&		&		&				&\multicolumn{8}{c}{Classifier prefixes}\\
+											\cmidrule(lr){5-12}
+Disjunct\rlap{\quad{}+}	& Asp.\rlap{+}	& Subj.\rlap{ →}& Prefixes			&\Df{t}-\Ff{s}-\If{i}\rlap{-}			&\Df{t}-\If{i}\rlap{-}			&\Ff{s}-\If{i}\rlap{-}			&\Df{t}-				&\Df{t}-\Ff{s}\rlap{-}			&\Ff{s}-				&\If{i}-				&—\\
+\midrule																															                                        
+—			&\Af{wu}-	&\Sf{tʰu}-	&\Af{wu}-\Sf{tʰu}-		&\Af{wu}.\Sf{tʰu}.\Df{t}\Ff{s}\If{i}		&\Af{wu}.\Sf{tʰu}.\Df{t}\If{i}		&\Af{wu}.\Sf{tʰu}.\Ff{s}\If{i}		&\Af{wu}.\Sf{tʰu}.\Df{t}\Ef{a}		&\Af{wu}.\Sf{tʰuː}\df{\Ff{s}}		&\Af{wu}.\Sf{tʰu}.\Ff{s}\Ef{a}		&\Af{wu}.\Sf{tʰu}.\If{w}\Ef{a}		&\Af{wu}.\Sf{tʰuː}\\
+\Qf{ʔa}- expletive	&\Af{wu}-	&\Sf{tʰu}-	&\Qf{ʔa}-\Af{wu}-\Sf{tʰu}-	&\Qf{ʔa}\Af{w}.\Sf{tʰu}.\Df{t}\Ff{s}\If{i}	&\Qf{ʔa}\Af{w}.\Sf{tʰu}.\Df{t}\If{i}	&\Qf{ʔa}\Af{w}.\Sf{tʰu}.\Ff{s}\If{i}	&\Qf{ʔa}\Af{w}.\Sf{tʰu}.\Df{t}\Ef{a}	&\Qf{ʔa}\Af{w}.\Sf{tʰuː}\df{\Ff{s}}	&\Qf{ʔa}\Af{w}.\Sf{tʰu}.\Ff{s}\Ef{a}	&\Qf{ʔa}\Af{w}.\Sf{tʰu}.\If{w}\Ef{a}	&\Qf{ʔa}\Af{w}.\Sf{tʰuː}\\
+\Qf{kʰa}- qualifier	&\Af{wu}-	&\Sf{tʰu}-	&\Qf{kʰa}-\Af{wu}-\Sf{tʰu}-	&\Qf{kʰa}\Af{w}.\Sf{tʰu}.\Df{t}\Ff{s}\If{i}	&\Qf{kʰa}\Af{w}.\Sf{tʰu}.\Df{t}\If{i}	&\Qf{kʰa}\Af{w}.\Sf{tʰu}.\Ff{s}\If{i}	&\Qf{kʰa}\Af{w}.\Sf{tʰu}.\Df{t}\Ef{a}	&\Qf{kʰa}\Af{w}.\Sf{tʰuː}\df{\Ff{s}}	&\Qf{kʰa}\Af{w}.\Sf{tʰu}.\Ff{s}\Ef{a}	&\Qf{kʰa}\Af{w}.\Sf{tʰu}.\If{w}\Ef{a}	&\Qf{kʰa}\Af{w}.\Sf{tʰuː}\\
+\Qf{tʰu}- ‘inside’	&\Af{wu}-	&\Sf{tʰu}-	&\Qf{tʰu}-\Af{wu}-\Sf{tʰu}-	&\Qf{tʰu}\Af{w}.\Sf{tʰu}.\Df{t}\Ff{s}\If{i}	&\Qf{tʰu}\Af{w}.\Sf{tʰu}.\Df{t}\If{i}	&\Qf{tʰu}\Af{w}.\Sf{tʰu}.\Ff{s}\If{i}	&\Qf{tʰu}\Af{w}.\Sf{tʰu}.\Df{t}\Ef{a}	&\Qf{tʰu}\Af{w}.\Sf{tʰuː}\df{\Ff{s}}	&\Qf{tʰu}\Af{w}.\Sf{tʰu}.\Ff{s}\Ef{a}	&\Qf{tʰu}\Af{w}.\Sf{tʰu}.\If{w}\Ef{a}	&\Qf{tʰu}\Af{w}.\Sf{tʰuː}\\
+\Qf{tʃi}- ‘hand’	&\Af{wu}-	&\Sf{tʰu}-	&\Qf{tʃi}-\Af{wu}-\Sf{tʰu}-	&\Qf{tʃi}\Af{w}.\Sf{tʰu}.\Df{t}\Ff{s}\If{i}	&\Qf{tʃi}\Af{w}.\Sf{tʰu}.\Df{t}\If{i}	&\Qf{tʃi}\Af{w}.\Sf{tʰu}.\Ff{s}\If{i}	&\Qf{tʃi}\Af{w}.\Sf{tʰu}.\Df{t}\Ef{a}	&\Qf{tʃi}\Af{w}.\Sf{tʰuː}\df{\Ff{s}}	&\Qf{tʃi}\Af{w}.\Sf{tʰu}.\Ff{s}\Ef{a}	&\Qf{tʃi}\Af{w}.\Sf{tʰu}.\If{w}\Ef{a}	&\Qf{tʃi}\Af{w}.\Sf{tʰuː}\\
+\Qf{χʼe}- ‘mouth’	&\Af{wu}-	&\Sf{tʰu}-	&\Qf{χʼe}-\Af{wu}-\Sf{tʰu}-	&\Qf{χʼa}\Af{w}.\Sf{tʰu}.\Df{t}\Ff{s}\If{i}	&\Qf{χʼa}\Af{w}.\Sf{tʰu}.\Df{t}\If{i}	&\Qf{χʼa}\Af{w}.\Sf{tʰu}.\Ff{s}\If{i}	&\Qf{χʼa}\Af{w}.\Sf{tʰu}.\Df{t}\Ef{a}	&\Qf{χʼa}\Af{w}.\Sf{tʰuː}\df{\Ff{s}}	&\Qf{χʼa}\Af{w}.\Sf{tʰu}.\Ff{s}\Ef{a}	&\Qf{χʼa}\Af{w}.\Sf{tʰu}.\If{w}\Ef{a}	&\Qf{χʼa}\Af{w}.\Sf{tʰuː}\\
+\bottomrule
+\end{tabular}
+\caption{Perfective aspect /{wu-}/ (incl.\ \textit{∅}-conj.\ habitual), first person plural subject /{tʰu-}/}
+\end{table}
+
+\clearpage
+%% Perfective, 2SG
+\begin{table}
+\centerfloat
+\begin{tabular}{lccr
+		rrrr
+		rrrr}
+\toprule
+			&		&		&				&\multicolumn{8}{c}{Classifier prefixes}\\
+											\cmidrule(lr){5-12}
+Disjunct\rlap{\quad{}+}	& Asp.\rlap{ +}	& Subj.\rlap{ →}& Prefixes			&\Df{d}-\Ff{s}-\If{i}\rlap{-}			&\Df{d}-\If{i}\rlap{-}			&\Ff{s}-\If{i}\rlap{-}			&\Df{d}-				&\Df{d}-\Ff{s}\rlap{-}			&\Ff{s}-				&\If{i}-				&—\\
+\midrule																															                                        
+—			&\Af{wu}-	&\Sf{i}-	&\Af{wu}-\Sf{i}-		&\Af{y}\Sf{i}\Df{d}\Ff{z}\If{i}			&\Af{y}\Sf{i}\Df{d}\If{i}		&\Af{y}\Sf{i}\Ff{s}\If{i}		&\Af{y}\Sf{i}\Df{d}\Ef{a}		&\Af{y}\Sf{i}\df{\Ff{s}}		&\Af{y}\Sf{i}\Ff{s}\Ef{a}		&\Af{y}\Sf{e}\If{e}			&\Af{y}\Sf{i}\\
+—			&\Af{u}-	&\Sf{i}-	&\Qf{u}-\Sf{i}-			&						&					&					&					&					&					&\Xf{\Sf{i}}\If{y}\Ef{a}		&\\
+			&		&		&				&						&					&					&					&					&					&\Af{e}\Sf{e}\If{y}\Ef{a}\rlap{?}	&\\
+\Qf{a}- expletive	&\Af{wu}-	&\Sf{i}-	&\Qf{a}-\Af{wu}-\Sf{i}-		&\Qf{a}\Xf{\Af{y}\Sf{}}\Df{d}\Ff{z}\If{i}	&\Qf{a}\Xf{\Af{y}\Sf{}}\Df{d}\If{i}	&\Qf{a}\Xf{\Af{y}\Sf{}}\Ff{s}\If{i}	&\Qf{a}\Xf{\Af{y}\Sf{}}\Df{d}\Ef{a}	&\Qf{a}\Af{y}\Sf{i}\df{\Ff{s}}		&\Qf{a}\Xf{\Af{y}\Sf{}}\Ff{s}\Ef{a}	&\Qf{}\Af{e}\Sf{e}\If{y}\Ef{a}		&\Qf{a}\Af{y}\Sf{i}\rlap{?}\\
+\Qf{ka}- qualifier	&\Af{wu}-	&\Sf{i}-	&\Qf{ka}-\Af{wu}-\Sf{i}-	&\Qf{ka}\Xf{\Af{y}\Sf{}}\Df{d}\Ff{z}\If{i}	&\Qf{ka}\Xf{\Af{y}\Sf{}}\Df{d}\If{i}	&\Qf{ka}\Xf{\Af{y}\Sf{}}\Ff{s}\If{i}	&\Qf{ka}\Xf{\Af{y}\Sf{}}\Df{d}\Ef{a}	&\Qf{ka}\Af{y}\Sf{i}\df{\Ff{s}}		&\Qf{ka}\Xf{\Af{y}\Sf{}}\Ff{s}\Ef{a}	&\Qf{k}\Af{e}\Sf{e}\If{y}\Ef{a}		&\Qf{ka}\Af{y}\Sf{i}\\
+\Qf{tu}- ‘inside’	&\Af{wu}-	&\Sf{i}-	&\Qf{tu}-\Af{wu}-\Sf{i}-	&\Qf{tu}\Xf{\Af{y}\Sf{}}\Df{d}\Ff{z}\If{i}	&\Qf{tu}\Xf{\Af{y}\Sf{}}\Df{d}\If{i}	&\Qf{tu}\Xf{\Af{y}\Sf{}}\Ff{s}\If{i}	&\Qf{tu}\Xf{\Af{y}\Sf{}}\Df{d}\Ef{a}	&\Qf{tu}\Af{y}\Sf{i}\df{\Ff{s}}		&\Qf{tu}\Xf{\Af{y}\Sf{}}\Ff{s}\Ef{a}	&\Qf{t}\Af{e}\Sf{e}\If{y}\Ef{a}		&\Qf{tu}\Af{y}\Sf{i}\\
+\Qf{ji}- ‘hand’		&\Af{wu}-	&\Sf{i}-	&\Qf{ji}-\Af{wu}-\Sf{i}-	&\Qf{ji}\Xf{\Af{y}\Sf{}}\Df{d}\Ff{z}\If{i}	&\Qf{ji}\Xf{\Af{y}\Sf{}}\Df{d}\If{i}	&\Qf{ji}\Xf{\Af{y}\Sf{}}\Ff{s}\If{i}	&\Qf{ji}\Xf{\Af{y}\Sf{}}\Df{d}\Ef{a}	&\Qf{ji}\Af{y}\Sf{i}\df{\Ff{s}}		&\Qf{ji}\Xf{\Af{y}\Sf{}}\Ff{s}\Ef{a}	&\Qf{j}\Af{e}\Sf{e}\If{y}\Ef{a}		&\Qf{ji}\Af{y}\Sf{i}\\
+\Qf{x̱ʼe}- ‘mouth’	&\Af{wu}-	&\Sf{i}-	&\Qf{x̱ʼe}-\Af{wu}-\Sf{i}-	&\Qf{x̱ʼa}\Xf{\Af{y}\Sf{}}\Df{d}\Ff{z}\If{i}	&\Qf{x̱ʼa}\Xf{\Af{y}\Sf{}}\Df{d}\If{i}	&\Qf{x̱ʼa}\Xf{\Af{y}\Sf{}}\Ff{s}\If{i}	&\Qf{x̱ʼa}\Xf{\Af{y}\Sf{}}\Df{d}\Ef{a}	&\Qf{x̱ʼa}\Af{y}\Sf{i}\df{\Ff{s}}	&\Qf{x̱ʼa}\Xf{\Af{y}\Sf{}}\Ff{s}\Ef{a}	&\Qf{x̱ʼ}\Af{e}\Sf{e}\If{y}\Ef{a}	&\Qf{x̱ʼa}\Af{y}\Sf{i}\\
+\bottomrule
+\end{tabular}
+\caption{Perfective aspect \textit{wu-} (incl.\ \textit{∅}-conj.\ habitual), second person singular subject \textit{i-}}
+\end{table}
+
+%% Perfective, 2SG, IPA
+\begin{table}
+\centerfloat
+\begin{tabular}{lccr
+		rrrr
+		rrrr}
+\toprule
+(IPA)			&		&		&				&\multicolumn{8}{c}{Classifier prefixes}\\
+											\cmidrule(lr){5-12}
+Disjunct\rlap{\quad{}+}	& Asp.\rlap{ +}	& Subj.\rlap{ →}& Prefixes			&\Df{t}-\Ff{s}-\If{i}\rlap{-}			&\Df{t}-\If{i}\rlap{-}			&\Ff{s}-\If{i}\rlap{-}			&\Df{t}-				&\Df{t}-\Ff{s}\rlap{-}			&\Ff{s}-				&\If{i}-				&—\\
+\midrule																															                                        
+—			&\Af{wu}-	&\Sf{i}-	&\Af{wu}-\Sf{i}-		&\Af{j}\Sf{i}.\Df{t}\Ff{s}\If{i}		&\Af{j}\Sf{i}.\Df{t}\If{i}		&\Af{j}\Sf{i}.\Ff{s}\If{i}		&\Af{j}\Sf{i}.\Df{t}\Ef{a}		&\Af{j}\Sf{i}\df{\Ff{s}}		&\Af{j}\Sf{i}.\Ff{s}\Ef{a}		&\Af{j}\Sf{i}\If{ː}			&\Af{j}\Sf{i}\\
+—			&\Af{u}-	&\Sf{i}-	&\Qf{u}-\Sf{i}-			&						&					&					&					&					&					&\Ef{ʔ}\Xf{\Sf{i}}.\If{j}\Ef{a}		&\\
+			&		&		&				&						&					&					&					&					&					&\Ef{ʔ}\Af{i}\Sf{ː}.\If{j}\Ef{a}\rlap{?}&\\
+\Qf{ʔa}- expletive	&\Af{wu}-	&\Sf{i}-	&\Qf{ʔa}-\Af{wu}-\Sf{i}-	&\Qf{ʔa}\Xf{\Af{j}\Sf{}}.\Df{t}\Ff{s}\If{i}	&\Qf{ʔa}\Xf{\Af{j}\Sf{}}.\Df{t}\If{i}	&\Qf{ʔa}\Xf{\Af{j}\Sf{}}.\Ff{s}\If{i}	&\Qf{ʔa}\Xf{\Af{j}\Sf{}}.\Df{t}\Ef{a}	&\Qf{ʔa}.\Af{j}\Sf{i}\df{\Ff{s}}	&\Qf{ʔa}\Xf{\Af{j}\Sf{}}.\Ff{s}\Ef{a}	&\Qf{ʔ}\Af{i}\Sf{ː}.\If{j}\Ef{a}	&\Qf{ʔa}.\Af{j}\Sf{i}\rlap{?}\\
+\Qf{kʰa}- qualifier	&\Af{wu}-	&\Sf{i}-	&\Qf{kʰa}-\Af{wu}-\Sf{i}-	&\Qf{kʰa}\Xf{\Af{j}\Sf{}}.\Df{t}\Ff{s}\If{i}	&\Qf{kʰa}\Xf{\Af{j}\Sf{}}.\Df{t}\If{i}	&\Qf{kʰa}\Xf{\Af{j}\Sf{}}.\Ff{s}\If{i}	&\Qf{kʰa}\Xf{\Af{j}\Sf{}}.\Df{t}\Ef{a}	&\Qf{kʰa}.\Af{j}\Sf{i}\df{\Ff{s}}	&\Qf{kʰa}\Xf{\Af{j}\Sf{}}.\Ff{s}\Ef{a}	&\Qf{kʰ}\Af{i}\Sf{ː}.\If{j}\Ef{a}	&\Qf{kʰa}.\Af{j}\Sf{i}\\
+\Qf{tʰu}- ‘inside’	&\Af{wu}-	&\Sf{i}-	&\Qf{tʰu}-\Af{wu}-\Sf{i}-	&\Qf{tʰu}\Xf{\Af{j}\Sf{}}.\Df{t}\Ff{s}\If{i}	&\Qf{tʰu}\Xf{\Af{j}\Sf{}}.\Df{t}\If{i}	&\Qf{tʰu}\Xf{\Af{j}\Sf{}}.\Ff{s}\If{i}	&\Qf{tʰu}\Xf{\Af{j}\Sf{}}.\Df{t}\Ef{a}	&\Qf{tʰu}.\Af{j}\Sf{i}\df{\Ff{s}}	&\Qf{tʰu}\Xf{\Af{j}\Sf{}}.\Ff{s}\Ef{a}	&\Qf{tʰ}\Af{i}\Sf{ː}.\If{j}\Ef{a}	&\Qf{tʰu}.\Af{j}\Sf{i}\\
+\Qf{tʃi}- ‘hand’	&\Af{wu}-	&\Sf{i}-	&\Qf{tʃi}-\Af{wu}-\Sf{i}-	&\Qf{tʃi}\Xf{\Af{j}\Sf{}}.\Df{t}\Ff{s}\If{i}	&\Qf{tʃi}\Xf{\Af{j}\Sf{}}.\Df{t}\If{i}	&\Qf{tʃi}\Xf{\Af{j}\Sf{}}.\Ff{s}\If{i}	&\Qf{tʃi}\Xf{\Af{j}\Sf{}}.\Df{t}\Ef{a}	&\Qf{tʃi}.\Af{j}\Sf{i}\df{\Ff{s}}	&\Qf{tʃi}\Xf{\Af{j}\Sf{}}.\Ff{s}\Ef{a}	&\Qf{tʃ}\Af{i}\Sf{ː}.\If{j}\Ef{a}	&\Qf{tʃi}.\Af{j}\Sf{i}\\
+\Qf{χʼe}- ‘mouth’	&\Af{wu}-	&\Sf{i}-	&\Qf{χʼe}-\Af{wu}-\Sf{i}-	&\Qf{χʼa}\Xf{\Af{j}\Sf{}}.\Df{t}\Ff{s}\If{i}	&\Qf{χʼa}\Xf{\Af{j}\Sf{}}.\Df{t}\If{i}	&\Qf{χʼa}\Xf{\Af{j}\Sf{}}.\Ff{s}\If{i}	&\Qf{χʼa}\Xf{\Af{j}\Sf{}}.\Df{t}\Ef{a}	&\Qf{χʼa}.\Af{j}\Sf{i}\df{\Ff{s}}	&\Qf{χʼa}\Xf{\Af{j}\Sf{}}.\Ff{s}\Ef{a}	&\Qf{χʼ}\Af{i}\Sf{ː}.\If{j}\Ef{a}	&\Qf{χʼa}.\Af{j}\Sf{i}\\
+\bottomrule
+\end{tabular}
+\caption{Perfective aspect /{wu-}/ (incl.\ \textit{∅}-conj.\ habitual), second person singular subject /{i-}/, IPA}
+\end{table}
+
+\clearpage
+%% Perfective, 2PL
+\begin{table}
+\centerfloat
+\begin{tabular}{lccr
+		rrrr
+		rrrr}
+\toprule
+			&		&		&				&\multicolumn{8}{c}{Classifier prefixes}\\
+											\cmidrule(lr){5-12}
+Disjunct\rlap{\quad{}+}	& Asp.\rlap{ +}	& Subj.\rlap{ →}& Prefixes			&\Df{d}-\Ff{s}-\If{i}\rlap{-}			&\Df{d}-\If{i}\rlap{-}			&\Ff{s}-\If{i}\rlap{-}			&\Df{d}-				&\Df{d}-\Ff{s}\rlap{-}			&\Ff{s}-				&\If{i}-				&—\\
+\midrule																															                                        
+—			&\Af{wu}-	&\Sf{yi}-	&\Af{wu}-\Sf{yi}-		&\Af{ye}\Sf{ey}\Df{d}\Ff{z}\If{i}		&\Af{ye}\Sf{ey}\Df{d}\If{i}		&\Af{ye}\Sf{ey}\Ff{s}\If{i}		&\Af{ye}\Sf{ey}\Df{d}\Ef{a}		&\Af{ye}\Sf{ey}\df{\Ff{s}}		&\Af{ye}\Sf{ey}\Ff{s}\Ef{a}		&\Af{ye}\Sf{e}\If{y}			&\Af{ye}\Sf{ey}\\
+\Qf{a}- expletive	&\Af{wu}-	&\Sf{yi}-	&\Qf{a}-\Af{wu}-\Sf{yi}-	&\Qf{a}\Af{ye}\Sf{ey}\Df{d}\Ff{z}\If{i}		&\Qf{a}\Af{ye}\Sf{ey}\Df{d}\If{i}	&\Qf{a}\Af{ye}\Sf{ey}\Ff{s}\If{i}	&\Qf{a}\Af{ye}\Sf{ey}\Df{d}\Ef{a}	&\Qf{a}\Af{ye}\Sf{ey}\df{\Ff{s}}	&\Qf{a}\Af{ye}\Sf{ey}\Ff{s}\Ef{a}	&\Qf{a}\Af{ye}\Sf{e}\If{y}		&\Qf{a}\Af{ye}\Sf{ey}\\
+\Qf{ka}- qualifier	&\Af{wu}-	&\Sf{yi}-	&\Qf{ka}-\Af{wu}-\Sf{yi}-	&\Qf{ka}\Af{ye}\Sf{ey}\Df{d}\Ff{z}\If{i}	&\Qf{ka}\Af{ye}\Sf{ey}\Df{d}\If{i}	&\Qf{ka}\Af{ye}\Sf{ey}\Ff{s}\If{i}	&\Qf{ka}\Af{ye}\Sf{ey}\Df{d}\Ef{a}	&\Qf{ka}\Af{ye}\Sf{ey}\df{\Ff{s}}	&\Qf{ka}\Af{ye}\Sf{ey}\Ff{s}\Ef{a}	&\Qf{ka}\Af{ye}\Sf{e}\If{y}		&\Qf{ka}\Af{ye}\Sf{ey}\\
+\Qf{tu}- ‘inside’	&\Af{wu}-	&\Sf{yi}-	&\Qf{tu}-\Af{wu}-\Sf{yi}-	&\Qf{tu}\Af{ye}\Sf{ey}\Df{d}\Ff{z}\If{i}	&\Qf{tu}\Af{ye}\Sf{ey}\Df{d}\If{i}	&\Qf{tu}\Af{ye}\Sf{ey}\Ff{s}\If{i}	&\Qf{tu}\Af{ye}\Sf{ey}\Df{d}\Ef{a}	&\Qf{tu}\Af{ye}\Sf{ey}\df{\Ff{s}}	&\Qf{tu}\Af{ye}\Sf{ey}\Ff{s}\Ef{a}	&\Qf{tu}\Af{ye}\Sf{e}\If{y}		&\Qf{tu}\Af{ye}\Sf{ey}\\
+\Qf{ji}- ‘inside’	&\Af{wu}-	&\Sf{yi}-	&\Qf{ji}-\Af{wu}-\Sf{yi}-	&\Qf{ji}\Af{ye}\Sf{ey}\Df{d}\Ff{z}\If{i}	&\Qf{ji}\Af{ye}\Sf{ey}\Df{d}\If{i}	&\Qf{ji}\Af{ye}\Sf{ey}\Ff{s}\If{i}	&\Qf{ji}\Af{ye}\Sf{ey}\Df{d}\Ef{a}	&\Qf{ji}\Af{ye}\Sf{ey}\df{\Ff{s}}	&\Qf{ji}\Af{ye}\Sf{ey}\Ff{s}\Ef{a}	&\Qf{ji}\Af{ye}\Sf{e}\If{y}		&\Qf{ji}\Af{ye}\Sf{ey}\\
+\Qf{x̱ʼe}- ‘mouth’	&\Af{wu}-	&\Sf{yi}-	&\Qf{x̱ʼe}-\Af{wu}-\Sf{yi}-	&\Qf{x̱ʼa}\Af{ye}\Sf{ey}\Df{d}\Ff{z}\If{i}	&\Qf{x̱ʼa}\Af{ye}\Sf{ey}\Df{d}\If{i}	&\Qf{x̱ʼa}\Af{ye}\Sf{ey}\Ff{s}\If{i}	&\Qf{x̱ʼa}\Af{ye}\Sf{ey}\Df{d}\Ef{a}	&\Qf{x̱ʼa}\Af{ye}\Sf{ey}\df{\Ff{s}}	&\Qf{x̱ʼa}\Af{ye}\Sf{ey}\Ff{s}\Ef{a}	&\Qf{x̱ʼa}\Af{ye}\Sf{e}\If{y}		&\Qf{x̱ʼa}\Af{ye}\Sf{ey}\\
+\bottomrule
+\end{tabular}
+\caption{Perfective aspect \textit{wu-} (incl.\ \textit{∅}-conj.\ habitual), second person plural subject \textit{yi-}}
+\end{table}
+
+%% Perfective, 2PL, IPA
+\begin{table}
+\centerfloat
+\begin{tabular}{lccr
+		rrrr
+		rrrr}
+\toprule
+(IPA)			&		&		&				&\multicolumn{8}{c}{Classifier prefixes}\\
+											\cmidrule(lr){5-12}
+Disjunct\rlap{\quad{}+}	& Asp.\rlap{ +}	& Subj.\rlap{ →}& Prefixes			&\Df{t}-\Ff{s}-\If{i}\rlap{-}			&\Df{t}-\If{i}\rlap{-}			&\Ff{s}-\If{i}\rlap{-}			&\Df{t}-				&\Df{t}-\Ff{s}\rlap{-}			&\Ff{s}-				&\If{i}-				&—\\
+\midrule																															                                        
+—			&\Af{wu}-	&\Sf{ji}-	&\Af{wu}-\Sf{ji}-		&\Af{ji}\Sf{ːj}.\Df{t}\Ff{s}\If{i}		&\Af{ji}\Sf{ːj}.\Df{t}\If{i}		&\Af{ji}\Sf{ːj}.\Ff{s}\If{i}		&\Af{ji}\Sf{ːj}.\Df{t}\Ef{a}		&\Af{ji}\Sf{ːj}\df{\Ff{s}}		&\Af{ji}\Sf{ːj}.\Ff{s}\Ef{a}		&\Af{ji}\Sf{ː}\If{j}			&\Af{ji}\Sf{ːj}\\
+\Qf{ʔa}- expletive	&\Af{wu}-	&\Sf{ji}-	&\Qf{ʔa}-\Af{wu}-\Sf{ji}-	&\Qf{ʔa}.\Af{ji}\Sf{ːj}.\Df{t}\Ff{s}\If{i}	&\Qf{ʔa}.\Af{ji}\Sf{ːj}.\Df{t}\If{i}	&\Qf{ʔa}.\Af{ji}\Sf{ːj}.\Ff{s}\If{i}	&\Qf{ʔa}.\Af{ji}\Sf{ːj}.\Df{t}\Ef{a}	&\Qf{ʔa}.\Af{ji}\Sf{ːj}\df{\Ff{s}}	&\Qf{ʔa}.\Af{ji}\Sf{ːj}.\Ff{s}\Ef{a}	&\Qf{ʔa}.\Af{ji}\Sf{ː}\If{j}		&\Qf{ʔa}.\Af{ji}\Sf{ːj}\\
+\Qf{kʰa}- qualifier	&\Af{wu}-	&\Sf{ji}-	&\Qf{kʰa}-\Af{wu}-\Sf{ji}-	&\Qf{kʰa}.\Af{ji}\Sf{ːj}.\Df{t}\Ff{s}\If{i}	&\Qf{kʰa}.\Af{ji}\Sf{ːj}.\Df{t}\If{i}	&\Qf{kʰa}.\Af{ji}\Sf{ːj}.\Ff{s}\If{i}	&\Qf{kʰa}.\Af{ji}\Sf{ːj}.\Df{t}\Ef{a}	&\Qf{kʰa}.\Af{ji}\Sf{ːj}\df{\Ff{s}}	&\Qf{kʰa}.\Af{ji}\Sf{ːj}.\Ff{s}\Ef{a}	&\Qf{kʰa}.\Af{ji}\Sf{ː}\If{j}		&\Qf{kʰa}.\Af{ji}\Sf{ːj}\\
+\Qf{tʰu}- ‘inside’	&\Af{wu}-	&\Sf{ji}-	&\Qf{tʰu}-\Af{wu}-\Sf{ji}-	&\Qf{tʰu}.\Af{ji}\Sf{ːj}.\Df{t}\Ff{s}\If{i}	&\Qf{tʰu}.\Af{ji}\Sf{ːj}.\Df{t}\If{i}	&\Qf{tʰu}.\Af{ji}\Sf{ːj}.\Ff{s}\If{i}	&\Qf{tʰu}.\Af{ji}\Sf{ːj}.\Df{t}\Ef{a}	&\Qf{tʰu}.\Af{ji}\Sf{ːj}\df{\Ff{s}}	&\Qf{tʰu}.\Af{ji}\Sf{ːj}.\Ff{s}\Ef{a}	&\Qf{tʰu}.\Af{ji}\Sf{ː}\If{j}		&\Qf{tʰu}.\Af{ji}\Sf{ːj}\\
+\Qf{tʃi}- ‘inside’	&\Af{wu}-	&\Sf{ji}-	&\Qf{tʃi}-\Af{wu}-\Sf{ji}-	&\Qf{tʃi}.\Af{ji}\Sf{ːj}.\Df{t}\Ff{s}\If{i}	&\Qf{tʃi}.\Af{ji}\Sf{ːj}.\Df{t}\If{i}	&\Qf{tʃi}.\Af{ji}\Sf{ːj}.\Ff{s}\If{i}	&\Qf{tʃi}.\Af{ji}\Sf{ːj}.\Df{t}\Ef{a}	&\Qf{tʃi}.\Af{ji}\Sf{ːj}\df{\Ff{s}}	&\Qf{tʃi}.\Af{ji}\Sf{ːj}.\Ff{s}\Ef{a}	&\Qf{tʃi}.\Af{ji}\Sf{ː}\If{j}		&\Qf{tʃi}.\Af{ji}\Sf{ːj}\\
+\Qf{χʼe}- ‘mouth’	&\Af{wu}-	&\Sf{ji}-	&\Qf{χʼe}-\Af{wu}-\Sf{ji}-	&\Qf{χʼa}.\Af{ji}\Sf{ːj}.\Df{t}\Ff{s}\If{i}	&\Qf{χʼa}.\Af{ji}\Sf{ːj}.\Df{t}\If{i}	&\Qf{χʼa}.\Af{ji}\Sf{ːj}.\Ff{s}\If{i}	&\Qf{χʼa}.\Af{ji}\Sf{ːj}.\Df{t}\Ef{a}	&\Qf{χʼa}.\Af{ji}\Sf{ːj}\df{\Ff{s}}	&\Qf{χʼa}.\Af{ji}\Sf{ːj}.\Ff{s}\Ef{a}	&\Qf{χʼa}.\Af{ji}\Sf{ː}\If{j}		&\Qf{χʼa}.\Af{ji}\Sf{ːj}\\
+\bottomrule
+\end{tabular}
+\caption{Perfective aspect /{wu-}/ (incl.\ \textit{∅}-conj.\ habitual), second person plural subject /{ji-}/, IPA}
+\end{table}
+
+\clearpage
+%% Perfective, 4H
+\begin{table}
+\centerfloat
+\begin{tabular}{lccr
+		rccc
+		rcrr}
+\toprule
+			&		&		&				&\multicolumn{8}{c}{Classifier prefixes}\\
+											\cmidrule(lr){5-12}
+Disjunct\rlap{\quad{}+}	& Asp.\rlap{ +}	& Subj.\rlap{ →}& Prefixes			&\Df{d}-\Ff{s}-\If{i}\rlap{-}			&\Df{d}-\If{i}\rlap{-}			&\Ff{s}-\If{i}\rlap{-}			&\Df{d}\rlap{-}				&\Df{d}-\Ff{s}\rlap{-}			&\Ff{s}\rlap{-}				&\If{i}-				&—\\
+\midrule																															                                        
+—			&\Af{wu}-	&\Sf{du}-	&\Af{wu}-\Sf{du}-		&\Af{wu}\Sf{du}\Df{d}\Ff{z}\If{i}		&⁎					&⁎					&⁎					&\Af{wu}\Sf{du}\df{\Ff{s}}		&⁎					&\Af{wu}\Sf{du}\If{w}\Ef{a}		&\Af{wu}\Sf{du}\\
+\Qf{a}- expletive	&\Af{wu}-	&\Sf{du}-	&\Qf{a}-\Af{wu}-\Sf{du}-	&\Qf{a}\Af{w}\Sf{du}\Df{d}\Ff{z}\If{i}		&⁎					&⁎					&⁎					&\Qf{a}\Af{w}\Sf{du}\df{\Ff{s}}		&⁎					&\Qf{a}\Af{w}\Sf{du}\If{w}\Ef{a}	&\Qf{a}\Af{w}\Sf{du}\\
+\Qf{ka}- qualifier	&\Af{wu}-	&\Sf{du}-	&\Qf{ka}-\Af{wu}-\Sf{du}-	&\Qf{ka}\Af{w}\Sf{du}\Df{d}\Ff{z}\If{i}		&⁎					&⁎					&⁎					&\Qf{ka}\Af{w}\Sf{du}\df{\Ff{s}}	&⁎					&\Qf{ka}\Af{w}\Sf{du}\If{w}\Ef{a}	&\Qf{ka}\Af{w}\Sf{du}\\
+\Qf{tu}- ‘inside’	&\Af{wu}-	&\Sf{du}-	&\Qf{tu}-\Af{wu}-\Sf{du}-	&\Qf{tu}\Af{w}\Sf{du}\Df{d}\Ff{z}\If{i}		&⁎					&⁎					&⁎					&\Qf{tu}\Af{w}\Sf{du}\df{\Ff{s}}	&⁎					&\Qf{tu}\Af{w}\Sf{du}\If{w}\Ef{a}	&\Qf{tu}\Af{w}\Sf{du}\\
+\Qf{ji}- ‘hand’		&\Af{wu}-	&\Sf{du}-	&\Qf{ji}-\Af{wu}-\Sf{du}-	&\Qf{ji}\Af{w}\Sf{du}\Df{d}\Ff{z}\If{i}		&⁎					&⁎					&⁎					&\Qf{ji}\Af{w}\Sf{du}\df{\Ff{s}}	&⁎					&\Qf{ji}\Af{w}\Sf{du}\If{w}\Ef{a}	&\Qf{ji}\Af{w}\Sf{du}\\
+\Qf{x̱ʼe}- ‘mouth’	&\Af{wu}-	&\Sf{du}-	&\Qf{x̱ʼe}-\Af{wu}-\Sf{du}-	&\Qf{x̱ʼa}\Af{w}\Sf{du}\Df{d}\Ff{z}\If{i}	&⁎					&⁎					&⁎					&\Qf{x̱ʼa}\Af{w}\Sf{du}\df{\Ff{s}}	&⁎					&\Qf{x̱ʼa}\Af{w}\Sf{du}\If{w}\Ef{a}	&\Qf{x̱ʼa}\Af{w}\Sf{du}\\
+\bottomrule
+\end{tabular}
+\caption{Perfective aspect \textit{wu-} (incl.\ \textit{∅}-conj.\ habitual), fourth person (indefinite) human subject \textit{du-}}
+\end{table}
+
+%% Perfective, 4H, IPA
+\begin{table}
+\centerfloat
+\begin{tabular}{lccr
+		rccc
+		rcrr}
+\toprule
+(IPA)			&		&		&				&\multicolumn{8}{c}{Classifier prefixes}\\
+											\cmidrule(lr){5-12}
+Disjunct\rlap{\quad{}+}	& Asp.\rlap{ +}	& Subj.\rlap{ →}& Prefixes			&\Df{t}-\Ff{s}-\If{i}\rlap{-}			&\Df{t}-\If{i}\rlap{-}			&\Ff{s}-\If{i}\rlap{-}			&\Df{t}-				&\Df{t}-\Ff{s}\rlap{-}			&\Ff{s}-				&\If{i}-				&—\\
+\midrule																															                                        
+—			&\Af{wu}-	&\Sf{tu}-	&\Af{wu}-\Sf{tu}-		&\Af{wu}.\Sf{tu}.\Df{t}\Ff{s}\If{i}		&⁎					&⁎					&⁎					&\Af{wu}.\Sf{tu}\df{\Ff{s}}		&⁎					&\Af{wu}.\Sf{tu}.\If{w}\Ef{a}		&\Af{wu}.\Sf{tu}\\
+\Qf{ʔa}- expletive	&\Af{wu}-	&\Sf{tu}-	&\Qf{ʔa}-\Af{wu}-\Sf{tu}-	&\Qf{ʔa}\Af{w}.\Sf{tu}.\Df{t}\Ff{s}\If{i}	&⁎					&⁎					&⁎					&\Qf{ʔa}\Af{w}.\Sf{tu}\df{\Ff{s}}	&⁎					&\Qf{ʔa}\Af{w}.\Sf{tu}.\If{w}\Ef{a}	&\Qf{ʔa}\Af{w}.\Sf{tu}\\
+\Qf{kʰa}- qualifier	&\Af{wu}-	&\Sf{tu}-	&\Qf{kʰa}-\Af{wu}-\Sf{tu}-	&\Qf{kʰa}\Af{w}.\Sf{tu}.\Df{t}\Ff{s}\If{i}	&⁎					&⁎					&⁎					&\Qf{kʰa}\Af{w}.\Sf{tu}\df{\Ff{s}}	&⁎					&\Qf{kʰa}\Af{w}.\Sf{tu}.\If{w}\Ef{a}	&\Qf{kʰa}\Af{w}.\Sf{tu}\\
+\Qf{tʰu}- ‘inside’	&\Af{wu}-	&\Sf{tu}-	&\Qf{tʰu}-\Af{wu}-\Sf{tu}-	&\Qf{tʰu}\Af{w}.\Sf{tu}.\Df{t}\Ff{s}\If{i}	&⁎					&⁎					&⁎					&\Qf{tʰu}\Af{w}.\Sf{tu}\df{\Ff{s}}	&⁎					&\Qf{tʰu}\Af{w}.\Sf{tu}.\If{w}\Ef{a}	&\Qf{tʰu}\Af{w}.\Sf{tu}\\
+\Qf{tʃi}- ‘hand’	&\Af{wu}-	&\Sf{tu}-	&\Qf{tʃi}-\Af{wu}-\Sf{tu}-	&\Qf{tʃi}\Af{w}.\Sf{tu}.\Df{t}\Ff{s}\If{i}	&⁎					&⁎					&⁎					&\Qf{tʃi}\Af{w}.\Sf{tu}\df{\Ff{s}}	&⁎					&\Qf{tʃi}\Af{w}.\Sf{tu}.\If{w}\Ef{a}	&\Qf{tʃi}\Af{w}.\Sf{tu}\\
+\Qf{χʼe}- ‘mouth’	&\Af{wu}-	&\Sf{tu}-	&\Qf{χʼe}-\Af{wu}-\Sf{tu}-	&\Qf{χʼa}\Af{w}.\Sf{tu}.\Df{t}\Ff{s}\If{i}	&⁎					&⁎					&⁎					&\Qf{χʼa}\Af{w}.\Sf{tu}\df{\Ff{s}}	&⁎					&\Qf{χʼa}\Af{w}.\Sf{tu}.\If{w}\Ef{a}	&\Qf{χʼa}\Af{w}.\Sf{tu}\\
+\bottomrule
+\end{tabular}
+\caption{Perfective aspect /{wu-}/ (incl.\ \textit{∅}-conj.\ habitual), fourth person (indefinite) human subject /{tu-}/}
+\end{table}
+
+\clearpage
+%%%
+%%% Prospective aspect.
+%%%
+
+\section{Prospective aspect \textit{w-g-g̱-}}
+
+Prospective aspect – also inaccurately called ‘future tense’ by analogy with English – is expressed with three prefixes \fm{w-}, \fm{g-}, and \fm{g̱-}.
+The \fm{w-} /\ipa{ʷ}/ irrealis prefix is an allomorph of the irrealis prefix that occurs with the prospective aspect and with comparatives.
+The \fm{g-} /\ipa{k}/ conjugation prefix is identified as a conjugation prefix although it is used for the prospective aspect regardless of the verb’s conjugation class membership.
+This is similar to the use of the \fm{n-} /\ipa{n}/ conjugation prefix for all prospective aspect forms regardless of the verb’s conjugation class.
+The \fm{g̱-} /\ipa{q}/ modal prefix is associated with modality, being found also in the hortative mood and the potential modality.
+The \fm{g̱-} modal prefix is homophonous with the \fm{g̱-} conjugation prefix but the two can occur together so they are not identical.
+
+\clearpage
+%% Prospective, 3
+\begin{table}
+\centerfloat
+\begin{tabular}{lccr
+		cccr
+		rrcr}
+\toprule
+			&			&		&				&\multicolumn{8}{c}{Classifier prefixes}\\
+												\cmidrule(lr){5-12}
+Disjunct\rlap{\quad{}+}	& Asp.\rlap{ +}		& Subj.\rlap{ →}& Prefixes			&\Df{d}-\Ff{s}-\If{i}\rlap{-}	&\Df{d}-\If{i}\rlap{-}	&\Ff{s}-\If{i}\rlap{-}	&\Df{d}-				&\Df{d}-\Ff{s}\rlap{-}				&\Ff{s}-				&\If{i}\rlap{-}\If{i}-	&—\\
+\midrule
+—			&\Rf{w}-\Af{g}-\Mf{g̱}-	&—		&\Rf{w}-\Af{g}-\Mf{g̱}-		&⁎				&⁎			&⁎			&\Af{g}\Rf{u}\Mf{x̱}\Df{d}\Ef{a}		&\Af{g}\Rf{u}\Mf{g̱}\Ef{a}\df{\Ff{s}}		&\Af{g}\Rf{u}\Mf{x̱}\Ff{s}\Ef{a}		&⁎		&\Af{g}\Rf{u}\Mf{g̱}\Ef{a}\\
+			&			&		&				&				&			&			&					&…\Af{k}\Mf{g̱}\Rf{w}\Ef{a}\df{\Ff{s}}		&					&		&…\Af{k}\Mf{g̱}\Rf{w}\Ef{a}\\
+\Qf{a}- arg./expl.	&\Rf{w}-\Af{g}-\Mf{g̱}-	&—		&\Qf{a}-\Rf{w}-\Af{g}-\Mf{g̱}-	&⁎				&⁎			&⁎			&\Qf{a}\Af{g}\Rf{u}\Mf{x̱}\Df{d}\Ef{a}	&\Qf{a}\Af{k}\Mf{g̱}\Rf{w}\Ef{a}\df{\Ff{s}}	&\Qf{a}\Af{g}\Rf{u}\Mf{x̱}\Ff{s}\Ef{a}	&⁎		&\Qf{a}\Af{k}\Mf{g̱}\Rf{w}\Ef{a}\\
+\Qf{ka}- qualifier	&\Rf{w}-\Af{g}-\Mf{g̱}-	&—		&\Qf{ka}-\Rf{w}-\Af{g}-\Mf{g̱}-	&⁎				&⁎			&⁎			&\Qf{ka}\Af{g}\Rf{u}\Mf{x̱}\Df{d}\Ef{a}	&\Qf{ka}\Af{k}\Mf{g̱}\Rf{w}\Ef{a}\df{\Ff{s}}	&\Qf{ka}\Af{g}\Rf{u}\Mf{x̱}\Ff{s}\Ef{a}	&⁎		&\Qf{ka}\Af{k}\Mf{g̱}\Rf{w}\Ef{a}\\
+\Qf{tu}- ‘inside’	&\Rf{w}-\Af{g}-\Mf{g̱}-	&—		&\Qf{tu}-\Rf{w}-\Af{g}-\Mf{g̱}-	&⁎				&⁎			&⁎			&\Qf{tu}\Af{g}\Rf{u}\Mf{x̱}\Df{d}\Ef{a}	&\Qf{tu}\Af{k}\Mf{g̱}\Rf{w}\Ef{a}\df{\Ff{s}}	&\Qf{tu}\Af{g}\Rf{u}\Mf{x̱}\Ff{s}\Ef{a}	&⁎		&\Qf{tu}\Af{k}\Mf{g̱}\Rf{w}\Ef{a}\\
+\Qf{ji}- ‘hand’		&\Rf{w}-\Af{g}-\Mf{g̱}-	&—		&\Qf{ji}-\Rf{w}-\Af{g}-\Mf{g̱}-	&⁎				&⁎			&⁎			&\Qf{ji}\Af{g}\Rf{u}\Mf{x̱}\Df{d}\Ef{a}	&\Qf{ji}\Af{k}\Mf{g̱}\Rf{w}\Ef{a}\df{\Ff{s}}	&\Qf{ji}\Af{g}\Rf{u}\Mf{x̱}\Ff{s}\Ef{a}	&⁎		&\Qf{ji}\Af{k}\Mf{g̱}\Rf{w}\Ef{a}\\
+\Qf{x̱ʼe}- ‘mouth’	&\Rf{w}-\Af{g}-\Mf{g̱}-	&—		&\Qf{x̱ʼe}-\Rf{w}-\Af{g}-\Mf{g̱}-	&⁎				&⁎			&⁎			&\Qf{x̱ʼa}\Af{g}\Rf{u}\Mf{x̱}\Df{d}\Ef{a}	&\Qf{x̱ʼa}\Af{k}\Mf{g̱}\Rf{w}\Ef{a}\df{\Ff{s}}	&\Qf{x̱ʼa}\Af{g}\Rf{u}\Mf{x̱}\Ff{s}\Ef{a}	&⁎		&\Qf{x̱ʼa}\Af{k}\Mf{g̱}\Rf{w}\Ef{a}\\
+\bottomrule
+\end{tabular}
+\caption{Prospective aspect \textit{w-g-g̱-}, unmarked subject (third person or no subject)}
+\end{table}
+
+%% Prospective, 3, IPA
+\begin{table}
+\centerfloat
+\begin{tabular}{lccr
+		cccr
+		rrcr}
+\toprule
+(IPA)			&			&		&				&\multicolumn{8}{c}{Classifier prefixes}\\
+												\cmidrule(lr){5-12}
+Disjunct\rlap{\quad{}+}	& Asp.\rlap{ +}		& Subj.\rlap{ →}& Prefixes			&\Df{t}-\Ff{s}-\If{i}\rlap{-}	&\Df{t}-\If{i}\rlap{-}	&\Ff{s}-\If{i}\rlap{-}	&\Df{t}-						&\Df{t}-\Ff{s}\rlap{-}					&\Ff{s}-						&\If{i}\rlap{-}\If{i}-	&—\\
+\midrule
+—			&\Rf{ʷ}-\Af{k}-\Mf{q}-	&—		&\Rf{ʷ}-\Af{k}-\Mf{q}-		&⁎				&⁎			&⁎			&\Af{k}\Rf{ʷu}\Mf{χ}\Rf{ʷ}.\Df{t}\Ef{a}			&\Af{k}\Rf{ʷu}.\Mf{q}\Ef{a}\df{\Ff{s}}			&\Af{k}\Rf{ʷu}\Mf{χ}\Ff{s}\Ef{a}			&⁎		&\Af{k}\Rf{ʷu}.\Mf{q}\Ef{a}\\
+			&			&		&				&				&			&			&							&…\Af{k}.\Mf{q}\Rf{ʷ}\Ef{a}\df{\Ff{s}}			&							&		&…\Af{k}.\Mf{q}\Rf{ʷ}\Ef{a}\\
+\Qf{ʔa}- arg./expl.	&\Rf{ʷ}-\Af{k}-\Mf{q}-	&—		&\Qf{ʔa}-\Rf{ʷ}-\Af{k}-\Mf{q}-	&⁎				&⁎			&⁎			&\Qf{ʔa}.\Af{k}\Rf{ʷu}\Mf{χ}\Rf{ʷ}.\Df{t}\Ef{a}		&\Qf{ʔa}\Af{k}.\Mf{q}\Rf{ʷ}\Ef{a}\df{\Ff{s}}		&\Qf{ʔa}.\Af{k}\Rf{ʷu}\Mf{χ}\Rf{ʷ}.\Ff{s}\Ef{a}		&⁎		&\Qf{ʔa}\Af{k}.\Mf{q}\Rf{ʷ}\Ef{a}\\
+\Qf{kʰa}- qualifier	&\Rf{ʷ}-\Af{k}-\Mf{q}-	&—		&\Qf{kʰa}-\Rf{ʷ}-\Af{k}-\Mf{q}-	&⁎				&⁎			&⁎			&\Qf{kʰa}.\Af{k}\Rf{ʷu}\Mf{χ}\Rf{ʷ}.\Df{t}\Ef{a}	&\Qf{kʰa}\Af{k}.\Mf{q}\Rf{ʷ}\Ef{a}\df{\Ff{s}}		&\Qf{kʰa}.\Af{k}\Rf{ʷu}\Mf{χ}\Rf{ʷ}.\Ff{s}\Ef{a}	&⁎		&\Qf{kʰa}\Af{k}.\Mf{q}\Rf{ʷ}\Ef{a}\\
+\Qf{tʰu}- ‘inside’	&\Rf{ʷ}-\Af{k}-\Mf{q}-	&—		&\Qf{tʰu}-\Rf{ʷ}-\Af{k}-\Mf{q}-	&⁎				&⁎			&⁎			&\Qf{tʰu}.\Af{k}\Rf{ʷu}\Mf{χ}\Rf{ʷ}.\Df{t}\Ef{a}	&\Qf{tʰu}\Af{k}\Qf{ʷ}.\Mf{q}\Rf{ʷ}\Ef{a}\df{\Ff{s}}	&\Qf{tʰu}.\Af{k}\Rf{ʷu}\Mf{χ}\Rf{ʷ}.\Ff{s}\Ef{a}	&⁎		&\Qf{tʰu}\Af{k}\Qf{ʷ}.\Mf{q}\Rf{ʷ}\Ef{a}\\
+\Qf{tʃi}- ‘hand’	&\Rf{ʷ}-\Af{k}-\Mf{q}-	&—		&\Qf{tʃi}-\Rf{ʷ}-\Af{k}-\Mf{q}-	&⁎				&⁎			&⁎			&\Qf{tʃi}.\Af{k}\Rf{ʷu}\Mf{χ}\Rf{ʷ}.\Df{t}\Ef{a}	&\Qf{tʃi}\Af{k}.\Mf{q}\Rf{ʷ}\Ef{a}\df{\Ff{s}}		&\Qf{tʃi}.\Af{k}\Rf{ʷu}\Mf{χ}\Rf{ʷ}.\Ff{s}\Ef{a}	&⁎		&\Qf{tʃi}\Af{k}.\Mf{q}\Rf{ʷ}\Ef{a}\\
+\Qf{χʼe}- ‘mouth’	&\Rf{ʷ}-\Af{k}-\Mf{q}-	&—		&\Qf{χʼe}-\Rf{ʷ}-\Af{k}-\Mf{q}-	&⁎				&⁎			&⁎			&\Qf{χʼa}.\Af{k}\Rf{ʷu}\Mf{χ}\Rf{ʷ}.\Df{t}\Ef{a}	&\Qf{χʼa}\Af{k}.\Mf{q}\Rf{ʷ}\Ef{a}\df{\Ff{s}}		&\Qf{χʼa}.\Af{k}\Rf{ʷu}\Mf{χ}\Rf{ʷ}.\Ff{s}\Ef{a}	&⁎		&\Qf{χʼa}\Af{k}.\Mf{q}\Rf{ʷ}\Ef{a}\\
+\bottomrule
+\end{tabular}
+\caption{Prospective aspect /{ʷ-k-q-}/, unmarked subject (third person or no subject), IPA}
+\end{table}
+
+\clearpage
+%% Prospective, 1SG
+\begin{table}
+\centerfloat
+\begin{tabular}{lccr
+		cccr
+		rrrr}
+\toprule
+			&			&		&					&\multicolumn{8}{c}{Classifier prefixes}\\
+													\cmidrule(lr){5-12}
+Disjunct\rlap{\quad{}+}	& Asp.\rlap{ +}		& Subj.\rlap{ →}& Prefixes				&\Df{d}-\Ff{s}-\If{i}\rlap{-}	&\Df{d}-\If{i}\rlap{-}	&\Ff{s}-\If{i}\rlap{-}	&\Df{d}-					&\Df{d}-\Ff{s}\rlap{-}				&\Ff{s}-					&\If{i}\rlap{-}\If{i}-	&—\\
+
+\midrule
+—			&\Rf{w}-\Af{g}-\Mf{g̱}-	&\Sf{x̱}-	&\Rf{w}-\Af{g}-\Mf{g̱}-\Sf{x̱}-		&⁎				&⁎			&⁎			&\Af{k}\Rf{u}\Sf{ḵ}\Ef{a}\Df{d}\Ef{a}		&\Af{k}\Rf{u}\Sf{ḵ}\Ef{a}\df{\Ff{s}}		&\Af{k}\Rf{u}\Sf{ḵ}\Ef{a}\Ff{s}\Ef{a}		&⁎		&\Af{k}\Rf{u}\Sf{ḵ}\Ef{a}\\
+			&			&		&					&				&			&			&…\Af{k}\Sf{ḵ}\Rf{w}\Ef{a}\Df{d}\Ef{a}		&						&						&		&…\Af{k}\Sf{ḵ}\Rf{w}\Ef{a}\\
+\Qf{a}- expletive	&\Rf{w}-\Af{g}-\Mf{g̱}-	&\Sf{x̱}-	&\Qf{a}-\Rf{w}-\Af{g}-\Mf{g̱}-\Sf{x̱}-	&⁎				&⁎			&⁎			&\Qf{a}\Af{k}\Sf{ḵ}\Rf{w}\Ef{a}\Df{d}\Ef{a}	&\Qf{a}\Af{k}\Sf{ḵ}\Rf{w}\Ef{a}\df{\Ff{s}}	&\Qf{a}\Af{k}\Sf{ḵ}\Rf{w}\Ef{a}\Ff{s}\Ef{a}	&⁎		&\Qf{a}\Af{k}\Sf{ḵ}\Rf{w}\Ef{a}\\
+\Qf{ka}- qualifier	&\Rf{w}-\Af{g}-\Mf{g̱}-	&\Sf{x̱}-	&\Qf{ka}-\Rf{w}-\Af{g}-\Mf{g̱}-\Sf{x̱}-	&⁎				&⁎			&⁎			&\Qf{ka}\Af{k}\Sf{ḵ}\Rf{w}\Ef{a}\Df{d}\Ef{a}	&\Qf{ka}\Af{k}\Sf{ḵ}\Rf{w}\Ef{a}\df{\Ff{s}}	&\Qf{ka}\Af{k}\Sf{ḵ}\Rf{w}\Ef{a}\Ff{s}\Ef{a}	&⁎		&\Qf{ka}\Af{k}\Sf{ḵ}\Rf{w}\Ef{a}\\
+\Qf{tu}- ‘inside’	&\Rf{w}-\Af{g}-\Mf{g̱}-	&\Sf{x̱}-	&\Qf{tu}-\Rf{w}-\Af{g}-\Mf{g̱}-\Sf{x̱}-	&⁎				&⁎			&⁎			&\Qf{tu}\Af{k}\Sf{ḵ}\Rf{w}\Ef{a}\Df{d}\Ef{a}	&\Qf{tu}\Af{k}\Sf{ḵ}\Rf{w}\Ef{a}\df{\Ff{s}}	&\Qf{tu}\Af{k}\Sf{ḵ}\Rf{w}\Ef{a}\Ff{s}\Ef{a}	&⁎		&\Qf{tu}\Af{k}\Sf{ḵ}\Rf{w}\Ef{a}\\
+\Qf{ji}- ‘hand’		&\Rf{w}-\Af{g}-\Mf{g̱}-	&\Sf{x̱}-	&\Qf{ji}-\Rf{w}-\Af{g}-\Mf{g̱}-\Sf{x̱}-	&⁎				&⁎			&⁎			&\Qf{ji}\Af{k}\Sf{ḵ}\Rf{w}\Ef{a}\Df{d}\Ef{a}	&\Qf{ji}\Af{k}\Sf{ḵ}\Rf{w}\Ef{a}\df{\Ff{s}}	&\Qf{ji}\Af{k}\Sf{ḵ}\Rf{w}\Ef{a}\Ff{s}\Ef{a}	&⁎		&\Qf{ji}\Af{k}\Sf{ḵ}\Rf{w}\Ef{a}\\
+\Qf{x̱ʼe}- ‘mouth’	&\Rf{w}-\Af{g}-\Mf{g̱}-	&\Sf{x̱}-	&\Qf{x̱ʼe}-\Rf{w}-\Af{g}-\Mf{g̱}-\Sf{x̱}-	&⁎				&⁎			&⁎			&\Qf{x̱ʼa}\Af{k}\Sf{ḵ}\Rf{w}\Ef{a}\Df{d}\Ef{a}	&\Qf{x̱ʼa}\Af{k}\Sf{ḵ}\Rf{w}\Ef{a}\df{\Ff{s}}	&\Qf{x̱ʼa}\Af{k}\Sf{ḵ}\Rf{w}\Ef{a}\Ff{s}\Ef{a}	&⁎		&\Qf{x̱ʼa}\Af{k}\Sf{ḵ}\Rf{w}\Ef{a}\\
+\bottomrule
+\end{tabular}
+\caption{Prospective aspect \textit{w-g-g̱-}, first person singular subject \textit{x̱-}}
+\end{table}
+
+%% Prospective, 1SG, IPA
+\begin{table}
+\centerfloat
+\begin{tabular}{lccr
+		cccr
+		rrrr}
+\toprule
+(IPA)			&			&		&					&\multicolumn{8}{c}{Classifier prefixes}\\
+													\cmidrule(lr){5-12}
+Disjunct\rlap{\quad{}+}	& Asp.\rlap{ +}		& Subj.\rlap{ →}& Prefixes				&\Df{t}-\Ff{s}-\If{i}\rlap{-}	&\Df{t}-\If{i}\rlap{-}	&\Ff{s}-\If{i}\rlap{-}	&\Df{t}-							&\Df{t}-\Ff{s}\rlap{-}						&\Ff{s}-							&\If{i}\rlap{-}\If{i}-	&—\\
+
+\midrule
+—			&\Rf{ʷ}-\Af{k}-\Mf{q}-	&\Sf{χ}-	&\Rf{ʷ}-\Af{k}-\Mf{q}-\Sf{χ}-		&⁎				&⁎			&⁎			&\Af{k}\Sf{ʰ}\Rf{ʷu}.\Mf{q}\Sf{ʰ}\Ef{a}.\Df{t}\Ef{a}		&\Af{k}\Sf{ʰ}\Rf{ʷu}.\Mf{q}\Sf{ʰ}\Ef{a}\df{\Ff{s}}		&\Af{k}\Sf{ʰ}\Rf{u}.\Mf{q}\Sf{ʰ}\Ef{a}.\Ff{s}\Ef{a}		&⁎		&\Af{k}\Sf{ʰ}\Rf{ʷu}.\Mf{q}\Sf{ʰ}\Ef{a}\\
+			&			&		&					&				&			&			&…\Af{k}.\Mf{q}\Sf{ʰ}\Rf{ʷ}\Ef{a}.\Df{t}\Ef{a}			&								&								&		&…\Af{k}.\Mf{q}\Sf{ʰ}\Rf{ʷ}\Ef{a}\\
+\Qf{ʔa}- expletive	&\Rf{ʷ}-\Af{k}-\Mf{q}-	&\Sf{χ}-	&\Qf{ʔa}-\Rf{ʷ}-\Af{k}-\Mf{q}-\Sf{χ}-	&⁎				&⁎			&⁎			&\Qf{ʔa}\Af{k}.\Mf{q}\Sf{ʰ}\Rf{ʷ}\Ef{a}.\Df{t}\Ef{a}		&\Qf{ʔa}\Af{k}.\Mf{q}\Sf{ʰ}\Rf{ʷ}\Ef{a}\df{\Ff{s}}		&\Qf{ʔa}\Af{k}.\Mf{q}\Sf{ʰ}\Rf{w}\Ef{a}.\Ff{s}\Ef{a}		&⁎		&\Qf{ʔa}\Af{k}.\Mf{q}\Sf{ʰ}\Rf{ʷ}\Ef{a}\\
+\Qf{kʰa}- qualifier	&\Rf{ʷ}-\Af{k}-\Mf{q}-	&\Sf{χ}-	&\Qf{kʰa}-\Rf{ʷ}-\Af{k}-\Mf{q}-\Sf{χ}-	&⁎				&⁎			&⁎			&\Qf{kʰa}\Af{k}.\Mf{q}\Sf{ʰ}\Rf{ʷ}\Ef{a}.\Df{t}\Ef{a}		&\Qf{kʰa}\Af{k}.\Mf{q}\Sf{ʰ}\Rf{ʷ}\Ef{a}\df{\Ff{s}}		&\Qf{kʰa}\Af{k}.\Mf{q}\Sf{ʰ}\Rf{w}\Ef{a}.\Ff{s}\Ef{a}		&⁎		&\Qf{kʰa}\Af{k}.\Mf{q}\Sf{ʰ}\Rf{ʷ}\Ef{a}\\
+\Qf{tʰu}- ‘inside’	&\Rf{ʷ}-\Af{k}-\Mf{q}-	&\Sf{χ}-	&\Qf{tʰu}-\Rf{ʷ}-\Af{k}-\Mf{q}-\Sf{χ}-	&⁎				&⁎			&⁎			&\Qf{tʰu}\Af{k}\Qf{ʷ}.\Mf{q}\Sf{ʰ}\Rf{ʷ}\Ef{a}.\Df{t}\Ef{a}	&\Qf{tʰu}\Af{k}\Qf{ʷ}.\Mf{q}\Sf{ʰ}\Rf{ʷ}\Ef{a}\df{\Ff{s}}	&\Qf{tʰu}\Af{k}\Qf{ʷ}.\Mf{q}\Sf{ʰ}\Rf{w}\Ef{a}.\Ff{s}\Ef{a}	&⁎		&\Qf{tʰu}\Af{k}\Qf{ʷ}.\Mf{q}\Sf{ʰ}\Rf{ʷ}\Ef{a}\\
+\Qf{tʃi}- ‘hand’	&\Rf{ʷ}-\Af{k}-\Mf{q}-	&\Sf{χ}-	&\Qf{tʃi}-\Rf{ʷ}-\Af{k}-\Mf{q}-\Sf{χ}-	&⁎				&⁎			&⁎			&\Qf{tʃi}\Af{k}.\Mf{q}\Sf{ʰ}\Rf{ʷ}\Ef{a}.\Df{t}\Ef{a}		&\Qf{tʃi}\Af{k}.\Mf{q}\Sf{ʰ}\Rf{ʷ}\Ef{a}\df{\Ff{s}}		&\Qf{tʃi}\Af{k}.\Mf{q}\Sf{ʰ}\Rf{w}\Ef{a}.\Ff{s}\Ef{a}		&⁎		&\Qf{tʃi}\Af{k}.\Mf{q}\Sf{ʰ}\Rf{ʷ}\Ef{a}\\
+\Qf{χʼe}- ‘mouth’	&\Rf{ʷ}-\Af{k}-\Mf{q}-	&\Sf{χ}-	&\Qf{χʼe}-\Rf{ʷ}-\Af{k}-\Mf{q}-\Sf{χ}-	&⁎				&⁎			&⁎			&\Qf{χʼa}\Af{k}.\Mf{q}\Sf{ʰ}\Rf{ʷ}\Ef{a}.\Df{t}\Ef{a}		&\Qf{χʼa}\Af{k}.\Mf{q}\Sf{ʰ}\Rf{ʷ}\Ef{a}\df{\Ff{s}}		&\Qf{χʼa}\Af{k}.\Mf{q}\Sf{ʰ}\Rf{w}\Ef{a}.\Ff{s}\Ef{a}		&⁎		&\Qf{χʼa}\Af{k}.\Mf{q}\Sf{ʰ}\Rf{ʷ}\Ef{a}\\
+\bottomrule
+\end{tabular}
+\caption{Prospective aspect /{ʷ-k-q-}/, first person singular subject /{χ-}/, IPA}
+\end{table}
+
+\clearpage
+%% Prospective, 1PL
+\begin{table}
+\centerfloat
+\begin{tabular}{lccr
+		cccr
+		rrrr}
+\toprule
+			&			&		&					&\multicolumn{8}{c}{Classifier prefixes}\\
+													\cmidrule(lr){5-12}
+Disjunct\rlap{\quad{}+}	& Asp.\rlap{ +}		& Subj.\rlap{ →}& Prefixes				&\Df{d}-\Ff{s}-\If{i}\rlap{-}	&\Df{d}-\If{i}\rlap{-}	&\Ff{s}-\If{i}\rlap{-}	&\Df{d}-					&\Df{d}-\Ff{s}\rlap{-}				&\Ff{s}-					&\If{i}\rlap{-}\If{i}-	&—\\
+
+\midrule
+—			&\Rf{w}-\Af{g}-\Mf{g̱}-	&\Sf{tu-}	&\Rf{w}-\Af{g}-\Mf{g̱}-\Sf{tu-}		&⁎				&⁎			&⁎			&\Af{g}\Ef{a}\Mf{x̱}\Sf{tu}\Df{d}\Ef{a}		&\Af{g}\Ef{a}\Mf{x̱}\Sf{too}\df{\Ff{s}}		&\Af{g}\Ef{a}\Mf{x̱}\Sf{tu}\Ff{s}\Ef{a}		&⁎		&\Af{g}\Ef{a}\Mf{x̱}\Sf{too}\\
+\Qf{a}- expletive	&\Rf{w}-\Af{g}-\Mf{g̱}-	&\Sf{tu-}	&\Qf{a}-\Rf{w}-\Af{g}-\Mf{g̱}-\Sf{tu}-	&⁎				&⁎			&⁎			&\Qf{a}\Af{g}\Ef{a}\Mf{x̱}\Sf{tu}\Df{d}\Ef{a}	&\Qf{a}\Af{g}\Ef{a}\Mf{x̱}\Sf{too}\df{\Ff{s}}	&\Qf{a}\Af{g}\Ef{a}\Mf{x̱}\Sf{tu}\Ff{s}\Ef{a}	&⁎		&\Qf{a}\Af{g}\Ef{a}\Mf{x̱}\Sf{too}\\
+\Qf{ka}- qualifier	&\Rf{w}-\Af{g}-\Mf{g̱}-	&\Sf{tu-}	&\Qf{ka}-\Rf{w}-\Af{g}-\Mf{g̱}-\Sf{tu}-	&⁎				&⁎			&⁎			&\Qf{ka}\Af{g}\Ef{a}\Mf{x̱}\Sf{tu}\Df{d}\Ef{a}	&\Qf{ka}\Af{g}\Ef{a}\Mf{x̱}\Sf{too}\df{\Ff{s}}	&\Qf{ka}\Af{g}\Ef{a}\Mf{x̱}\Sf{tu}\Ff{s}\Ef{a}	&⁎		&\Qf{ka}\Af{g}\Ef{a}\Mf{x̱}\Sf{too}\\
+\Qf{tu}- ‘inside’	&\Rf{w}-\Af{g}-\Mf{g̱}-	&\Sf{tu-}	&\Qf{tu}-\Rf{w}-\Af{g}-\Mf{g̱}-\Sf{tu}-	&⁎				&⁎			&⁎			&\Qf{tu}\Af{g}\Ef{a}\Mf{x̱}\Sf{tu}\Df{d}\Ef{a}	&\Qf{tu}\Af{g}\Ef{a}\Mf{x̱}\Sf{too}\df{\Ff{s}}	&\Qf{tu}\Af{g}\Ef{a}\Mf{x̱}\Sf{tu}\Ff{s}\Ef{a}	&⁎		&\Qf{tu}\Af{g}\Ef{a}\Mf{x̱}\Sf{too}\\
+\Qf{ji}- ‘hand’		&\Rf{w}-\Af{g}-\Mf{g̱}-	&\Sf{tu-}	&\Qf{ji}-\Rf{w}-\Af{g}-\Mf{g̱}-\Sf{tu}-	&⁎				&⁎			&⁎			&\Qf{ji}\Af{g}\Ef{a}\Mf{x̱}\Sf{tu}\Df{d}\Ef{a}	&\Qf{ji}\Af{g}\Ef{a}\Mf{x̱}\Sf{too}\df{\Ff{s}}	&\Qf{ji}\Af{g}\Ef{a}\Mf{x̱}\Sf{tu}\Ff{s}\Ef{a}	&⁎		&\Qf{ji}\Af{g}\Ef{a}\Mf{x̱}\Sf{too}\\
+\Qf{x̱ʼe}- ‘mouth’	&\Rf{w}-\Af{g}-\Mf{g̱}-	&\Sf{tu-}	&\Qf{x̱ʼe}-\Rf{w}-\Af{g}-\Mf{g̱}-\Sf{tu}-	&⁎				&⁎			&⁎			&\Qf{x̱ʼa}\Af{g}\Ef{a}\Mf{x̱}\Sf{tu}\Df{d}\Ef{a}	&\Qf{x̱ʼa}\Af{g}\Ef{a}\Mf{x̱}\Sf{too}\df{\Ff{s}}	&\Qf{x̱ʼa}\Af{g}\Ef{a}\Mf{x̱}\Sf{tu}\Ff{s}\Ef{a}	&⁎		&\Qf{x̱ʼa}\Af{g}\Ef{a}\Mf{x̱}\Sf{too}\\
+\bottomrule
+\end{tabular}
+\caption{Prospective aspect \textit{w-g-g̱-}, first person plural subject \textit{tu-}}
+\end{table}
+
+%% Prospective, 1PL, IPA
+\begin{table}
+\centerfloat
+\begin{tabular}{lccr
+		cccr
+		rrrr}
+\toprule
+(IPA)			&			&		&					&\multicolumn{8}{c}{Classifier prefixes}\\
+													\cmidrule(lr){5-12}				
+Disjunct\rlap{\quad{}+}	& Asp.\rlap{ +}		& Subj.\rlap{ →}& Prefixes				&\Df{t}-\Ff{s}-\If{i}\rlap{-}	&\Df{t}-\If{i}\rlap{-}	&\Ff{s}-\If{i}\rlap{-}	&\Df{t}-						&\Df{t}-\Ff{s}\rlap{-}				&\Ff{s}-							&\If{i}\rlap{-}\If{i}-	&—\\
+
+\midrule
+—			&\Rf{ʷ}-\Af{k}-\Mf{q}-	&\Sf{tʰu}-	&\Rf{ʷ}-\Af{k}-\Mf{q}-\Sf{tʰu-}		&⁎				&⁎			&⁎			&\Af{k}\Ef{a}\Mf{χ}.\Sf{tʰu}.\Df{t}\Ef{a}		&\Af{k}\Ef{a}\Mf{χ}.\Sf{tʰuː}\df{\Ff{s}}		&\Af{k}\Ef{a}\Mf{χ}.\Sf{tʰu}.\Ff{s}\Ef{a}		&⁎		&\Af{k}\Ef{a}\Mf{χ}.\Sf{tʰuː}\\
+\Qf{ʔa}- expletive	&\Rf{ʷ}-\Af{k}-\Mf{q}-	&\Sf{tʰu}-	&\Qf{ʔa}-\Rf{ʷ}-\Af{k}-\Mf{q}-\Sf{tʰu}-	&⁎				&⁎			&⁎			&\Qf{ʔa}.\Af{k}\Ef{a}\Mf{χ}.\Sf{tʰu}.\Df{t}\Ef{a}	&\Qf{ʔa}.\Af{k}\Ef{a}\Mf{χ}.\Sf{tʰuː}\df{\Ff{s}}	&\Qf{ʔa}.\Af{k}\Ef{a}\Mf{χ}.\Sf{tʰu}.\Ff{s}\Ef{a}	&⁎		&\Qf{ʔa}.\Af{k}\Ef{a}\Mf{χ}.\Sf{tʰuː}\\
+\Qf{kʰa}- qualifier	&\Rf{ʷ}-\Af{k}-\Mf{q}-	&\Sf{tʰu}-	&\Qf{kʰa}-\Rf{ʷ}-\Af{k}-\Mf{q}-\Sf{tʰu}-&⁎				&⁎			&⁎			&\Qf{kʰa}.\Af{k}\Ef{a}\Mf{χ}.\Sf{tʰu}.\Df{t}\Ef{a}	&\Qf{kʰa}.\Af{k}\Ef{a}\Mf{χ}.\Sf{tʰuː}\df{\Ff{s}}	&\Qf{kʰa}.\Af{k}\Ef{a}\Mf{χ}.\Sf{tʰu}.\Ff{s}\Ef{a}	&⁎		&\Qf{kʰa}.\Af{k}\Ef{a}\Mf{χ}.\Sf{tʰuː}\\
+\Qf{tʰu}- ‘inside’	&\Rf{ʷ}-\Af{k}-\Mf{q}-	&\Sf{tʰu}-	&\Qf{tʰu}-\Rf{ʷ}-\Af{k}-\Mf{q}-\Sf{tʰu}-&⁎				&⁎			&⁎			&\Qf{tʰu}.\Af{k}\Ef{a}\Mf{χ}.\Sf{tʰu}.\Df{t}\Ef{a}	&\Qf{tʰu}.\Af{k}\Ef{a}\Mf{χ}.\Sf{tʰuː}\df{\Ff{s}}	&\Qf{tʰu}.\Af{k}\Ef{a}\Mf{χ}.\Sf{tʰu}.\Ff{s}\Ef{a}	&⁎		&\Qf{tʰu}.\Af{k}\Ef{a}\Mf{χ}.\Sf{tʰuː}\\
+\Qf{tʃi}- ‘hand’	&\Rf{ʷ}-\Af{k}-\Mf{q}-	&\Sf{tʰu}-	&\Qf{tʃi}-\Rf{ʷ}-\Af{k}-\Mf{q}-\Sf{tʰu}-&⁎				&⁎			&⁎			&\Qf{tʃi}.\Af{k}\Ef{a}\Mf{χ}.\Sf{tʰu}.\Df{t}\Ef{a}	&\Qf{tʃi}.\Af{k}\Ef{a}\Mf{χ}.\Sf{tʰuː}\df{\Ff{s}}	&\Qf{tʃi}.\Af{k}\Ef{a}\Mf{χ}.\Sf{tʰu}.\Ff{s}\Ef{a}	&⁎		&\Qf{tʃi}.\Af{k}\Ef{a}\Mf{χ}.\Sf{tʰuː}\\
+\Qf{χʼe}- ‘mouth’	&\Rf{ʷ}-\Af{k}-\Mf{q}-	&\Sf{tʰu}-	&\Qf{χʼe}-\Rf{ʷ}-\Af{k}-\Mf{q}-\Sf{tʰu}-&⁎				&⁎			&⁎			&\Qf{χʼa}.\Af{k}\Ef{a}\Mf{χ}.\Sf{tʰu}.\Df{t}\Ef{a}	&\Qf{χʼa}.\Af{k}\Ef{a}\Mf{χ}.\Sf{tʰuː}\df{\Ff{s}}	&\Qf{χʼa}.\Af{k}\Ef{a}\Mf{χ}.\Sf{tʰu}.\Ff{s}\Ef{a}	&⁎		&\Qf{χʼa}.\Af{k}\Ef{a}\Mf{χ}.\Sf{tʰuː}\\
+\bottomrule
+\end{tabular}
+\caption{Prospective aspect /{ʷ-k-q-}/, first person plural subject /{tʰu-}/}
+\end{table}
+
+\clearpage
+%% Prospective, 2SG
+\begin{table}
+\centerfloat
+\begin{tabular}{lccr
+		cccr
+		rrrr}
+\toprule
+			&			&		&					&\multicolumn{8}{c}{Classifier prefixes}\\
+													\cmidrule(lr){5-12}
+Disjunct\rlap{\quad{}+}	& Asp.\rlap{ +}		& Subj.\rlap{ →}& Prefixes				&\Df{d}-\Ff{s}-\If{i}\rlap{-}	&\Df{d}-\If{i}\rlap{-}	&\Ff{s}-\If{i}\rlap{-}	&\Df{d}-					&\Df{d}-\Ff{s}\rlap{-}			&\Ff{s}-				&\If{i}\rlap{-}\If{i}-	&—\\
+
+\midrule
+—			&\Rf{w}-\Af{g}-\Mf{g̱}-	&\Sf{i}-	&\Rf{w}-\Af{g}-\Mf{g̱}-\Sf{i}-		&⁎				&⁎			&⁎			&\Af{g}\Ef{a}\Mf{g̱}\Sf{i}\Df{d}\Ef{a}		&\Af{g}\Ef{a}\Mf{g̱}\Sf{ee}\df{\Ff{s}}	&\Af{g}\Ef{a}\Sf{g̱}\Sf{i}\Ff{s}\Ef{a}	&⁎		&\Af{g}\Ef{a}\Mf{g̱}\Sf{ee}\\
+			&			&		&					&				&			&			&…\Af{k}\Mf{g̱}\Sf{i}\Df{d}\Ef{a}		&					&					&		&…\Af{k}\Mf{g̱}\Sf{ee}\\
+\Qf{a}- expletive	&\Rf{w}-\Af{g}-\Mf{g̱}-	&\Sf{i}-	&\Qf{a}-\Rf{w}-\Af{g}-\Mf{g̱}-\Sf{i}-	&⁎				&⁎			&⁎			&\Qf{a}\Af{k}\Mf{g̱}\Sf{i}\Df{d}\Ef{a}		&\Qf{a}\Af{k}\Mf{g̱}\Sf{ee}\df{\Ff{s}}	&\Qf{a}\Af{k}\Mf{g̱}\Sf{i}\Ff{s}\Ef{a}	&⁎		&\Qf{a}\Af{k}\Mf{g̱}\Sf{ee}\\
+\Qf{ka}- qualifier	&\Rf{w}-\Af{g}-\Mf{g̱}-	&\Sf{i}-	&\Qf{ka}-\Rf{w}-\Af{g}-\Mf{g̱}-\Sf{i}-	&⁎				&⁎			&⁎			&\Qf{ka}\Af{k}\Mf{g̱}\Sf{i}\Df{d}\Ef{a}		&\Qf{ka}\Af{k}\Mf{g̱}\Sf{ee}\df{\Ff{s}}	&\Qf{ka}\Af{k}\Mf{g̱}\Sf{i}\Ff{s}\Ef{a}	&⁎		&\Qf{ka}\Af{k}\Mf{g̱}\Sf{ee}\\
+\Qf{tu}- ‘inside’	&\Rf{w}-\Af{g}-\Mf{g̱}-	&\Sf{i}-	&\Qf{tu}-\Rf{w}-\Af{g}-\Mf{g̱}-\Sf{i}-	&⁎				&⁎			&⁎			&\Qf{tu}\Af{k}\Mf{g̱}\Sf{i}\Df{d}\Ef{a}		&\Qf{tu}\Af{k}\Mf{g̱}\Sf{ee}\df{\Ff{s}}	&\Qf{tu}\Af{k}\Mf{g̱}\Sf{i}\Ff{s}\Ef{a}	&⁎		&\Qf{tu}\Af{k}\Mf{g̱}\Sf{ee}\\
+\Qf{ji}- ‘hand’		&\Rf{w}-\Af{g}-\Mf{g̱}-	&\Sf{i}-	&\Qf{ji}-\Rf{w}-\Af{g}-\Mf{g̱}-\Sf{i}-	&⁎				&⁎			&⁎			&\Qf{ji}\Af{k}\Mf{g̱}\Sf{i}\Df{d}\Ef{a}		&\Qf{ji}\Af{k}\Mf{g̱}\Sf{ee}\df{\Ff{s}}	&\Qf{ji}\Af{k}\Mf{g̱}\Sf{i}\Ff{s}\Ef{a}	&⁎		&\Qf{ji}\Af{k}\Mf{g̱}\Sf{ee}\\
+\Qf{x̱ʼe}- ‘mouth’	&\Rf{w}-\Af{g}-\Mf{g̱}-	&\Sf{i}-	&\Qf{x̱ʼe}-\Rf{w}-\Af{g}-\Mf{g̱}-\Sf{i}-	&⁎				&⁎			&⁎			&\Qf{x̱ʼa}\Af{k}\Mf{g̱}\Sf{i}\Df{d}\Ef{a}		&\Qf{x̱ʼa}\Af{k}\Mf{g̱}\Sf{ee}\df{\Ff{s}}	&\Qf{x̱ʼa}\Af{k}\Mf{g̱}\Sf{i}\Ff{s}\Ef{a}	&⁎		&\Qf{x̱ʼa}\Af{k}\Mf{g̱}\Sf{ee}\\
+\bottomrule
+\end{tabular}
+\caption{Prospective aspect \textit{w-g-g̱-}, second person singular subject \textit{i-}}
+\end{table}
+
+%% Prospective, 2SG, IPA
+\begin{table}
+\centerfloat
+\begin{tabular}{lccr
+		cccr
+		rrrr}
+\toprule
+(IPA)			&			&		&					&\multicolumn{8}{c}{Classifier prefixes}\\
+													\cmidrule(lr){5-12}
+Disjunct\rlap{\quad{}+}	& Asp.\rlap{ +}		& Subj.\rlap{ →}& Prefixes				&\Df{t}-\Ff{s}-\If{i}\rlap{-}	&\Df{t}-\If{i}\rlap{-}	&\Ff{s}-\If{i}\rlap{-}	&\Df{t}-					&\Df{t}-\Ff{s}\rlap{-}				&\Ff{s}-					&\If{i}\rlap{-}\If{i}-	&—\\
+
+\midrule
+—			&\Rf{ʷ}-\Af{k}-\Mf{q}-	&\Sf{i}-	&\Rf{ʷ}-\Af{k}-\Mf{q}-\Sf{i}-		&⁎				&⁎			&⁎			&\Af{k}\Ef{a}.\Mf{q}\Sf{i}.\Df{t}\Ef{a}		&\Af{k}\Ef{a}.\Mf{q}\Sf{iː}\df{\Ff{s}}		&\Af{k}\Ef{a}.\Sf{q}\Sf{i}.\Ff{s}\Ef{a}		&⁎		&\Af{k}\Ef{a}.\Mf{q}\Sf{iː}\\
+			&			&		&					&				&			&			&…\Af{k}.\Mf{q}\Sf{i}.\Df{t}\Ef{a}		&						&						&		&…\Af{k}.\Mf{q}\Sf{iː}\\
+\Qf{ʔa}- expletive	&\Rf{ʷ}-\Af{k}-\Mf{q}-	&\Sf{i}-	&\Qf{ʔa}-\Rf{ʷ}-\Af{k}-\Mf{q}-\Sf{i}-	&⁎				&⁎			&⁎			&\Qf{ʔa}\Af{k}.\Mf{q}\Sf{i}.\Df{t}\Ef{a}	&\Qf{ʔa}\Af{k}.\Mf{q}\Sf{iː}\df{\Ff{s}}		&\Qf{ʔa}\Af{k}.\Mf{q}\Sf{i}.\Ff{s}\Ef{a}	&⁎		&\Qf{ʔa}\Af{k}.\Mf{q}\Sf{iː}\\
+\Qf{kʰa}- qualifier	&\Rf{ʷ}-\Af{k}-\Mf{q}-	&\Sf{i}-	&\Qf{kʰa}-\Rf{ʷ}-\Af{k}-\Mf{q}-\Sf{i}-	&⁎				&⁎			&⁎			&\Qf{kʰa}\Af{k}.\Mf{q}\Sf{i}.\Df{t}\Ef{a}	&\Qf{kʰa}\Af{k}.\Mf{q}\Sf{iː}\df{\Ff{s}}	&\Qf{kʰa}\Af{k}.\Mf{q}\Sf{i}.\Ff{s}\Ef{a}	&⁎		&\Qf{kʰa}\Af{k}.\Mf{q}\Sf{iː}\\
+\Qf{tʰu}- ‘inside’	&\Rf{ʷ}-\Af{k}-\Mf{q}-	&\Sf{i}-	&\Qf{tʰu}-\Rf{ʷ}-\Af{k}-\Mf{q}-\Sf{i}-	&⁎				&⁎			&⁎			&\Qf{tʰu}\Af{k}\Qf{ʷ}.\Mf{q}\Sf{i}.\Df{t}\Ef{a}	&\Qf{tʰu}\Af{k}\Qf{ʷ}.\Mf{q}\Sf{iː}\df{\Ff{s}}	&\Qf{tʰu}\Af{k}\Qf{ʷ}.\Mf{q}\Sf{i}.\Ff{s}\Ef{a}	&⁎		&\Qf{tʰu}\Af{k}\Qf{ʷ}.\Mf{q}\Sf{iː}\\
+\Qf{tʃi}- ‘hand’	&\Rf{ʷ}-\Af{k}-\Mf{q}-	&\Sf{i}-	&\Qf{tʃi}-\Rf{ʷ}-\Af{k}-\Mf{q}-\Sf{i}-	&⁎				&⁎			&⁎			&\Qf{tʃi}\Af{k}.\Mf{q}\Sf{i}.\Df{t}\Ef{a}	&\Qf{tʃi}\Af{k}.\Mf{q}\Sf{iː}\df{\Ff{s}}	&\Qf{tʃi}\Af{k}.\Mf{q}\Sf{i}.\Ff{s}\Ef{a}	&⁎		&\Qf{tʃi}\Af{k}.\Mf{q}\Sf{iː}\\
+\Qf{χʼe}- ‘mouth’	&\Rf{ʷ}-\Af{k}-\Mf{q}-	&\Sf{i}-	&\Qf{χʼe}-\Rf{ʷ}-\Af{k}-\Mf{q}-\Sf{i}-	&⁎				&⁎			&⁎			&\Qf{χʼa}\Af{k}.\Mf{q}\Sf{i}.\Df{t}\Ef{a}	&\Qf{χʼa}\Af{k}.\Mf{q}\Sf{iː}\df{\Ff{s}}	&\Qf{χʼa}\Af{k}.\Mf{q}\Sf{i}.\Ff{s}\Ef{a}	&⁎		&\Qf{χʼa}\Af{k}.\Mf{q}\Sf{iː}\\
+\bottomrule
+\end{tabular}
+\caption{Prospective aspect /{ʷ-k-q-}/, second person singular subject /{i-}/}
+\end{table}
+
+\clearpage
+%% Prospective, 2PL
+\begin{table}
+\centerfloat
+\begin{tabular}{lccr
+		cccr
+		rrrr}
+\toprule
+			&			&		&					&\multicolumn{8}{c}{Classifier prefixes}\\
+													\cmidrule(lr){5-12}
+Disjunct\rlap{\quad{}+}	& Asp.\rlap{ +}		& Subj.\rlap{ →}& Prefixes				&\Df{d}-\Ff{s}-\If{i}\rlap{-}	&\Df{d}-\If{i}\rlap{-}	&\Ff{s}-\If{i}\rlap{-}	&\Df{d}-					&\Df{d}-\Ff{s}\rlap{-}				&\Ff{s}-					&\If{i}\rlap{-}\If{i}-	&—\\
+
+\midrule
+—			&\Rf{w}-\Af{g}-\Mf{g̱}-	&\Sf{yi}-	&\Rf{w}-\Af{g}-\Mf{g̱}-\Sf{yi}-		&⁎				&⁎			&⁎			&\Af{g}\Ef{a}\Mf{x̱}\Sf{yi}\Df{d}\Ef{a}		&\Af{g}\Ef{a}\Mf{x̱}\Sf{yee}\df{\Ff{s}}		&\Af{g}\Ef{a}\Mf{x̱}\Sf{yi}\Ff{s}\Ef{a}		&⁎		&\Af{g}\Ef{a}\Mf{x̱}\Sf{yee}\\
+\Qf{a}- expletive	&\Rf{w}-\Af{g}-\Mf{g̱}-	&\Sf{yi}-	&\Qf{a}-\Rf{w}-\Af{g}-\Mf{g̱}-\Sf{yi}-	&⁎				&⁎			&⁎			&\Qf{a}\Af{g}\Ef{a}\Mf{x̱}\Sf{yi}\Df{d}\Ef{a}	&\Qf{a}\Af{g}\Ef{a}\Mf{x̱}\Sf{yee}\df{\Ff{s}}	&\Qf{a}\Af{g}\Ef{a}\Mf{x̱}\Sf{yi}\Ff{s}\Ef{a}	&⁎		&\Qf{a}\Af{g}\Ef{a}\Mf{x̱}\Sf{yee}\\
+\Qf{ka}- qualifier	&\Rf{w}-\Af{g}-\Mf{g̱}-	&\Sf{yi}-	&\Qf{ka}-\Rf{w}-\Af{g}-\Mf{g̱}-\Sf{yi}-	&⁎				&⁎			&⁎			&\Qf{ka}\Af{g}\Ef{a}\Mf{x̱}\Sf{yi}\Df{d}\Ef{a}	&\Qf{ka}\Af{g}\Ef{a}\Mf{x̱}\Sf{yee}\df{\Ff{s}}	&\Qf{ka}\Af{g}\Ef{a}\Mf{x̱}\Sf{yi}\Ff{s}\Ef{a}	&⁎		&\Qf{ka}\Af{g}\Ef{a}\Mf{x̱}\Sf{yee}\\
+\Qf{tu}- ‘inside’	&\Rf{w}-\Af{g}-\Mf{g̱}-	&\Sf{yi}-	&\Qf{tu}-\Rf{w}-\Af{g}-\Mf{g̱}-\Sf{yi}-	&⁎				&⁎			&⁎			&\Qf{tu}\Af{g}\Ef{a}\Mf{x̱}\Sf{yi}\Df{d}\Ef{a}	&\Qf{tu}\Af{g}\Ef{a}\Mf{x̱}\Sf{yee}\df{\Ff{s}}	&\Qf{tu}\Af{g}\Ef{a}\Mf{x̱}\Sf{yi}\Ff{s}\Ef{a}	&⁎		&\Qf{tu}\Af{g}\Ef{a}\Mf{x̱}\Sf{yee}\\
+\Qf{ji}- ‘hand’		&\Rf{w}-\Af{g}-\Mf{g̱}-	&\Sf{yi}-	&\Qf{ji}-\Rf{w}-\Af{g}-\Mf{g̱}-\Sf{yi}-	&⁎				&⁎			&⁎			&\Qf{ji}\Af{g}\Ef{a}\Mf{x̱}\Sf{yi}\Df{d}\Ef{a}	&\Qf{ji}\Af{g}\Ef{a}\Mf{x̱}\Sf{yee}\df{\Ff{s}}	&\Qf{ji}\Af{g}\Ef{a}\Mf{x̱}\Sf{yi}\Ff{s}\Ef{a}	&⁎		&\Qf{ji}\Af{g}\Ef{a}\Mf{x̱}\Sf{yee}\\
+\Qf{x̱ʼe}- ‘mouth’	&\Rf{w}-\Af{g}-\Mf{g̱}-	&\Sf{yi}-	&\Qf{x̱ʼe}-\Rf{w}-\Af{g}-\Mf{g̱}-\Sf{yi}-	&⁎				&⁎			&⁎			&\Qf{x̱ʼa}\Af{g}\Ef{a}\Mf{x̱}\Sf{yi}\Df{d}\Ef{a}	&\Qf{x̱ʼa}\Af{g}\Ef{a}\Mf{x̱}\Sf{yee}\df{\Ff{s}}	&\Qf{x̱ʼa}\Af{g}\Ef{a}\Mf{x̱}\Sf{yi}\Ff{s}\Ef{a}	&⁎		&\Qf{x̱ʼa}\Af{g}\Ef{a}\Mf{x̱}\Sf{yee}\\
+\bottomrule
+\end{tabular}
+\caption{Prospective aspect \textit{w-g-g̱-}, second person plural subject \textit{yi-}}
+\end{table}
+
+%% Prospective, 2PL, IPA
+\begin{table}
+\centerfloat
+\begin{tabular}{lccr
+		cccr
+		rrrr}
+\toprule
+(IPA)			&			&		&					&\multicolumn{8}{c}{Classifier prefixes}\\
+													\cmidrule(lr){5-12}
+Disjunct\rlap{\quad{}+}	& Asp.\rlap{ +}		& Subj.\rlap{ →}& Prefixes				&\Df{t}-\Ff{s}-\If{i}\rlap{-}	&\Df{t}-\If{i}\rlap{-}	&\Ff{s}-\If{i}\rlap{-}	&\Df{t}-						&\Df{t}-\Ff{s}\rlap{-}					&\Ff{s}-						&\If{i}\rlap{-}\If{i}-	&—\\
+
+\midrule
+—			&\Rf{ʷ}-\Af{k}-\Mf{q}-	&\Sf{ji}-	&\Rf{ʷ}-\Af{k}-\Mf{q}-\Sf{ji}-		&⁎				&⁎			&⁎			&\Af{k}\Ef{a}\Mf{χ}.\Sf{ji}.\Df{d}\Ef{a}		&\Af{k}\Ef{a}\Mf{χ}.\Sf{jiː}\df{\Ff{s}}			&\Af{k}\Ef{a}\Mf{χ}.\Sf{ji}.\Ff{s}\Ef{a}		&⁎		&\Af{k}\Ef{a}\Mf{χ}.\Sf{jiː}\\
+\Qf{ʔa}- expletive	&\Rf{ʷ}-\Af{k}-\Mf{q}-	&\Sf{ji}-	&\Qf{ʔa}-\Rf{ʷ}-\Af{k}-\Mf{q}-\Sf{ji}-	&⁎				&⁎			&⁎			&\Qf{ʔa}.\Af{k}\Ef{a}\Mf{χ}.\Sf{ji}.\Df{d}\Ef{a}	&\Qf{ʔa}.\Af{k}\Ef{a}\Mf{χ}.\Sf{jiː}\df{\Ff{s}}		&\Qf{ʔa}.\Af{k}\Ef{a}\Mf{χ}.\Sf{ji}.\Ff{s}\Ef{a}	&⁎		&\Qf{ʔa}.\Af{k}\Ef{a}\Mf{χ}.\Sf{jiː}\\
+\Qf{kʰa}- qualifier	&\Rf{ʷ}-\Af{k}-\Mf{q}-	&\Sf{ji}-	&\Qf{kʰa}-\Rf{ʷ}-\Af{k}-\Mf{q}-\Sf{ji}-	&⁎				&⁎			&⁎			&\Qf{kʰa}.\Af{k}\Ef{a}\Mf{χ}.\Sf{ji}.\Df{d}\Ef{a}	&\Qf{kʰa}.\Af{k}\Ef{a}\Mf{χ}.\Sf{jiː}\df{\Ff{s}}	&\Qf{kʰa}.\Af{k}\Ef{a}\Mf{χ}.\Sf{ji}.\Ff{s}\Ef{a}	&⁎		&\Qf{kʰa}.\Af{k}\Ef{a}\Mf{χ}.\Sf{jiː}\\
+\Qf{tʰu}- ‘inside’	&\Rf{ʷ}-\Af{k}-\Mf{q}-	&\Sf{ji}-	&\Qf{tʰu}-\Rf{ʷ}-\Af{k}-\Mf{q}-\Sf{ji}-	&⁎				&⁎			&⁎			&\Qf{tʰu}.\Af{k}\Ef{a}\Mf{χ}.\Sf{ji}.\Df{d}\Ef{a}	&\Qf{tʰu}.\Af{k}\Ef{a}\Mf{χ}.\Sf{jiː}\df{\Ff{s}}	&\Qf{tʰu}.\Af{k}\Ef{a}\Mf{χ}.\Sf{ji}.\Ff{s}\Ef{a}	&⁎		&\Qf{tʰu}.\Af{k}\Ef{a}\Mf{χ}.\Sf{jiː}\\
+\Qf{tʃi}- ‘hand’	&\Rf{ʷ}-\Af{k}-\Mf{q}-	&\Sf{ji}-	&\Qf{tʃi}-\Rf{ʷ}-\Af{k}-\Mf{q}-\Sf{ji}-	&⁎				&⁎			&⁎			&\Qf{tʃi}.\Af{k}\Ef{a}\Mf{χ}.\Sf{ji}.\Df{d}\Ef{a}	&\Qf{tʃi}.\Af{k}\Ef{a}\Mf{χ}.\Sf{jiː}\df{\Ff{s}}	&\Qf{tʃi}.\Af{k}\Ef{a}\Mf{χ}.\Sf{ji}.\Ff{s}\Ef{a}	&⁎		&\Qf{tʃi}.\Af{k}\Ef{a}\Mf{χ}.\Sf{jiː}\\
+\Qf{χʼe}- ‘mouth’	&\Rf{ʷ}-\Af{k}-\Mf{q}-	&\Sf{ji}-	&\Qf{χʼe}-\Rf{ʷ}-\Af{k}-\Mf{q}-\Sf{ji}-	&⁎				&⁎			&⁎			&\Qf{χʼa}.\Af{k}\Ef{a}\Mf{χ}.\Sf{ji}.\Df{d}\Ef{a}	&\Qf{χʼa}.\Af{k}\Ef{a}\Mf{χ}.\Sf{jiː}\df{\Ff{s}}	&\Qf{χʼa}.\Af{k}\Ef{a}\Mf{χ}.\Sf{ji}.\Ff{s}\Ef{a}	&⁎		&\Qf{χʼa}.\Af{k}\Ef{a}\Mf{χ}.\Sf{jiː}\\
+\bottomrule
+\end{tabular}
+\caption{Prospective aspect /{ʷ-k-q-}/, second person plural subject /{ji-}/}
+\end{table}
+
+\clearpage
+%% Prospective, 4H
+\begin{table}
+\centerfloat
+\begin{tabular}{lccr
+		cccr
+		rrrr}
+\toprule
+			&			&		&					&\multicolumn{8}{c}{Classifier prefixes}\\
+													\cmidrule(lr){5-12}
+Disjunct\rlap{\quad{}+}	& Asp.\rlap{ +}		& Subj.\rlap{ →}& Prefixes				&\Df{d}-\Ff{s}-\If{i}\rlap{-}	&\Df{d}-\If{i}\rlap{-}	&\Ff{s}-\If{i}\rlap{-}	&\Df{d}-					&\Df{d}-\Ff{s}\rlap{-}				&\Ff{s}-					&\If{i}\rlap{-}\If{i}-	&—\\
+
+\midrule
+—			&\Rf{w}-\Af{g}-\Mf{g̱}-	&\Sf{du}-	&\Rf{w}-\Af{g}-\Mf{g̱}-\Sf{du-}		&⁎				&⁎			&⁎			&⁎						&\Af{g}\Ef{a}\Mf{x̱}\Sf{du}\df{\Ff{s}}		&⁎						&⁎		&\Af{g}\Ef{a}\Mf{x̱}\Sf{du}\\
+\Qf{a}- expletive	&\Rf{w}-\Af{g}-\Mf{g̱}-	&\Sf{du}-	&\Qf{a}-\Rf{w}-\Af{g}-\Mf{g̱}-\Sf{du}-	&⁎				&⁎			&⁎			&⁎						&\Qf{a}\Af{g}\Ef{a}\Mf{x̱}\Sf{du}\df{\Ff{s}}	&⁎						&⁎		&\Qf{a}\Af{g}\Ef{a}\Mf{x̱}\Sf{du}\\
+\Qf{ka}- qualifier	&\Rf{w}-\Af{g}-\Mf{g̱}-	&\Sf{du}-	&\Qf{ka}-\Rf{w}-\Af{g}-\Mf{g̱}-\Sf{du}-	&⁎				&⁎			&⁎			&⁎						&\Qf{ka}\Af{g}\Ef{a}\Mf{x̱}\Sf{du}\df{\Ff{s}}	&⁎						&⁎		&\Qf{ka}\Af{g}\Ef{a}\Mf{x̱}\Sf{du}\\
+\Qf{du}- ‘inside’	&\Rf{w}-\Af{g}-\Mf{g̱}-	&\Sf{du}-	&\Qf{du}-\Rf{w}-\Af{g}-\Mf{g̱}-\Sf{du}-	&⁎				&⁎			&⁎			&⁎						&\Qf{du}\Af{g}\Ef{a}\Mf{x̱}\Sf{du}\df{\Ff{s}}	&⁎						&⁎		&\Qf{du}\Af{g}\Ef{a}\Mf{x̱}\Sf{du}\\
+\Qf{ji}- ‘hand’		&\Rf{w}-\Af{g}-\Mf{g̱}-	&\Sf{du}-	&\Qf{ji}-\Rf{w}-\Af{g}-\Mf{g̱}-\Sf{du}-	&⁎				&⁎			&⁎			&⁎						&\Qf{ji}\Af{g}\Ef{a}\Mf{x̱}\Sf{du}\df{\Ff{s}}	&⁎						&⁎		&\Qf{ji}\Af{g}\Ef{a}\Mf{x̱}\Sf{du}\\
+\Qf{x̱ʼe}- ‘mouth’	&\Rf{w}-\Af{g}-\Mf{g̱}-	&\Sf{du}-	&\Qf{x̱ʼe}-\Rf{w}-\Af{g}-\Mf{g̱}-\Sf{du}-	&⁎				&⁎			&⁎			&⁎						&\Qf{x̱ʼa}\Af{g}\Ef{a}\Mf{x̱}\Sf{du}\df{\Ff{s}}	&⁎						&⁎		&\Qf{x̱ʼa}\Af{g}\Ef{a}\Mf{x̱}\Sf{du}\\
+\bottomrule
+\end{tabular}
+\caption{Prospective aspect \textit{w-g-g̱-}, fourth person (indefinite) human subject \textit{du-}}
+\end{table}
+
+%% Prospective, 4H, IPA
+\begin{table}
+\centerfloat
+\begin{tabular}{lccr
+		cccr
+		rrrr}
+\toprule
+(IPA)			&			&		&					&\multicolumn{8}{c}{Classifier prefixes}\\
+													\cmidrule(lr){5-12}
+Disjunct\rlap{\quad{}+}	& Asp.\rlap{ +}		& Subj.\rlap{ →}& Prefixes				&\Df{t}-\Ff{s}-\If{i}\rlap{-}	&\Df{t}-\If{i}\rlap{-}	&\Ff{s}-\If{i}\rlap{-}	&\Df{t}-					&\Df{t}-\Ff{s}\rlap{-}				&\Ff{s}-					&\If{i}\rlap{-}\If{i}-	&—\\
+
+\midrule
+—			&\Rf{ʷ}-\Af{k}-\Mf{q}-	&\Sf{tu}-	&\Rf{ʷ}-\Af{k}-\Mf{q}-\Sf{tu-}		&⁎				&⁎			&⁎			&⁎						&\Af{k}\Ef{a}\Mf{χ}.\Sf{tu}\df{\Ff{s}}		&⁎						&⁎		&\Af{k}\Ef{a}\Mf{χ}.\Sf{tu}\\
+\Qf{ʔa}- expletive	&\Rf{ʷ}-\Af{k}-\Mf{q}-	&\Sf{tu}-	&\Qf{ʔa}-\Rf{ʷ}-\Af{k}-\Mf{q}-\Sf{tu}-	&⁎				&⁎			&⁎			&⁎						&\Qf{ʔa}.\Af{k}\Ef{a}\Mf{χ}.\Sf{tu}\df{\Ff{s}}	&⁎						&⁎		&\Qf{ʔa}.\Af{k}\Ef{a}\Mf{χ}.\Sf{tu}\\
+\Qf{kʰa}- qualifier	&\Rf{ʷ}-\Af{k}-\Mf{q}-	&\Sf{tu}-	&\Qf{kʰa}-\Rf{ʷ}-\Af{k}-\Mf{q}-\Sf{tu}-	&⁎				&⁎			&⁎			&⁎						&\Qf{kʰa}.\Af{k}\Ef{a}\Mf{χ}.\Sf{tu}\df{\Ff{s}}	&⁎						&⁎		&\Qf{kʰa}.\Af{k}\Ef{a}\Mf{χ}.\Sf{tu}\\
+\Qf{tʰu}- ‘inside’	&\Rf{ʷ}-\Af{k}-\Mf{q}-	&\Sf{tu}-	&\Qf{tʰu}-\Rf{ʷ}-\Af{k}-\Mf{q}-\Sf{tu}-	&⁎				&⁎			&⁎			&⁎						&\Qf{tʰu}.\Af{k}\Ef{a}\Mf{χ}.\Sf{tu}\df{\Ff{s}}	&⁎						&⁎		&\Qf{tʰu}.\Af{k}\Ef{a}\Mf{χ}.\Sf{tu}\\
+\Qf{tʃi}- ‘hand’	&\Rf{ʷ}-\Af{k}-\Mf{q}-	&\Sf{tu}-	&\Qf{tʃi}-\Rf{ʷ}-\Af{k}-\Mf{q}-\Sf{tu}-	&⁎				&⁎			&⁎			&⁎						&\Qf{tʃi}.\Af{k}\Ef{a}\Mf{χ}.\Sf{tu}\df{\Ff{s}}	&⁎						&⁎		&\Qf{tʃi}.\Af{k}\Ef{a}\Mf{χ}.\Sf{tu}\\
+\Qf{χʼe}- ‘mouth’	&\Rf{ʷ}-\Af{k}-\Mf{q}-	&\Sf{tu}-	&\Qf{χʼe}-\Rf{ʷ}-\Af{k}-\Mf{q}-\Sf{tu}-	&⁎				&⁎			&⁎			&⁎						&\Qf{χʼa}.\Af{k}\Ef{a}\Mf{χ}.\Sf{tu}\df{\Ff{s}}	&⁎						&⁎		&\Qf{χʼa}.\Af{k}\Ef{a}\Mf{χ}.\Sf{tu}\\
+\bottomrule
+\end{tabular}
+\caption{Prospective aspect /{ʷ-k-q-}/, fourth person (indefinite) human subject /{tu-}/, IPA}
+\end{table}
+
+\end{document}
