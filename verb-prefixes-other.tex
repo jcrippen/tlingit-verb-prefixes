@@ -21,7 +21,7 @@
 %% The \columnbreak is optional; when absent multicol breaks automatically.
 \usepackage{multicol}
 %% Length of the separation space between columns.
-\setlength{\columnsep}{0ex}
+\setlength{\columnsep}{1em}
 %% This controls the space that appears before and after an instance of multicols.
 %% The skips from ExPex are ignored in this environment, so this value is identical
 %% with the values of aboveexskip and belowexskip for ExPex.
@@ -39,14 +39,6 @@
 %% Various symbols in text mode.
 \usepackage{textcomp}
 
-%% Multiple text columns.
-\usepackage{multicol}
-%% Length of the separation space between columns.
-\setlength{\columnsep}{1em}
-%% Length of the space before and after multicolumns.
-%% This is identical with the values of aboveexskip and belowexskip for ExPex.
-\setlength{\multicolsep}{0.5em plus 0.375em minus 0.25em}
-
 %% Multiple row spanning cells in tables.
 %%
 %% Usage: \multirow{2}{*}{Two rows}
@@ -55,7 +47,7 @@
 %% Big delimiters for multirow in tables.
 %%
 %% Usage: \ldelim<delimiter>{rows}{width/*}[centred text]
-\usepackage{bigdelim}
+%\usepackage{bigdelim}
 
 %% Fancy list environments.
 \usepackage{enumitem}
@@ -86,7 +78,7 @@
 %\usepackage{listliketab}
 
 %% Pretty pictures.
-\usepackage{tikz}
+%\usepackage{tikz}
 %\usetikzlibrary{calc}
 %\usetikzlibrary{arrows.meta}
 %\usetikzlibrary{matrix}
@@ -109,14 +101,14 @@
 %\usetikzlibrary{calligraphy}
 
 %% Strikeout.
-\usepackage{tikz-sout}
+%\usepackage{tikz-sout}
 
 %% Debugging tool to print LaTeX lengths.
 %%
 %% \printlength{<length>} does what you'd expect.
 %% \uselengthunit{<unit>} sets the output unit, in \{pt, pc, in, mm, cm, bp, dd, cc\}.
 %%   The default unit is pt.
-\usepackage{printlen}
+%\usepackage{printlen}
 
 %% TeX logos.
 %%
