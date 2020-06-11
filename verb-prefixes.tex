@@ -74,7 +74,7 @@
 % qualifiers
 \definecolor{Qcolor}{rgb}{0.00,0.33,0.33}
 % irrealis
-\definecolor{Rcolor}{rgb}{0.45,0.45,0.00}
+\definecolor{Rcolor}{rgb}{0.90,0.50,0.50}
 % aspect/conjugation
 \definecolor{Acolor}{rgb}{0.70,0.40,0.00}
 % aspect/conjugation coalescence
@@ -152,68 +152,90 @@
 \section{Introduction}
 
 \begin{multicols}{2}
+\noindent
 This document aims to provide a relatively exhaustive list of verb prefix paradigms in Tlingit.
-It details all the basic patterns of possible combinations of verb prefixes including the classifier prefixes
-(\fm{\Df{d}-}, \fm{\Ff{s}-}/\fm{\Ff{l}-}/\fm{\Ff{sh}-}, \fm{\If{i}-}),
-the subject prefixes (\fm{\Sf{x̱}-}, \fm{\Sf{tu}-}, \fm{\Sf{i}-}, \fm{\Sf{yi}-}, \fm{\Sf{du}-}),
-the aspect and conjugation prefixes (\fm{\Af{wu}-}, \fm{\Af{u}-}, \fm{\Af{∅}}, \fm{\Af{n}-}, \fm{\Af{g̱}-}, \fm{\Af{g}-}),
+It details all the basic patterns of possible combinations of verb prefixes including
+the classifier prefixes (\fm{\Df{d}-}, \fm{\Ff{s}-}/\fm{\Ff{l}-}/\fm{\Ff{sh}-}, \fm{\If{i}-}),%
+\footnote{Currently only the \fm{\Ff{s}-} /\ipa{\Ff{s}}/ prefix is represented in this document.
+The \fm{\Ff{l}-} /\ipa{\Ff{ɬ}}/ and \fm{\Ff{sh}-} /\ipa{\Ff{ʃ}}/ prefixes have phonological patterns that are essentially identical to \fm{\Ff{s}-} /\ipa{\Ff{s}}/.
+There are orthographic differences –
+e.g.{}
+\fm{\Df{d}-} + \fm{\Ff{l}-} + \fm{\If{i}-} → \fm{\Df{d}\Ff{l}\If{i}} /\ipa{\Df{t}\Ff{ɬ}\If{i}}/ 
+versus
+\fm{\Df{d}-} + \fm{\Ff{sh}-} + \fm{\If{i}-} → \fm{\df{\Ff{j}}\If{i}} /\ipa{\Df{t}\Ff{ʃ}\If{i}}/
+– but these do not have any phonological consequences.
+Because of this the \fm{\Ff{l}-} /\ipa{\Ff{ɬ}}/ and \fm{\Ff{sh}-} /\ipa{\Ff{ʃ}}/ prefixes have been omitted (they would triple the size of this document), but a future revision may eventually include them.}
+the subject prefixes (\fm{\Sf{x̱}-} \xx{1sg}, \fm{\Sf{tu}-} \xx{1pl}, \fm{\Sf{i}-} \xx{2sg}, \fm{\Sf{yi}-} \xx{2pl}, \fm{\Sf{du}-} \xx{4h}),
+the aspect and conjugation prefixes (\fm{\Af{wu}-} \xx{pfv}, \fm{\Af{u}-} \xx{zpfv}, \fm{\Af{∅}} \xx{zcnj}, \fm{\Af{n}-} \xx{ncnj}, \fm{\Af{g̱}-} \xx{g̱cnj}, \fm{\Af{g}-} \xx{gcnj}),
 the irrealis prefixes (\fm{\Rf{u}-}, \fm{\Rf{w}-}),
 the modality prefix (\fm{\Mf{g̱}-}),
-the argument/expletive prefix (\fm{\Qf{a}-}),
-and the four vowel patterns of the CV disjunct prefixes (\fm{\Qf{ka}-}, \fm{\Qf{x̱ʼe}-}, \fm{\Qf{ji}-}, \fm{\Qf{tu}-}).
+the 3>3 argument/expletive prefix (\fm{\Qf{a}-}),
+and the four vowel patterns of CV prefixes in the Disjunct domain (\fm{\Qf{ka}-} qualifier, \fm{\Qf{x̱ʼe}-} ‘mouth’, \fm{\Qf{ji}-} ‘hand’, \fm{\Qf{tu}-} ‘inside’).
+Every grammatically possible combination of these prefixes is demonstrated in this document.
+The forms given here can be used to reliably predict forms using other prefixes like \fm{\Qf{se}-} ‘voice’ (like \fm{\Qf{x̱ʼe}-}), \fm{\Qf{ya}-} qualifier (like \fm{\Qf{ka}-}), and \fm{\Qf{i}-} \xx{2sg·o} (like \fm{\Qf{ji}-}).
+Each type of prefix is colour-coded consistently throughout this document so that they can be more easily identified in the surface forms that result from the various prefix combinations.
+This colour coding is only meant as a guide and should not be taken as a verified phonological analysis of underlying and surface correspondences.
 
-The initial versions of this document reflect only the best known patterns as attested in Coastal Northern dialects of Tlingit spoken in northern parts of Southeast Alaska.
-These are the typical forms that appear in the Dauenhauer materials.
+This document is intended as a reference and aims to be brief but authoritative.
+The primary audiences for this document are advanced language learners and linguists.
+Explanations of the functions, meanings, and forms of the verb prefixes are beyond the scope of this document.
+
+The initial versions of this document reflect only the most well documented patterns attested in Coastal Northern dialects of Tlingit spoken in northern parts of Southeast Alaska.
+These are the typical forms found in most of the Dauenhauers’ transcriptions and in language teaching materials.
 Other varieties of Tlingit – Inland Northern, Gulf Coast Northern, Transitional Northern, Sanya, Henya, and Tongass – are known to have different phonological patterns with the same sets of prefixes.
-These other varieties will be documented in future versions of this document.
+These will be documented in future versions of this document.
+
+Only some of the logically possible combinations of prefixes are permitted by the grammar of Tlingit.
+Combinations of prefixes that are known to be grammatically prohibited are indicated by an ungrammaticality star ‘⁎’.
+For example, any combination of \fm{\Sf{du}-} + \fm{\Ff{s}-} without \fm{\Df{d}-} is known to be ungrammatical in all varieties of Tlingit.
+Some combinations are logically predicted but are not attested in any existing documentary material.
+These unverified forms are followed by a question mark ‘?’.
+Researchers should treat these forms as possible until future investigation shows otherwise.
 
 Each section is devoted to one major paradigmatic pattern.
-The first pattern is unmarked aspect which covers forms that lack an overt aspect prefix, i.e.\ neither a perfective prefix (\fm{wu-}, \fm{u-}) nor an overt conjugation prefix (\fm{n-}, \fm{g̱-}, \fm{g-}).
-The next three are patterns with each of the overt conjugation prefixes \fm{n-}, \fm{g̱-}, and \fm{g-}.
-Following these are the distinct patterns of the perfective aspect and the prospective aspect.
+The first section gives the unmarked aspect pattern which covers forms that lack an overt aspectual prefix, i.e.\ neither a perfective prefix (\fm{\Af{wu}-}, \fm{\Af{u}-}) nor an overt conjugation prefix (\fm{\Af{n}-}, \fm{\Af{g̱}-}, \fm{\Af{g}-}).
+The next three sections are patterns with each of the overt conjugation prefixes \fm{\Af{n}-}, \fm{\Af{g̱}-}, and \fm{\Af{g}-}.
+Following these are two sections for the distinct patterns of the perfective aspect and the prospective aspect.
 
-Each section is divided up into subsections reflecting the prefixes that accompany the aspectual prefixes, namely the irrealis prefix (\fm{u-}) and the modality prefix (\fm{g̱-}).
-The first subsection gives forms with the irrealis prefix \fm{u-}, the second subsection gives forms with the modality prefix \fm{g̱-}, and the third subsection gives forms with both.
-The perfective and prospective aspect sections do not include any additional subsections.
+Each section is divided up into subsections reflecting the prefixes that accompany the aspectual prefixes, namely the irrealis prefix (\fm{\Rf{u}-}) and the modality prefix (\fm{\Mf{g̱}-}).
+The section body gives forms with no irrealis prefix and no modality prefix.
+The first subsection gives forms with the irrealis prefix \fm{\Rf{u}-}, the second subsection gives forms with the modality prefix \fm{\Mf{g̱}-}, and the third subsection gives forms with both.
+The perfective and prospective aspect sections do not include any subsections.
 For the perfective aspect this is because neither the irrealis prefix nor the modality prefix can be detected.
-For the prospective aspect this is because both the irrealis prefix \fm{w-} and the modality prefix \fm{g̱-} are obligatory in all forms.
+For the prospective aspect this is because both the irrealis prefix \fm{\Rf{w}-} and the modality prefix \fm{\Mf{g̱}-} are obligatory.
 
 Each set of tables in a section or subsection is organized by subject prefix.
 The tables are given in pairs, first using the orthography and second using the IPA, with both on the same page.
-The first pair of tables gives forms where there either is no subject (object intransitives) or where the subject is third person and thus not indicated with a subject prefix.
-The next two pairs of tables give the first person singular subject \fm{x̱-} ‘I’ and first person plural subject \fm{tu-} ‘we’.
-Then the following two pairs of tables give the second person singular subject \fm{i-} ‘you sg.’ and second person plural subject \fm{yi-} ‘you guys’.
-Finally, the last pair of tables gives the fourth person (indefinite, nonspecific) human subject \fm{du-} ‘someone, people, they’.
+The first pair of tables in each section or subsection gives forms where there either is no subject (object intransitives) or where the subject is third person and thus not indicated with a subject prefix.
+The next two pairs of tables give the first person singular subject \fm{\Sf{x̱}-} ‘I’ and first person plural subject \fm{\Sf{tu}-} ‘we’.
+Then the following two pairs of tables give the second person singular subject \fm{\Sf{i}-} ‘you sg.’ and second person plural subject \fm{\Sf{yi} -} ‘you guys’.
+Finally, the last pair of tables gives the fourth person (indefinite, nonspecific) human subject \fm{\Sf{du}-} ‘someone, people, they’.
 
 Absence of a form is indicated explicitly by an em-dash ‘—’.
 This applies to both the prefix listings in the left hand columns as well as to the classifier prefixes in the table headers.
-There is exactly one case where the surface (output) form is nothing, namely the unmarked aspect without irrealis or modality prefixes and with no overt subject, and this case is also represented by ‘—’.
+There is exactly one case where the surface form is nothing at all, namely the unmarked aspect without irrealis or modality prefixes and with no overt subject, and this case is represented by ‘—’.
 All blank areas in the tables are continuation lines as discussed in the next paragraph.
 
-Lines with no prefixes in the first columns are continuations of a preceding line.
+Lines with blank space in the first columns are continuations of a preceding line.
 These lines show documented variations of forms in the preceding line.
 The lack of a documented variant is left blank in the surface forms to avoid confusing this with a surface form that has no content.
 Although it would be nice to list the specific conditioning factors where these are known, in most cases this is difficult to represent concisely.
 The sole exception to this is an initial ‘…’ which indicates that the variant form occurs when preceded by a word ending with an open syllable.
 Some of the conditioning factors are explained in Leer 1991, but in many cases the reasons for variation are still unexplored.
 
-\FIXME{Why we use \fm{ka-}, \fm{tu-}, \fm{ji-}, \fm{x̱ʼe-}. Other prefixes should be similar.}
+\FIXME{Disjunct prefixes that are closed syllables like \fm{\Qf{waḵ}-} ‘eye’ or \fm{\Qf{sʼaan-}} ‘limb’ will have the same result as no prefix.
+Disjunct prefixes that are open syllables with long vowels like \fm{\Qf{daa}-} ‘around’ will behave like \fm{\Qf{ka}-}.}
 
-\FIXME{Prefixes like \fm{waḵ-} will have no effect. Prefixes like \fm{daa-} will behave like \fm{ka-}.}
-
-\FIXME{Why we include \fm{a-} even when it’s not third person – it’s possible as an expletive or ‘dummy’ object.}
+\FIXME{Why we include \fm{\Qf{a}-} even when it’s not third person – it’s possible as an expletive or ‘dummy’ object.}
 
 The IPA data intentionally omit tone marking.
 All varieties of Northern Tlingit contrast high and low tone.
 But all of the verb prefixation paradigms given here predictably have only low tone vowels.
 Thus readers should infer low tone /à, ì, è, ù/ on every vowel symbol in the IPA representations.
-\FIXME{This is not the case for Southern varieties, but we aren’t listing them yet so there’s no possible confusion.}
+Note that Southern varieties of Tlingit (Sanya, Henya) may have high tone on some syllables in the verb prefix complex.
+Because this document does not yet include data for any Southern varieties, there is no potential for confusion.
 
-\FIXME{Discuss questioned forms. Either they are unattested or they are possibly – but not certainly – ungrammatical.
-Combinations of prefixes that are known to be ungrammatical are indicated with ‘⁎’.}
-
-\FIXME{Key — \Qf{object or qualifier/incorporate}, \Rf{irrealis}, \Af{aspect}, \Mf{modality}, \Sf{subject}, \Df{classifier \fm{d-} prefix}, \Ff{classifier \fm{s-}/\fm{l-}/\fm{sh-} prefix}, \If{classifier \fm{i-} prefix}, \Ef{epenthesis}, \df{\textit{d-} prefix deletion}, \Xf{other deletion}}
-
+\FIXME{Colour key — \Qf{object or qualifier/incorporate}, \Rf{irrealis}, \Af{aspect}, \Mf{modality}, \Sf{subject}, \Df{classifier \fm{d-} prefix}, \Ff{classifier \fm{s-}/\fm{l-}/\fm{sh-} prefix}, \If{classifier \fm{i-} prefix}, \Ef{epenthesis}, \df{\textit{d-} prefix deletion}, \Xf{other deletion}}
 \end{multicols}
 
 \clearpage
@@ -306,7 +328,7 @@ Compare the \fm{∅}-conjugation class imperative in (\ref{ex:zero-imperatives-z
 \endgl
 \xe
 
-\FIXME{List of environments: imperfective, imperative, realizational, hortative, etc.}
+\FIXME{List of all environments in which unmarked aspect forms can occur: imperfective (including activity, state, repetitive), imperative, realizational, consecutive, conditional, hortative, contingent, admonitive, potential. Note combinations with negation or prohibitive/optative that would introduce irrealis \fm{\Rf{u}-}.}
 \end{multicols}
 
 \clearpage
