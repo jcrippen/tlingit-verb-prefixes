@@ -83,6 +83,8 @@
 \definecolor{Qcolor}{rgb}{0.00,0.33,0.33}
 % irrealis
 \definecolor{Rcolor}{rgb}{0.90,0.50,0.50}
+% irrealis coalescence
+\definecolor{rcolor}{rgb}{1.00,0.95,0.95}
 % aspect/conjugation
 \definecolor{Acolor}{rgb}{0.70,0.40,0.00}
 % aspect/conjugation coalescence
@@ -134,6 +136,7 @@
 
 \ProvideDocumentCommand \Qf {m} {\textcolor{Qcolor}{\colorboxstrut{}#1}}
 \ProvideDocumentCommand \Rf {m} {\textcolor{Rcolor}{\colorboxstrut{}#1}}
+\ProvideDocumentCommand \rf {m} {\setlength{\fboxsep}{0pt}\colorbox{rcolor}{\colorboxstrut{}#1}}
 \ProvideDocumentCommand \Af {m} {\textcolor{Acolor}{\colorboxstrut{}#1}}
 \ProvideDocumentCommand \af {m} {\setlength{\fboxsep}{0pt}\colorbox{acolor}{\colorboxstrut{}#1}}
 \ProvideDocumentCommand \Mf {m} {\textcolor{Mcolor}{\colorboxstrut{}#1}}
