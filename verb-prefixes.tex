@@ -65,14 +65,6 @@
 
 \input{\FILEPREFIX-macrology}
 
-%% Questionable form marker.
-%%
-%% To be used at the end of a cell in a table. Uses \rlap to float it into
-%% the following intercolumn space without affecting column alignment. This
-%% overwrites the original \? command (for ¿) which we don’t need.
-\DeclareDocumentCommand \supques {} {\textsuperscript*{\textbf{?}}}
-\DeclareDocumentCommand \? {} {\rlap{\supques}}
-
 %%%
 %%% Colour macrology.
 %%%

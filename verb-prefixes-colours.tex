@@ -75,3 +75,23 @@
 \ProvideDocumentCommand \Xf {m} {\setlength{\fboxsep}{0pt}\colorbox{Xcolor}{\colorboxstrut{}#1}}
 \ProvideDocumentCommand \df {m} {\setlength{\fboxsep}{0pt}\colorbox{dcolor}{\colorboxstrut{}#1}}
 \ProvideDocumentCommand \Ef {m} {\textcolor{Ecolor}{\colorboxstrut{}#1}}
+
+%% Questionable form marker.
+%%
+%% Annotates a questionable form with a superscript question mark.
+%% This overwrites the original \? command (for ¿) which we don’t need.
+
+%% This command is just the superscript question mark.
+\DeclareDocumentCommand \supques {} {\textsuperscript*{\textbf{?}}}
+
+%% Adds the superscript question mark at the end.
+%% The argument should be the contents of the cell, minus tabs.
+\DeclareDocumentCommand \? {m} {#1\rlap{\supques}}
+
+%% Alternative that hides the data.
+%% This just prints nothing, making the data disappear.
+%\DeclareDocumentCommand \? {m} {}
+
+%% Alternative that puts the text in a grey background (Xf colour).
+%\DeclareDocumentCommand \? {m} {\setlength{\fboxsep}{0pt}\colorbox{Xcolor}{\colorboxstrut{}#1\rlap{\supques}}}
+
