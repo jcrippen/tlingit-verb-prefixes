@@ -76,78 +76,8 @@
 %%%
 %%% Colour macrology.
 %%%
-\RequirePackage{xcolor}
 
-% Colour definitions.
-% qualifiers
-\definecolor{Qcolor}{rgb}{0.00,0.33,0.33}
-% irrealis
-\definecolor{Rcolor}{rgb}{0.90,0.50,0.50}
-% irrealis coalescence
-\definecolor{rcolor}{rgb}{1.00,0.95,0.95}
-% aspect/conjugation
-\definecolor{Acolor}{rgb}{0.70,0.40,0.00}
-% aspect/conjugation coalescence
-\definecolor{acolor}{rgb}{1.00,1.00,0.85}
-% modality
-\definecolor{Mcolor}{rgb}{0.00,0.66,0.66}
-% modality coalescence
-\definecolor{mcolor}{rgb}{0.90,1.00,1.00}
-% subject
-\definecolor{Scolor}{rgb}{0.50,0.00,0.66}
-% d- prefix
-\definecolor{Dcolor}{rgb}{0.00,0.00,0.75}
-% d- prefix deletion
-\definecolor{dcolor}{rgb}{0.90,0.90,1.00}
-% s-/l-/sh- prefix
-\definecolor{Fcolor}{rgb}{0.00,0.50,0.00}
-% i- prefix
-\definecolor{Icolor}{rgb}{0.75,0.00,0.00}
-% epenthesis
-\definecolor{Ecolor}{rgb}{0.75,0.75,0.75}
-% deletion or coalescence
-\definecolor{Xcolor}{rgb}{0.97,0.97,0.97}
-
-% Uncomment to make everything black.
-%\definecolor{Qcolor}{rgb}{0.00,0.00,0.00}
-%\definecolor{Rcolor}{rgb}{0.00,0.00,0.00}
-%\definecolor{Acolor}{rgb}{0.00,0.00,0.00}
-%\definecolor{Mcolor}{rgb}{0.00,0.00,0.00}
-%\definecolor{Scolor}{rgb}{0.00,0.00,0.00}
-%\definecolor{Dcolor}{rgb}{0.00,0.00,0.00}
-%\definecolor{Fcolor}{rgb}{0.00,0.00,0.00}
-%\definecolor{Icolor}{rgb}{0.00,0.00,0.00}
-%\definecolor{Ecolor}{rgb}{0.00,0.00,0.00}
-
-% Uncomment to make everything light grey.
-%\definecolor{Qcolor}{rgb}{0.90,0.90,0.90}
-%\definecolor{Rcolor}{rgb}{0.90,0.90,0.90}
-%\definecolor{Acolor}{rgb}{0.90,0.90,0.90}
-%\definecolor{Mcolor}{rgb}{0.90,0.90,0.90}
-%\definecolor{Scolor}{rgb}{0.90,0.90,0.90}
-%\definecolor{Dcolor}{rgb}{0.90,0.90,0.90}
-%\definecolor{Fcolor}{rgb}{0.90,0.90,0.90}
-%\definecolor{Icolor}{rgb}{0.90,0.90,0.90}
-%\definecolor{Ecolor}{rgb}{0.90,0.90,0.90}
-
-%% A strut with 90 percent of normal height and width for the colorbox.
-%% See http://tex.stackexchange.com/questions/74459/remove-space-before-colorbox
-\ProvideDocumentCommand \colorboxstrut {} {\vrule width 0pt height 0.9\ht\strutbox depth 0.9\dp\strutbox\relax}
-
-\ProvideDocumentCommand \Qf {m} {\textcolor{Qcolor}{\colorboxstrut{}#1}}
-\ProvideDocumentCommand \Rf {m} {\textcolor{Rcolor}{\colorboxstrut{}#1}}
-\ProvideDocumentCommand \rf {m} {\setlength{\fboxsep}{0pt}\colorbox{rcolor}{\colorboxstrut{}#1}}
-\ProvideDocumentCommand \Af {m} {\textcolor{Acolor}{\colorboxstrut{}#1}}
-\ProvideDocumentCommand \af {m} {\setlength{\fboxsep}{0pt}\colorbox{acolor}{\colorboxstrut{}#1}}
-\ProvideDocumentCommand \Mf {m} {\textcolor{Mcolor}{\colorboxstrut{}#1}}
-\ProvideDocumentCommand \mf {m} {\setlength{\fboxsep}{0pt}\colorbox{mcolor}{\colorboxstrut{}#1}}
-\ProvideDocumentCommand \Sf {m} {\textcolor{Scolor}{\colorboxstrut{}#1}}
-\ProvideDocumentCommand \Df {m} {\textcolor{Dcolor}{\colorboxstrut{}#1}}
-\ProvideDocumentCommand \Ff {m} {\textcolor{Fcolor}{\colorboxstrut{}#1}}
-\ProvideDocumentCommand \If {m} {\textcolor{Icolor}{\colorboxstrut{}#1}}
-\ProvideDocumentCommand \Xf {m} {\setlength{\fboxsep}{0pt}\colorbox{Xcolor}{\colorboxstrut{}#1}}
-\ProvideDocumentCommand \df {m} {\setlength{\fboxsep}{0pt}\colorbox{dcolor}{\colorboxstrut{}#1}}
-\ProvideDocumentCommand \Ef {m} {\textcolor{Ecolor}{\colorboxstrut{}#1}}
+\input{\FILEPREFIX-colours}
 
 %%%
 %%% Includeonlies.
@@ -162,7 +92,6 @@
 %\includeonly{sections/verb-prefixes-05-gconj}
 %\includeonly{sections/verb-prefixes-06-perfective}
 %\includeonly{sections/verb-prefixes-07-prospective}
-
 
 %%%
 %%% The document.
